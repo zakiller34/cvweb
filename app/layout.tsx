@@ -3,6 +3,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navigation } from "@/components/navigation";
 import { AnimatedBackground } from "@/components/ui/animated-background";
+import { LeftSidebar } from "@/components/sidebars/left-sidebar";
+import { RightSidebar } from "@/components/sidebars/right-sidebar";
 
 export const metadata: Metadata = {
   title: "Zakaria Teffah - R&D Engineer",
@@ -16,6 +18,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <AnimatedBackground />
           <Navigation />
+          <LeftSidebar />
+          <RightSidebar />
           <main className="relative z-10">{children}</main>
         </ThemeProvider>
       </body>
