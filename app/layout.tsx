@@ -6,6 +6,7 @@ import { Navigation } from "@/components/navigation";
 import { AnimatedBackground } from "@/components/ui/animated-background";
 import { LeftSidebar } from "@/components/sidebars/left-sidebar";
 import { RightSidebar } from "@/components/sidebars/right-sidebar";
+import { ScrollToTop } from "@/components/ui/scroll-to-top";
 
 export const metadata: Metadata = {
   title: "Zakaria Teffah - R&D Engineer",
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Navigation />
             <LeftSidebar />
             <RightSidebar />
+            <ScrollToTop />
             <main className="relative z-10">{children}</main>
           </LanguageProvider>
         </ThemeProvider>
