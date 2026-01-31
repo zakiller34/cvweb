@@ -37,22 +37,17 @@ export function Hero() {
               <Button size="lg" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
                 Get in Touch
               </Button>
-              <a
-                href="/CV_ZAKARIA_TEFFAH_EN.pdf"
-                download
-                className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 border-2 border-[var(--border)] text-[var(--foreground)] hover:border-[var(--accent)] hover:text-[var(--accent)] px-4 py-3 text-base gap-2"
-              >
-                <span>CV</span>
-                <span className="text-xs px-1.5 py-0.5 bg-[var(--card-bg)] rounded">EN</span>
-              </a>
-              <a
-                href="/CV_ZAKARIA_TEFFAH_FR.pdf"
-                download
-                className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 border-2 border-[var(--border)] text-[var(--foreground)] hover:border-[var(--accent)] hover:text-[var(--accent)] px-4 py-3 text-base gap-2"
-              >
-                <span>CV</span>
-                <span className="text-xs px-1.5 py-0.5 bg-[var(--card-bg)] rounded">FR</span>
-              </a>
+              {SITE_CONFIG.cvFiles.map((cv) => (
+                <a
+                  key={cv.lang}
+                  href={cv.path}
+                  download
+                  className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 border-2 border-[var(--border)] text-[var(--foreground)] hover:border-[var(--accent)] hover:text-[var(--accent)] px-4 py-3 text-base gap-2"
+                >
+                  <span>CV</span>
+                  <span className="text-xs px-1.5 py-0.5 bg-[var(--card-bg)] rounded">{cv.lang}</span>
+                </a>
+              ))}
             </div>
 
             {/* Social links */}

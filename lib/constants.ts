@@ -9,6 +9,10 @@ export const SITE_CONFIG = {
     github: "https://github.com/zakte",
     linkedin: "https://linkedin.com/in/zakaria-teffah",
   },
+  cvFiles: [
+    { lang: "EN", path: "/CV_ZAKARIA_TEFFAH_EN.pdf" },
+    { lang: "FR", path: "/CV_ZAKARIA_TEFFAH_FR.pdf" },
+  ],
 };
 
 export const NAV_LINKS = [
