@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { SITE_CONFIG, STATS } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 
@@ -85,11 +86,14 @@ export function Hero() {
           <div className="flex justify-center">
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent-hover)] p-1">
-                <div className="w-full h-full rounded-full bg-[var(--card-bg)] flex items-center justify-center text-6xl text-[var(--muted)]">
-                  {/* Replace with actual image */}
-                  <svg className="w-32 h-32" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                  </svg>
+                <div className="w-full h-full rounded-full relative overflow-hidden">
+                  <Image
+                    src="/profile.jpg"
+                    alt={SITE_CONFIG.name}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                 </div>
               </div>
               {/* Decorative elements */}
