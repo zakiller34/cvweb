@@ -1,20 +1,41 @@
 "use client";
 
-import { SKILLS, LANGUAGES } from "@/lib/constants";
+import { SKILLS, LANGUAGES_SPOKEN } from "@/lib/constants";
+import { useLanguage } from "@/components/language-provider";
 import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";
 
-const CATEGORY_LABELS: Record<string, string> = {
-  language: "Programming Languages",
-  tool: "Tools",
-  platform: "Platforms",
-  hardware: "Hardware Description",
-  verification: "Verification",
-  expertise: "Core Expertise",
+const CATEGORY_LABELS = {
+  en: {
+    language: "Programming Languages",
+    tool: "Tools",
+    platform: "Platforms",
+    hardware: "Hardware Description",
+    verification: "Verification",
+    expertise: "Core Expertise",
+  },
+  fr: {
+    language: "Langages de Programmation",
+    tool: "Outils",
+    platform: "Plateformes",
+    hardware: "Description Matérielle",
+    verification: "Vérification",
+    expertise: "Expertise Principale",
+  },
+};
+
+const SECTION_TITLES = {
+  en: { skills: "Skills", languages: "Languages" },
+  fr: { skills: "Compétences", languages: "Langues" },
 };
 
 const CATEGORY_ORDER = ["language", "expertise", "verification", "hardware", "tool", "platform"];
 
 export function Skills() {
+  const { lang } = useLanguage();
+  const categoryLabels = CATEGORY_LABELS[lang];
+  const sectionTitles = SECTION_TITLES[lang];
+  const languagesSpoken = LANGUAGES_SPOKEN[lang];
+
   const categories = CATEGORY_ORDER.filter((cat) =>
     SKILLS.some((s) => s.category === cat)
   );
@@ -23,7 +44,7 @@ export function Skills() {
     <section id="skills" className="py-20">
       <div className="max-w-6xl mx-auto px-4">
         <AnimateOnScroll>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Skills</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{sectionTitles.skills}</h2>
           <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
         </AnimateOnScroll>
 
@@ -31,7 +52,7 @@ export function Skills() {
           {categories.map((category, catIndex) => (
             <AnimateOnScroll key={category} delay={catIndex * 100}>
               <h3 className="text-sm font-medium text-[var(--muted)] uppercase tracking-wider mb-4">
-                {CATEGORY_LABELS[category] || category}
+                {categoryLabels[category as keyof typeof categoryLabels] || category}
               </h3>
               <StaggerContainer className="flex flex-wrap gap-3" staggerDelay={50}>
                 {SKILLS.filter((s) => s.category === category).map((skill) => (
@@ -44,16 +65,16 @@ export function Skills() {
           {/* Languages */}
           <AnimateOnScroll delay={categories.length * 100}>
             <h3 className="text-sm font-medium text-[var(--muted)] uppercase tracking-wider mb-4">
-              Languages
+              {sectionTitles.languages}
             </h3>
             <StaggerContainer className="flex flex-wrap gap-3" staggerDelay={50}>
-              {LANGUAGES.map((lang) => (
+              {languagesSpoken.map((language) => (
                 <div
-                  key={lang.name}
+                  key={language.name}
                   className="px-4 py-2 bg-[var(--card-bg)] border border-[var(--border)] rounded-lg"
                 >
-                  <span className="text-sm font-medium">{lang.name}</span>
-                  <span className="text-xs text-[var(--muted)] ml-2">({lang.level})</span>
+                  <span className="text-sm font-medium">{language.name}</span>
+                  <span className="text-xs text-[var(--muted)] ml-2">({language.level})</span>
                 </div>
               ))}
             </StaggerContainer>

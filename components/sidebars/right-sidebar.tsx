@@ -2,10 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { NAV_LINKS } from "@/lib/constants";
+import { useLanguage } from "@/components/language-provider";
 
 export function RightSidebar() {
+  const { lang } = useLanguage();
   const [activeSection, setActiveSection] = useState("");
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  const navLinks = NAV_LINKS[lang];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,7 +17,7 @@ export function RightSidebar() {
       const progress = scrollHeight > 0 ? Math.min(window.scrollY / scrollHeight, 1) : 0;
       setScrollProgress(progress);
 
-      const sections = NAV_LINKS.map((link) => link.href.replace("#", ""));
+      const sections = navLinks.map((link) => link.href.replace("#", ""));
       for (const section of [...sections].reverse()) {
         const element = document.getElementById(section);
         if (element) {
@@ -30,13 +34,13 @@ export function RightSidebar() {
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navLinks]);
 
   return (
     <>
       {/* Section dots - right side */}
       <aside className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-3 animate-fade-in">
-        {NAV_LINKS.map((link) => {
+        {navLinks.map((link) => {
           const sectionId = link.href.replace("#", "");
           const isActive = activeSection === sectionId;
           return (

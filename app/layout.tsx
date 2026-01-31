@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LanguageProvider } from "@/components/language-provider";
 import { Navigation } from "@/components/navigation";
 import { AnimatedBackground } from "@/components/ui/animated-background";
 import { LeftSidebar } from "@/components/sidebars/left-sidebar";
@@ -16,11 +17,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
         <ThemeProvider>
-          <AnimatedBackground />
-          <Navigation />
-          <LeftSidebar />
-          <RightSidebar />
-          <main className="relative z-10">{children}</main>
+          <LanguageProvider>
+            <AnimatedBackground />
+            <Navigation />
+            <LeftSidebar />
+            <RightSidebar />
+            <main className="relative z-10">{children}</main>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

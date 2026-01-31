@@ -1,12 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { SITE_CONFIG, STATS } from "@/lib/constants";
+import { SITE_CONFIG, STATS, UI_TEXT } from "@/lib/constants";
+import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { Typewriter } from "@/components/ui/typewriter";
 
 export function Hero() {
+  const { lang } = useLanguage();
+  const stats = STATS[lang];
+  const ui = UI_TEXT[lang];
+
   return (
     <section className="min-h-screen flex items-center pt-16">
       <div className="max-w-6xl mx-auto px-4 py-20 w-full">
@@ -14,17 +19,16 @@ export function Hero() {
           {/* Text content */}
           <AnimateOnScroll className="space-y-6">
             <div className="space-y-2">
-        
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
                 {SITE_CONFIG.name}
               </h1>
               <p className="text-xl md:text-2xl text-[var(--muted)]">
-                <Typewriter text={SITE_CONFIG.title} delay={60} />
+                <Typewriter text={SITE_CONFIG.title[lang]} delay={60} />
               </p>
             </div>
 
             <p className="text-lg text-[var(--muted)] max-w-md">
-              {SITE_CONFIG.description}
+              {SITE_CONFIG.description[lang]}
             </p>
 
             <div className="flex items-center gap-2 text-[var(--muted)]">
@@ -37,7 +41,7 @@ export function Hero() {
 
             <div className="flex flex-wrap gap-4">
               <Button size="lg" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
-                Get in Touch
+                {ui.getInTouch}
               </Button>
               {SITE_CONFIG.cvFiles.map((cv) => (
                 <a
@@ -103,7 +107,7 @@ export function Hero() {
         {/* Stats */}
         <AnimateOnScroll delay={400}>
           <div className="flex flex-wrap justify-center gap-6 md:gap-10 mt-20 pt-10 border-t border-[var(--border)]">
-            {STATS.map((stat, index) => (
+            {stats.map((stat, index) => (
               <div
                 key={stat.label}
                 className="text-center min-w-[100px] md:min-w-[120px]"

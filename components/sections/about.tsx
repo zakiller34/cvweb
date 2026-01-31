@@ -1,28 +1,47 @@
 "use client";
 
 import { ABOUT_TEXT } from "@/lib/constants";
+import { useLanguage } from "@/components/language-provider";
 import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";
 
-const COMPETENCIES = [
-  { title: "C++ Rust & Python Development", icon: "code" },
-  { title: "Formal verification", icon: "layers" },
-  { title: "High Performance Scientific Computing (HPC)", icon: "users" },
-  { title: "Technology scouting", icon: "refresh" },
-];
+const COMPETENCIES = {
+  en: [
+    { title: "C++ Rust & Python Development", icon: "code" },
+    { title: "Formal Verification", icon: "layers" },
+    { title: "High Performance Scientific Computing (HPC)", icon: "users" },
+    { title: "Technology Scouting", icon: "refresh" },
+  ],
+  fr: [
+    { title: "Développement C++ Rust & Python", icon: "code" },
+    { title: "Vérification Formelle", icon: "layers" },
+    { title: "Calcul Scientifique Haute Performance (HPC)", icon: "users" },
+    { title: "Veille Technologique", icon: "refresh" },
+  ],
+};
+
+const SECTION_TITLE = {
+  en: "More about me",
+  fr: "En savoir plus",
+};
 
 export function About() {
+  const { lang } = useLanguage();
+  const aboutText = ABOUT_TEXT[lang];
+  const competencies = COMPETENCIES[lang];
+  const sectionTitle = SECTION_TITLE[lang];
+
   return (
     <section id="about" className="py-20">
       <div className="max-w-6xl mx-auto px-4">
         <AnimateOnScroll>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">More about me</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{sectionTitle}</h2>
           <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
         </AnimateOnScroll>
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Bio text */}
           <AnimateOnScroll delay={100} className="space-y-4">
-            {ABOUT_TEXT.trim().split("\n\n").map((paragraph, i) => (
+            {aboutText.trim().split("\n\n").map((paragraph, i) => (
               <p key={i} className="text-[var(--muted)] leading-relaxed">
                 {paragraph.trim()}
               </p>
@@ -31,7 +50,7 @@ export function About() {
 
           {/* Core competencies */}
           <StaggerContainer className="grid grid-cols-2 gap-4" staggerDelay={100}>
-            {COMPETENCIES.map((comp) => (
+            {competencies.map((comp) => (
               <div
                 key={comp.title}
                 className="p-4 bg-[var(--card-bg)] border border-[var(--border)] rounded-lg hover:border-[var(--accent)] transition-colors group"

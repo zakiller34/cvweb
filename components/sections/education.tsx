@@ -2,23 +2,45 @@
 
 import Image from "next/image";
 import { EDUCATION, INTERNSHIPS, INTERESTS } from "@/lib/constants";
+import { useLanguage } from "@/components/language-provider";
 import { Card } from "@/components/ui/card";
 import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";
 
+const SECTION_TITLES = {
+  en: {
+    education: "Education",
+    degree: "Degree",
+    interests: "Interests",
+    internships: "Internships",
+  },
+  fr: {
+    education: "Formation",
+    degree: "Diplôme",
+    interests: "Centres d'intérêt",
+    internships: "Stages",
+  },
+};
+
 export function Education() {
+  const { lang } = useLanguage();
+  const education = EDUCATION[lang];
+  const internships = INTERNSHIPS[lang];
+  const interests = INTERESTS[lang];
+  const titles = SECTION_TITLES[lang];
+
   return (
     <section id="education" className="py-20 bg-[var(--card-bg)]/50">
       <div className="max-w-6xl mx-auto px-4">
         <AnimateOnScroll>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Education</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{titles.education}</h2>
           <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
         </AnimateOnScroll>
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Education */}
           <AnimateOnScroll delay={100}>
-            <h3 className="text-lg font-semibold mb-4">Degree</h3>
-            {EDUCATION.map((edu) => (
+            <h3 className="text-lg font-semibold mb-4">{titles.degree}</h3>
+            {education.map((edu) => (
               <Card key={edu.school} className="mb-4">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-lg bg-white border border-[var(--border)] flex items-center justify-center overflow-hidden p-1">
@@ -42,9 +64,9 @@ export function Education() {
             ))}
 
             {/* Interests */}
-            <h3 className="text-lg font-semibold mb-4 mt-8">Interests</h3>
+            <h3 className="text-lg font-semibold mb-4 mt-8">{titles.interests}</h3>
             <StaggerContainer className="flex flex-wrap gap-2" staggerDelay={50}>
-              {INTERESTS.map((interest) => (
+              {interests.map((interest) => (
                 <span
                   key={interest}
                   className="px-3 py-1 bg-[var(--card-bg)] border border-[var(--border)] rounded-full text-sm text-[var(--muted)]"
@@ -57,9 +79,9 @@ export function Education() {
 
           {/* Internships */}
           <AnimateOnScroll delay={200}>
-            <h3 className="text-lg font-semibold mb-4">Internships</h3>
+            <h3 className="text-lg font-semibold mb-4">{titles.internships}</h3>
             <StaggerContainer className="space-y-4" staggerDelay={100}>
-              {INTERNSHIPS.map((intern) => (
+              {internships.map((intern) => (
                 <Card key={intern.company} className="p-4">
                   <div className="flex justify-between items-start mb-2">
                     <div>

@@ -2,24 +2,34 @@
 
 import Image from "next/image";
 import { EXPERIENCES } from "@/lib/constants";
+import { useLanguage } from "@/components/language-provider";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { AnimatedTimeline, TimelineDot } from "@/components/ui/animated-timeline";
 
+const SECTION_TITLE = {
+  en: "Experience",
+  fr: "Expérience",
+};
+
 export function Experience() {
+  const { lang } = useLanguage();
+  const experiences = EXPERIENCES[lang];
+  const sectionTitle = SECTION_TITLE[lang];
+
   return (
     <section id="experience" className="py-20 bg-[var(--card-bg)]/50">
       <div className="max-w-6xl mx-auto px-4">
         <AnimateOnScroll>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{sectionTitle}</h2>
           <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
         </AnimateOnScroll>
 
         <AnimatedTimeline>
           {/* Timeline items */}
           <div className="space-y-12">
-            {EXPERIENCES.map((exp, index) => (
+            {experiences.map((exp, index) => (
               <AnimateOnScroll
                 key={exp.company}
                 delay={index * 150}
