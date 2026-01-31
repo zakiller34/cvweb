@@ -25,7 +25,9 @@ export const NAV_LINKS = [
 
 export const STATS = [
   { value: "14+", label: "Years Experience" },
-  { value: "C++", label: "Core Expertise" },
+  { value: "C++/Rust & python", label: "Core Languages" },
+  { value: "Compiler", label: "Lex/Yacc/LLVM" },
+  { value: "Lean/TLA+ and Z3", label: "Formal Verification tools" },
   { value: "INSA", label: "MSc Engineering" },
 ];
 
@@ -34,10 +36,10 @@ export const EXPERIENCES = [
     company: "NanoXplore",
     logo: "/logos/nanoxplore.png",
     role: "C++/Python R&D Engineer",
-    period: "Feb 2021 - Present",
+    period: "Feb 2021 - Dec 2025",
     location: "Montpellier, France",
-    description: "FPGA compiler development, DSP pattern matching, formal verification with SMT solvers, BDD development for equivalence checking, graph/hypergraph algorithms for circuit abstractions.",
-    technologies: ["C++", "Python", "SMT Solvers", "TLA+", "VHDL/Verilog", "BDD", "ModelSim"],
+    description: "FPGA compiler development, DSP pattern matching, formal verification with SMT solvers, Reduced Ordered Binary Decision Diagram development for equivalence checking, graph/hypergraph algorithms for circuit abstractions.",
+    technologies: ["C++", "Python", "SMT Solvers", "TLA+", "VHDL/Verilog", "ROBDD", "ModelSim"],
   },
   {
     company: "Liebherr Aerospace",
@@ -49,9 +51,9 @@ export const EXPERIENCES = [
     technologies: ["C++", "Python", "Scientific Computing", "Numerical Optimization"],
   },
   {
-    company: "Altran Technologies",
+    company: "Airbus",
     logo: "/logos/altran.svg",
-    role: "Methods & Tools Consultant",
+    role: "Methods & Tools Consultant In Altran For Airbus",
     period: "Aug 2011 - Dec 2014",
     location: "Toulouse, France",
     description: "Airbus flight simulator stability optimization, aircraft trajectory simulation and optimization tools, multi-physics simulation for A30X wing optimization using kriging ML.",
@@ -92,14 +94,13 @@ export const SKILLS = [
   { name: "Mathematica", category: "tool", level: "good" },
   { name: "R", category: "tool", level: "good" },
   { name: "Linux", category: "platform", level: "advanced" },
-  { name: "VHDL/Verilog", category: "hardware", level: "good" },
+  { name: "Windows", category: "platform", level: "advanced" },
+  { name: "VHDL/Verilog languages", category: "hardware", level: "good" },
   { name: "ModelSim/QuestaSim", category: "tool", level: "good" },
-  { name: "SMT Solvers", category: "verification", level: "advanced" },
-  { name: "Formal Verification", category: "verification", level: "advanced" },
   { name: "Compilers", category: "expertise", level: "advanced" },
   { name: "Numerical Optimization", category: "expertise", level: "advanced" },
   { name: "Mathematical Modelling", category: "expertise", level: "advanced" },
-  { name: "Graph Algorithms", category: "expertise", level: "advanced" },
+  { name: "Formal Verification", category: "expertise", level: "advanced" },
   { name: "Software Architecture", category: "expertise", level: "advanced" },
 ];
 
@@ -151,15 +152,9 @@ export const INTERESTS = [
 
 export const ABOUT_TEXT = `
 I am an experienced professional with 14+ years in computer science, specializing in
-compilers and formal verification. I'm excited to tackle cutting-edge software problems
-and ready to engage in new responsibilities in the software field.
+compilers and formal verification. I'm excited to tackle cutting-edge software & hardware problems.
 
 My expertise spans C/C++ development, combinatorial and numerical optimization,
-mathematical modelling, and software architecture design. Currently at NanoXplore,
-I work on FPGA compiler development, DSP pattern matching, and formal verification
-using SMT solvers and TLA+.
-
-Previously, I contributed to aerospace projects at Liebherr and Altran, working on
-scientific computation, trajectory optimization, and multi-physics simulations for
-Airbus aircraft.
+mathematical modelling, and software architecture design. I am specialized in formal verification
+using Lean, TLA+ and SMT solvers like Z3.
 `;

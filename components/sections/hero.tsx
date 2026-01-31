@@ -102,13 +102,17 @@ export function Hero() {
 
         {/* Stats */}
         <AnimateOnScroll delay={400}>
-          <div className="grid grid-cols-3 gap-8 mt-20 pt-10 border-t border-[var(--border)]">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-10 mt-20 pt-10 border-t border-[var(--border)]">
             {STATS.map((stat, index) => (
-              <div key={stat.label} className="text-center" style={{ animationDelay: `${index * 100}ms` }}>
-                <div className="text-3xl md:text-4xl font-bold text-[var(--accent)]">
+              <div
+                key={stat.label}
+                className="text-center min-w-[100px] md:min-w-[120px]"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="text-2xl md:text-3xl font-bold text-[var(--accent)]">
                   {stat.value}
                 </div>
-                <div className="text-sm text-[var(--muted)] mt-1">{stat.label}</div>
+                <div className="text-xs md:text-sm text-[var(--muted)] mt-1">{stat.label}</div>
               </div>
             ))}
           </div>

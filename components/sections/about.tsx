@@ -4,10 +4,10 @@ import { ABOUT_TEXT } from "@/lib/constants";
 import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";
 
 const COMPETENCIES = [
-  { title: "Full-Stack Development", icon: "code" },
-  { title: "System Architecture", icon: "layers" },
-  { title: "Team Leadership", icon: "users" },
-  { title: "Agile Methodology", icon: "refresh" },
+  { title: "C++ Rust & Python Development", icon: "code" },
+  { title: "Formal verification", icon: "layers" },
+  { title: "High Performance Scientific Computing (HPC)", icon: "users" },
+  { title: "Technology scouting", icon: "refresh" },
 ];
 
 export function About() {
@@ -15,7 +15,7 @@ export function About() {
     <section id="about" className="py-20">
       <div className="max-w-6xl mx-auto px-4">
         <AnimateOnScroll>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">More about me</h2>
           <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
         </AnimateOnScroll>
 
