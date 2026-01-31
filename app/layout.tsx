@@ -5,8 +5,8 @@ import { Navigation } from "@/components/navigation";
 import { AnimatedBackground } from "@/components/ui/animated-background";
 
 export const metadata: Metadata = {
-  title: "Zakaria Teffah - Senior C++ Engineer",
-  description: "Portfolio and CV of Zakaria Teffah, Senior C++ Engineer specializing in compilers, formal verification, and cutting-edge software development.",
+  title: "Zakaria Teffah - R&D Engineer",
+  description: "Portfolio and CV of Zakaria Teffah, R&D Engineer specializing in compilers, formal verification, and cutting-edge software & hardware development.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

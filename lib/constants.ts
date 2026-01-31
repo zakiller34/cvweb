@@ -1,13 +1,13 @@
 export const SITE_CONFIG = {
   name: "Zakaria Teffah",
-  title: "Senior C++ Engineer",
+  title: "R&D Engineer",
   location: "Montpellier, France",
   email: "zakaria.teffah@gmail.com",
   phone: "+33 6 52 94 27 48",
-  description: "Experienced professional with expertise in compilers, formal verification, and cutting-edge software development",
+  description: "Experienced professional in software & hardware development. My areas of interest are: compilers, formal methods, optimization and scientific computing",
   social: {
-    github: "https://github.com/zakte",
-    linkedin: "https://linkedin.com/in/zakaria-teffah",
+    github: "https://github.com/zakiller34",
+    linkedin: "https://www.linkedin.com/in/zakaria-teffah-8545959a/",
   },
   cvFiles: [
     { lang: "EN", path: "/CV_ZAKARIA_TEFFAH_EN.pdf" },
