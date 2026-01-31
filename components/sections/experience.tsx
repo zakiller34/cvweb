@@ -4,29 +4,31 @@ import Image from "next/image";
 import { EXPERIENCES } from "@/lib/constants";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
+import { AnimatedTimeline, TimelineDot } from "@/components/ui/animated-timeline";
 
 export function Experience() {
   return (
     <section id="experience" className="py-20 bg-[var(--card-bg)]/50">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience</h2>
-        <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
+        <AnimateOnScroll>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience</h2>
+          <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
+        </AnimateOnScroll>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-[var(--border)] transform md:-translate-x-1/2" />
-
+        <AnimatedTimeline>
           {/* Timeline items */}
           <div className="space-y-12">
             {EXPERIENCES.map((exp, index) => (
-              <div
+              <AnimateOnScroll
                 key={exp.company}
+                delay={index * 150}
                 className={`relative flex flex-col md:flex-row gap-8 ${
                   index % 2 === 0 ? "md:flex-row-reverse" : ""
                 }`}
               >
                 {/* Timeline dot */}
-                <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-[var(--accent)] rounded-full border-4 border-[var(--background)] transform -translate-x-1/2 md:-translate-x-1/2" />
+                <TimelineDot index={index} />
 
                 {/* Content */}
                 <div className={`md:w-1/2 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"} pl-8 md:pl-0`}>
@@ -64,10 +66,10 @@ export function Experience() {
 
                 {/* Spacer for alternating layout */}
                 <div className="hidden md:block md:w-1/2" />
-              </div>
+              </AnimateOnScroll>
             ))}
           </div>
-        </div>
+        </AnimatedTimeline>
       </div>
     </section>
   );

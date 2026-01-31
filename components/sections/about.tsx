@@ -1,6 +1,7 @@
 "use client";
 
 import { ABOUT_TEXT } from "@/lib/constants";
+import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";
 
 const COMPETENCIES = [
   { title: "Full-Stack Development", icon: "code" },
@@ -13,21 +14,23 @@ export function About() {
   return (
     <section id="about" className="py-20">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
-        <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
+        <AnimateOnScroll>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+          <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
+        </AnimateOnScroll>
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Bio text */}
-          <div className="space-y-4">
+          <AnimateOnScroll delay={100} className="space-y-4">
             {ABOUT_TEXT.trim().split("\n\n").map((paragraph, i) => (
               <p key={i} className="text-[var(--muted)] leading-relaxed">
                 {paragraph.trim()}
               </p>
             ))}
-          </div>
+          </AnimateOnScroll>
 
           {/* Core competencies */}
-          <div className="grid grid-cols-2 gap-4">
+          <StaggerContainer className="grid grid-cols-2 gap-4" staggerDelay={100}>
             {COMPETENCIES.map((comp) => (
               <div
                 key={comp.title}
@@ -39,7 +42,7 @@ export function About() {
                 <h3 className="font-medium text-sm">{comp.title}</h3>
               </div>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navigation } from "@/components/navigation";
+import { AnimatedBackground } from "@/components/ui/animated-background";
 
 export const metadata: Metadata = {
   title: "Zakaria Teffah - Senior C++ Engineer",
@@ -13,8 +14,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
         <ThemeProvider>
+          <AnimatedBackground />
           <Navigation />
-          <main>{children}</main>
+          <main className="relative z-10">{children}</main>
         </ThemeProvider>
       </body>
     </html>

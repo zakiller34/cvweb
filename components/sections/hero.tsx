@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { SITE_CONFIG, STATS } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
+import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
+import { Typewriter } from "@/components/ui/typewriter";
 
 export function Hero() {
   return (
@@ -10,14 +12,14 @@ export function Hero() {
       <div className="max-w-6xl mx-auto px-4 py-20 w-full">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Text content */}
-          <div className="space-y-6">
+          <AnimateOnScroll className="space-y-6">
             <div className="space-y-2">
               <p className="text-[var(--accent)] font-medium">Hello, I&apos;m</p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
                 {SITE_CONFIG.name}
               </h1>
               <p className="text-xl md:text-2xl text-[var(--muted)]">
-                {SITE_CONFIG.title}
+                <Typewriter text={SITE_CONFIG.title} delay={60} />
               </p>
             </div>
 
@@ -75,11 +77,11 @@ export function Hero() {
                 </svg>
               </a>
             </div>
-          </div>
+          </AnimateOnScroll>
 
           {/* Photo placeholder */}
-          <div className="flex justify-center">
-            <div className="relative">
+          <AnimateOnScroll delay={200} className="flex justify-center">
+            <div className="relative animate-float">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent-hover)] p-1">
                 <div className="w-full h-full rounded-full relative overflow-hidden">
                   <Image
@@ -92,23 +94,25 @@ export function Hero() {
                 </div>
               </div>
               {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-[var(--accent)]/10 rounded-full blur-xl" />
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-[var(--accent)]/10 rounded-full blur-xl" />
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-[var(--accent)]/10 rounded-full blur-xl animate-pulse-glow" />
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-[var(--accent)]/10 rounded-full blur-xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
             </div>
-          </div>
+          </AnimateOnScroll>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-8 mt-20 pt-10 border-t border-[var(--border)]">
-          {STATS.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-[var(--accent)]">
-                {stat.value}
+        <AnimateOnScroll delay={400}>
+          <div className="grid grid-cols-3 gap-8 mt-20 pt-10 border-t border-[var(--border)]">
+            {STATS.map((stat, index) => (
+              <div key={stat.label} className="text-center" style={{ animationDelay: `${index * 100}ms` }}>
+                <div className="text-3xl md:text-4xl font-bold text-[var(--accent)]">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-[var(--muted)] mt-1">{stat.label}</div>
               </div>
-              <div className="text-sm text-[var(--muted)] mt-1">{stat.label}</div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );

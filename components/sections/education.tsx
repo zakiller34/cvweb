@@ -3,17 +3,20 @@
 import Image from "next/image";
 import { EDUCATION, INTERNSHIPS, INTERESTS } from "@/lib/constants";
 import { Card } from "@/components/ui/card";
+import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";
 
 export function Education() {
   return (
     <section id="education" className="py-20 bg-[var(--card-bg)]/50">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Education</h2>
-        <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
+        <AnimateOnScroll>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Education</h2>
+          <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
+        </AnimateOnScroll>
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Education */}
-          <div>
+          <AnimateOnScroll delay={100}>
             <h3 className="text-lg font-semibold mb-4">Degree</h3>
             {EDUCATION.map((edu) => (
               <Card key={edu.school} className="mb-4">
@@ -40,7 +43,7 @@ export function Education() {
 
             {/* Interests */}
             <h3 className="text-lg font-semibold mb-4 mt-8">Interests</h3>
-            <div className="flex flex-wrap gap-2">
+            <StaggerContainer className="flex flex-wrap gap-2" staggerDelay={50}>
               {INTERESTS.map((interest) => (
                 <span
                   key={interest}
@@ -49,13 +52,13 @@ export function Education() {
                   {interest}
                 </span>
               ))}
-            </div>
-          </div>
+            </StaggerContainer>
+          </AnimateOnScroll>
 
           {/* Internships */}
-          <div>
+          <AnimateOnScroll delay={200}>
             <h3 className="text-lg font-semibold mb-4">Internships</h3>
-            <div className="space-y-4">
+            <StaggerContainer className="space-y-4" staggerDelay={100}>
               {INTERNSHIPS.map((intern) => (
                 <Card key={intern.company} className="p-4">
                   <div className="flex justify-between items-start mb-2">
@@ -68,8 +71,8 @@ export function Education() {
                   <p className="text-[var(--muted)] text-sm">{intern.description}</p>
                 </Card>
               ))}
-            </div>
-          </div>
+            </StaggerContainer>
+          </AnimateOnScroll>
         </div>
       </div>
     </section>
