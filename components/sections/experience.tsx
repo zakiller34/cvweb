@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { EXPERIENCES } from "@/lib/constants";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -31,9 +32,14 @@ export function Experience() {
                 <div className={`md:w-1/2 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"} pl-8 md:pl-0`}>
                   <Card hover className="h-full">
                     <div className="flex items-start gap-4 mb-4">
-                      {/* Company logo placeholder */}
-                      <div className="w-12 h-12 rounded-lg bg-[var(--background)] border border-[var(--border)] flex items-center justify-center text-xs font-bold text-[var(--muted)]">
-                        {exp.company.slice(0, 2).toUpperCase()}
+                      <div className="w-12 h-12 rounded-lg bg-white border border-[var(--border)] flex items-center justify-center overflow-hidden p-1">
+                        <Image
+                          src={exp.logo}
+                          alt={exp.company}
+                          width={48}
+                          height={48}
+                          className="object-contain w-full h-full"
+                        />
                       </div>
                       <div className="flex-1">
                         <h3 className="font-semibold">{exp.role}</h3>

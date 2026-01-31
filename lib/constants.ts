@@ -32,7 +32,7 @@ export const STATS = [
 export const EXPERIENCES = [
   {
     company: "NanoXplore",
-    logo: "/logos/nanoxplore.svg",
+    logo: "/logos/nanoxplore.png",
     role: "C++/Python R&D Engineer",
     period: "Feb 2021 - Present",
     location: "Montpellier, France",
@@ -106,6 +106,7 @@ export const SKILLS = [
 export const EDUCATION = [
   {
     school: "INSA Toulouse",
+    logo: "/logos/insa-toulouse-logo.png",
     degree: "Master of Science",
     field: "Computer Science, Mathematics and Modelling",
     period: "2006 - 2011",
