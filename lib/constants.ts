@@ -340,6 +340,73 @@ la modélisation mathématique et la conception d'architecture logicielle. Je su
 utilisant Lean, TLA+ et les solveurs SMT comme Z3.`,
 };
 
+export const COMPETENCIES = {
+  en: [
+    {
+      id: "cpp",
+      label: "C++",
+      description: "Systems programming, performance-critical applications, compiler development and low-level optimization.",
+    },
+    {
+      id: "rust",
+      label: "Rust",
+      description: "Memory-safe systems programming, concurrent applications, and high-reliability software development.",
+    },
+    {
+      id: "python",
+      label: "Python",
+      description: "Scripting, data analysis, ML prototyping, and rapid tool development for scientific computing.",
+    },
+    {
+      id: "formal-verification",
+      label: "Formal Verification",
+      description: "Mathematical proofs for software correctness using Lean, TLA+, and SMT solvers like Z3.",
+    },
+    {
+      id: "hpc",
+      label: "HPC",
+      description: "Parallel computing, performance optimization, and scientific simulations on high-performance systems.",
+    },
+    {
+      id: "tech-scouting",
+      label: "Tech Scouting",
+      description: "Emerging technology evaluation, innovation tracking, and strategic technical recommendations.",
+    },
+  ],
+  fr: [
+    {
+      id: "cpp",
+      label: "C++",
+      description: "Programmation système, applications critiques en performance, développement de compilateurs et optimisation bas niveau.",
+    },
+    {
+      id: "rust",
+      label: "Rust",
+      description: "Programmation système sûre en mémoire, applications concurrentes et développement logiciel haute fiabilité.",
+    },
+    {
+      id: "python",
+      label: "Python",
+      description: "Scripting, analyse de données, prototypage ML et développement rapide d'outils pour le calcul scientifique.",
+    },
+    {
+      id: "formal-verification",
+      label: "Vérification Formelle",
+      description: "Preuves mathématiques de correction logicielle avec Lean, TLA+ et solveurs SMT comme Z3.",
+    },
+    {
+      id: "hpc",
+      label: "HPC",
+      description: "Calcul parallèle, optimisation de performance et simulations scientifiques sur systèmes haute performance.",
+    },
+    {
+      id: "tech-scouting",
+      label: "Veille Techno",
+      description: "Évaluation des technologies émergentes, suivi de l'innovation et recommandations techniques stratégiques.",
+    },
+  ],
+};
+
 // Helper function to get translated content
 export function getTranslated<T>(content: { en: T; fr: T }, lang: Language): T {
   return content[lang];
