@@ -20,7 +20,8 @@ export function Hero() {
           <AnimateOnScroll className="space-y-6">
             <div className="space-y-2">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-                {SITE_CONFIG.name}
+                <span className="text-[#38bdf8]">Zakaria</span>{" "}
+                Teffah
               </h1>
               <p className="text-xl md:text-2xl text-[var(--muted)]">
                 <Typewriter text={SITE_CONFIG.title[lang]} delay={60} />

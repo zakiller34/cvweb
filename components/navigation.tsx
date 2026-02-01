@@ -107,7 +107,7 @@ export function Navigation() {
               isHome ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >
-            zakariateffah.com
+            <span className="text-[#38bdf8]">zakaria</span>teffah.com
           </a>
 
           {/* Right side */}
@@ -188,7 +188,11 @@ export function Navigation() {
         {/* Mobile layout */}
         <div className="flex md:hidden items-center justify-between w-full">
           <a href="#" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="font-semibold text-lg">
-            {isHome ? "zakariateffah.com" : SITE_CONFIG.name}
+            {isHome ? (
+              <><span className="text-[#38bdf8]">zakaria</span>teffah.com</>
+            ) : (
+              <><span className="text-[#38bdf8]">Zakaria</span> Teffah</>
+            )}
           </a>
           <div className="flex items-center gap-2">
             <LanguageToggle />
