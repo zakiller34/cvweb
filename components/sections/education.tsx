@@ -83,14 +83,27 @@ export function Education() {
             <StaggerContainer className="space-y-4" staggerDelay={100}>
               {internships.map((intern) => (
                 <Card key={intern.company} className="p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <div>
-                      <h4 className="font-medium text-sm">{intern.company}</h4>
-                      <p className="text-[var(--accent)] text-xs">{intern.role}</p>
+                  <div className="flex gap-3">
+                    <div className="w-12 h-12 rounded-lg bg-white border border-[var(--border)] flex items-center justify-center overflow-hidden p-1 flex-shrink-0">
+                      <Image
+                        src={intern.logo}
+                        alt={intern.company}
+                        width={48}
+                        height={48}
+                        className="object-contain w-full h-full"
+                      />
                     </div>
-                    <span className="text-[var(--muted)] text-xs">{intern.period}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between items-start mb-1">
+                        <div>
+                          <h4 className="font-medium text-sm">{intern.company}</h4>
+                          <p className="text-[var(--accent)] text-xs">{intern.role}</p>
+                        </div>
+                        <span className="text-[var(--muted)] text-xs flex-shrink-0">{intern.period}</span>
+                      </div>
+                      <p className="text-[var(--muted)] text-sm">{intern.description}</p>
+                    </div>
                   </div>
-                  <p className="text-[var(--muted)] text-sm">{intern.description}</p>
                 </Card>
               ))}
             </StaggerContainer>

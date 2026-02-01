@@ -7,16 +7,12 @@ import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-sc
 const CATEGORY_LABELS = {
   en: {
     language: "Programming Languages",
-    tool: "Tools",
-    platform: "Platforms",
     hardware: "Hardware Description",
     verification: "Verification",
     expertise: "Core Expertise",
   },
   fr: {
     language: "Langages de Programmation",
-    tool: "Outils",
-    platform: "Plateformes",
     hardware: "Description Matérielle",
     verification: "Vérification",
     expertise: "Expertise Principale",
@@ -28,7 +24,7 @@ const SECTION_TITLES = {
   fr: { skills: "Compétences", languages: "Langues" },
 };
 
-const CATEGORY_ORDER = ["language", "expertise", "verification", "hardware", "tool", "platform"];
+const CATEGORY_ORDER = ["language", "expertise", "verification", "hardware"];
 
 export function Skills() {
   const { lang } = useLanguage();

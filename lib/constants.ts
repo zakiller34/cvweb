@@ -170,12 +170,14 @@ export const INTERNSHIPS = {
   en: [
     {
       company: "IMFT Toulouse",
+      logo: "/logos/imft.jpg",
       role: "Graduate Internship",
       period: "Feb - Jun 2011",
       description: "Finite volume code for Biot poro-elastic coupling simulation and numerical analysis.",
     },
     {
       company: "Mercator Ocean",
+      logo: "/logos/mercator-ocean.png",
       role: "Internship",
       period: "Jun - Sep 2010",
       location: "Toulouse, France",
@@ -183,6 +185,7 @@ export const INTERNSHIPS = {
     },
     {
       company: "Norwegian Meteorological Institute",
+      logo: "/logos/met-norway.png",
       role: "Internship",
       period: "Jul - Aug 2009",
       location: "Oslo, Norway",
@@ -192,12 +195,14 @@ export const INTERNSHIPS = {
   fr: [
     {
       company: "IMFT Toulouse",
+      logo: "/logos/imft.jpg",
       role: "Stage de fin d'études",
       period: "Fév - Juin 2011",
       description: "Code volumes finis pour la simulation du couplage poro-élastique de Biot et analyse numérique.",
     },
     {
       company: "Mercator Ocean",
+      logo: "/logos/mercator-ocean.png",
       role: "Stage",
       period: "Juin - Sep 2010",
       location: "Toulouse, France",
@@ -205,6 +210,7 @@ export const INTERNSHIPS = {
     },
     {
       company: "Norwegian Meteorological Institute",
+      logo: "/logos/met-norway.png",
       role: "Stage",
       period: "Juil - Août 2009",
       location: "Oslo, Norvège",
@@ -221,12 +227,7 @@ export const SKILLS = [
   { name: "Lean4", category: "language", level: "good" },
   { name: "TLA+", category: "language", level: "good" },
   { name: "MiniZinc", category: "language", level: "advanced" },
-  { name: "Mathematica", category: "tool", level: "good" },
-  { name: "R", category: "tool", level: "good" },
-  { name: "Linux", category: "platform", level: "advanced" },
-  { name: "Windows", category: "platform", level: "advanced" },
   { name: "VHDL/Verilog languages", category: "hardware", level: "good" },
-  { name: "ModelSim/QuestaSim", category: "tool", level: "good" },
   { name: "Compilers", category: "expertise", level: "advanced" },
   { name: "Numerical Optimization", category: "expertise", level: "advanced" },
   { name: "Mathematical Modelling", category: "expertise", level: "advanced" },
@@ -237,15 +238,11 @@ export const SKILLS = [
 export const SKILL_CATEGORIES = {
   en: {
     language: "Languages",
-    tool: "Tools",
-    platform: "Platforms",
     hardware: "Hardware",
     expertise: "Expertise",
   },
   fr: {
     language: "Langages",
-    tool: "Outils",
-    platform: "Plateformes",
     hardware: "Matériel",
     expertise: "Expertise",
   },
