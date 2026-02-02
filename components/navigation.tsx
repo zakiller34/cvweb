@@ -11,9 +11,10 @@ import { Button } from "./ui/button";
 
 interface NavigationProps {
   hideContactForm?: boolean;
+  showCvDownload?: boolean;
 }
 
-export function Navigation({ hideContactForm = false }: NavigationProps) {
+export function Navigation({ hideContactForm = false, showCvDownload = true }: NavigationProps) {
   const { lang } = useLanguage();
   const { isHome, activeSection } = useScrollState();
   const [isOpen, setIsOpen] = useState(false);
@@ -115,42 +116,44 @@ export function Navigation({ hideContactForm = false }: NavigationProps) {
             </button>
 
             {/* Download CV dropdown (visible when scrolled) */}
-            <div
-              ref={dropdownRef}
-              className={`relative transition-all duration-300 ${
-                isHome ? "opacity-0 translate-x-4 pointer-events-none w-0" : "opacity-100 translate-x-0"
-              }`}
-            >
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setCvDropdownOpen(!cvDropdownOpen)}
-                className="gap-1"
+            {showCvDownload && (
+              <div
+                ref={dropdownRef}
+                className={`relative transition-all duration-300 ${
+                  isHome ? "opacity-0 translate-x-4 pointer-events-none w-0" : "opacity-100 translate-x-0"
+                }`}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                {ui.downloadCV}
-                <svg className={`w-3 h-3 transition-transform ${cvDropdownOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </Button>
-              {cvDropdownOpen && (
-                <div className="absolute top-full right-0 mt-2 bg-[var(--card-bg)] border border-[var(--border)] rounded-lg shadow-lg overflow-hidden z-10">
-                  {SITE_CONFIG.cvFiles.map((cv) => (
-                    <a
-                      key={cv.lang}
-                      href={cv.path}
-                      download
-                      className="block px-4 py-2 text-sm hover:bg-[var(--border)] transition-colors"
-                      onClick={() => setCvDropdownOpen(false)}
-                    >
-                      {cv.lang === "EN" ? ui.english : ui.french}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setCvDropdownOpen(!cvDropdownOpen)}
+                  className="gap-1"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  {ui.downloadCV}
+                  <svg className={`w-3 h-3 transition-transform ${cvDropdownOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </Button>
+                {cvDropdownOpen && (
+                  <div className="absolute top-full right-0 mt-2 bg-[var(--card-bg)] border border-[var(--border)] rounded-lg shadow-lg overflow-hidden z-10">
+                    {SITE_CONFIG.cvFiles.map((cv) => (
+                      <a
+                        key={cv.lang}
+                        href={cv.path}
+                        download
+                        className="block px-4 py-2 text-sm hover:bg-[var(--border)] transition-colors"
+                        onClick={() => setCvDropdownOpen(false)}
+                      >
+                        {cv.lang === "EN" ? ui.english : ui.french}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Get in Touch button or email (visible when scrolled) */}
             {hideContactForm ? (
@@ -237,18 +240,20 @@ export function Navigation({ hideContactForm = false }: NavigationProps) {
               </a>
             );
           })}
-          <div className="flex gap-2 pt-2 border-t border-[var(--border)]">
-            {SITE_CONFIG.cvFiles.map((cv) => (
-              <a
-                key={cv.lang}
-                href={cv.path}
-                download
-                className="flex-1 text-center py-2 text-sm border border-[var(--border)] rounded-lg hover:border-[var(--accent)] transition-colors"
-              >
-                CV ({cv.lang})
-              </a>
-            ))}
-          </div>
+          {showCvDownload && (
+            <div className="flex gap-2 pt-2 border-t border-[var(--border)]">
+              {SITE_CONFIG.cvFiles.map((cv) => (
+                <a
+                  key={cv.lang}
+                  href={cv.path}
+                  download
+                  className="flex-1 text-center py-2 text-sm border border-[var(--border)] rounded-lg hover:border-[var(--accent)] transition-colors"
+                >
+                  CV ({cv.lang})
+                </a>
+              ))}
+            </div>
+          )}
           {hideContactForm ? (
             <span className="text-base font-medium text-[var(--accent)] py-2">
               zakaria.teffah [at] gmail [dot] com
