@@ -7,7 +7,11 @@ import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { Typewriter } from "@/components/ui/typewriter";
 
-export function Hero() {
+interface HeroProps {
+  showCvDownload?: boolean;
+}
+
+export function Hero({ showCvDownload = true }: HeroProps) {
   const { lang } = useLanguage();
   const stats = STATS[lang];
   const ui = UI_TEXT[lang];
@@ -36,7 +40,7 @@ export function Hero() {
               <Button size="lg" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
                 {ui.getInTouch}
               </Button>
-              {SITE_CONFIG.cvFiles.map((cv) => (
+              {showCvDownload && SITE_CONFIG.cvFiles.map((cv) => (
                 <a
                   key={cv.lang}
                   href={cv.path}

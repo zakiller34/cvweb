@@ -8,6 +8,7 @@ import { AnimatedBackground } from "@/components/ui/animated-background";
 import { LeftSidebar } from "@/components/sidebars/left-sidebar";
 import { RightSidebar } from "@/components/sidebars/right-sidebar";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { SessionProvider } from "@/components/session-provider";
 
 export const metadata: Metadata = {
   title: "Zakaria Teffah - Research and Development Engineer",
@@ -18,18 +19,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
-        <ThemeProvider>
-          <LanguageProvider>
-            <ScrollStateProvider>
-              <AnimatedBackground />
-              <Navigation />
-              <LeftSidebar />
-              <RightSidebar />
-              <ScrollToTop />
-              <main className="relative z-10">{children}</main>
-            </ScrollStateProvider>
-          </LanguageProvider>
-        </ThemeProvider>
+        <SessionProvider>
+          <ThemeProvider>
+            <LanguageProvider>
+              <ScrollStateProvider>
+                <AnimatedBackground />
+                <Navigation />
+                <LeftSidebar />
+                <RightSidebar />
+                <ScrollToTop />
+                <main className="relative z-10">{children}</main>
+              </ScrollStateProvider>
+            </LanguageProvider>
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );

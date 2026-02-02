@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
 import { Footer } from "@/components/footer";
+import { prisma } from "@/lib/db";
 
 // Dynamic imports for below-fold sections (SSR enabled for SEO)
 const Experience = dynamic(
@@ -24,10 +25,15 @@ const Contact = dynamic(
   { ssr: true }
 );
 
-export default function Home() {
+export default async function Home() {
+  const showCvSetting = await prisma.setting.findUnique({
+    where: { key: "showCvDownload" },
+  });
+  const showCvDownload = showCvSetting?.value !== "false";
+
   return (
     <>
-      <Hero />
+      <Hero showCvDownload={showCvDownload} />
       <About />
       <Experience />
       <Skills />

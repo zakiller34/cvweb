@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { prisma } from "@/lib/db";
+import { sendContactEmail } from "@/lib/email";
 
 interface ContactForm {
   name: string;
@@ -70,14 +72,26 @@ export async function POST(request: Request) {
       );
     }
 
-    // TODO: Implement actual email sending or database storage
-    // For now, just log and return success
-    if (process.env.NODE_ENV === "development") {
-      console.log("Contact form submission:", { name, email, message: message.substring(0, 100) });
-    }
+    // Save to database
+    const savedMessage = await prisma.message.create({
+      data: {
+        name: name.trim(),
+        email: email.trim().toLowerCase(),
+        message: message.trim(),
+      },
+    });
+
+    // Send email notification (non-blocking)
+    sendContactEmail({
+      name: savedMessage.name,
+      email: savedMessage.email,
+      message: savedMessage.message,
+    }).catch((err) => {
+      console.error("Failed to send notification email:", err);
+    });
 
     return NextResponse.json(
-      { success: true },
+      { success: true, id: savedMessage.id },
       { headers: { "Cache-Control": "no-store" } }
     );
   } catch {

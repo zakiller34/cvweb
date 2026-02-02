@@ -44,3 +44,9 @@ yarn-error.log*
 
 # Source data
 /mydata/
+
+/lib/generated/prisma
+
+# Database
+*.db
+*.db-journal
