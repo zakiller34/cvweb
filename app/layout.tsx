@@ -9,8 +9,8 @@ import { RightSidebar } from "@/components/sidebars/right-sidebar";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 
 export const metadata: Metadata = {
-  title: "Zakaria Teffah - Research and development Engineer",
-  description: "Portfolio and CV of Zakaria Teffah, R&D Engineer specializing in compilers, formal verification, and cutting-edge software & hardware development.",
+  title: "Zakaria Teffah - Research and Development Engineer",
+  description: "CV of Zakaria Teffah, R&D Engineer specializing in compilers, formal verification, and cutting-edge software & hardware development.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
