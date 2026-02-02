@@ -26,19 +26,21 @@ const Contact = dynamic(
 );
 
 export default async function Home() {
-  const showCvSetting = await prisma.setting.findUnique({
-    where: { key: "showCvDownload" },
-  });
+  const [showCvSetting, hideContactSetting] = await Promise.all([
+    prisma.setting.findUnique({ where: { key: "showCvDownload" } }),
+    prisma.setting.findUnique({ where: { key: "hideContactForm" } }),
+  ]);
   const showCvDownload = showCvSetting?.value !== "false";
+  const hideContactForm = hideContactSetting?.value === "true";
 
   return (
     <>
-      <Hero showCvDownload={showCvDownload} />
+      <Hero showCvDownload={showCvDownload} hideContactForm={hideContactForm} />
       <About />
       <Experience />
       <Skills />
       <Education />
-      <Contact />
+      {!hideContactForm && <Contact />}
       <Footer />
     </>
   );

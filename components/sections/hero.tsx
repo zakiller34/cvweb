@@ -9,9 +9,10 @@ import { Typewriter } from "@/components/ui/typewriter";
 
 interface HeroProps {
   showCvDownload?: boolean;
+  hideContactForm?: boolean;
 }
 
-export function Hero({ showCvDownload = true }: HeroProps) {
+export function Hero({ showCvDownload = true, hideContactForm = false }: HeroProps) {
   const { lang } = useLanguage();
   const stats = STATS[lang];
   const ui = UI_TEXT[lang];
@@ -37,9 +38,15 @@ export function Hero({ showCvDownload = true }: HeroProps) {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
-                {ui.getInTouch}
-              </Button>
+              {hideContactForm ? (
+                <span className="text-xl md:text-2xl font-medium text-[var(--accent)]">
+                  zakaria.teffah [at] gmail [dot] com
+                </span>
+              ) : (
+                <Button size="lg" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+                  {ui.getInTouch}
+                </Button>
+              )}
               {showCvDownload && SITE_CONFIG.cvFiles.map((cv) => (
                 <a
                   key={cv.lang}

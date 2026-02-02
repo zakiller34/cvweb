@@ -9,14 +9,21 @@ import { ThemeToggle } from "./ui/theme-toggle";
 import { LanguageToggle } from "./ui/language-toggle";
 import { Button } from "./ui/button";
 
-export function Navigation() {
+interface NavigationProps {
+  hideContactForm?: boolean;
+}
+
+export function Navigation({ hideContactForm = false }: NavigationProps) {
   const { lang } = useLanguage();
   const { isHome, activeSection } = useScrollState();
   const [isOpen, setIsOpen] = useState(false);
   const [cvDropdownOpen, setCvDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const navLinks = NAV_LINKS[lang];
+  const allNavLinks = NAV_LINKS[lang];
+  const navLinks = hideContactForm
+    ? allNavLinks.filter((link) => link.href !== "#contact")
+    : allNavLinks;
   const ui = UI_TEXT[lang];
 
   useEffect(() => {
@@ -145,17 +152,27 @@ export function Navigation() {
               )}
             </div>
 
-            {/* Get in Touch button (visible when scrolled) */}
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={scrollToContact}
-              className={`transition-all duration-300 ${
-                isHome ? "opacity-0 translate-x-4 pointer-events-none w-0 px-0" : "opacity-100 translate-x-0"
-              }`}
-            >
-              {ui.getInTouch}
-            </Button>
+            {/* Get in Touch button or email (visible when scrolled) */}
+            {hideContactForm ? (
+              <span
+                className={`text-base font-medium text-[var(--accent)] transition-all duration-300 ${
+                  isHome ? "opacity-0 translate-x-4 pointer-events-none w-0" : "opacity-100 translate-x-0"
+                }`}
+              >
+                zakaria.teffah [at] gmail [dot] com
+              </span>
+            ) : (
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={scrollToContact}
+                className={`transition-all duration-300 ${
+                  isHome ? "opacity-0 translate-x-4 pointer-events-none w-0 px-0" : "opacity-100 translate-x-0"
+                }`}
+              >
+                {ui.getInTouch}
+              </Button>
+            )}
 
             <LanguageToggle />
             <ThemeToggle />
@@ -232,9 +249,15 @@ export function Navigation() {
               </a>
             ))}
           </div>
-          <Button variant="primary" size="sm" onClick={() => { scrollToContact(); setIsOpen(false); }}>
-            {ui.getInTouch}
-          </Button>
+          {hideContactForm ? (
+            <span className="text-base font-medium text-[var(--accent)] py-2">
+              zakaria.teffah [at] gmail [dot] com
+            </span>
+          ) : (
+            <Button variant="primary" size="sm" onClick={() => { scrollToContact(); setIsOpen(false); }}>
+              {ui.getInTouch}
+            </Button>
+          )}
         </div>
       </div>
     </header>
