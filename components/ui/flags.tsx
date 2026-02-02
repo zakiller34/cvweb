@@ -2,7 +2,7 @@ interface FlagProps {
   className?: string;
 }
 
-export function FlagGB({ className = "w-5 h-4" }: FlagProps) {
+export function FlagGB({ className = "w-8 h-6" }: FlagProps) {
   return (
     <svg
       viewBox="0 0 60 30"
@@ -26,7 +26,7 @@ export function FlagGB({ className = "w-5 h-4" }: FlagProps) {
   );
 }
 
-export function FlagFR({ className = "w-5 h-4" }: FlagProps) {
+export function FlagFR({ className = "w-8 h-6" }: FlagProps) {
   return (
     <svg
       viewBox="0 0 3 2"

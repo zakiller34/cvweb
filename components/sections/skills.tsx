@@ -24,7 +24,7 @@ const SECTION_TITLES = {
   fr: { skills: "Compétences", languages: "Langues" },
 };
 
-const CATEGORY_ORDER = ["language", "expertise", "verification", "hardware"];
+const CATEGORY_ORDER = ["expertise", "verification"];
 
 export function Skills() {
   const { lang } = useLanguage();
@@ -65,13 +65,7 @@ export function Skills() {
             </h3>
             <StaggerContainer className="flex flex-wrap gap-3" staggerDelay={50}>
               {languagesSpoken.map((language) => (
-                <div
-                  key={language.name}
-                  className="px-4 py-2 bg-[var(--card-bg)] border border-[var(--border)] rounded-lg"
-                >
-                  <span className="text-sm font-medium">{language.name}</span>
-                  <span className="text-xs text-[var(--muted)] ml-2">({language.level})</span>
-                </div>
+                <SkillBadge key={language.name} name={`${language.name} (${language.level})`} level="good" />
               ))}
             </StaggerContainer>
           </AnimateOnScroll>

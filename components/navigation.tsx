@@ -66,10 +66,10 @@ export function Navigation() {
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
         isHome
           ? "border-transparent bg-transparent"
-          : "border-[var(--border)] bg-[var(--background)]/95 backdrop-blur-md"
+          : "border-transparent bg-[var(--background)]/70 backdrop-blur-sm"
       }`}
     >
-      <nav className="max-w-6xl mx-auto px-4 h-16 flex items-center">
+      <nav className="max-w-6xl mx-auto px-4 h-20 flex items-center">
         {/* Desktop layout */}
         <div className="hidden md:flex items-center justify-between w-full">
           {/* Left side - Nav links (hidden when home) */}
@@ -103,7 +103,7 @@ export function Navigation() {
           <a
             href="#"
             onClick={(e) => { e.preventDefault(); scrollToTop(); }}
-            className={`font-semibold text-lg absolute left-1/2 -translate-x-1/2 transition-all duration-300 ${
+            className={`font-semibold text-xl absolute left-1/2 -translate-x-1/2 transition-all duration-300 ${
               isHome ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >
@@ -187,7 +187,7 @@ export function Navigation() {
 
         {/* Mobile layout */}
         <div className="flex md:hidden items-center justify-between w-full">
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="font-semibold text-lg">
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="font-semibold text-xl">
             {isHome ? (
               <><span className="text-[#38bdf8]">zakaria</span>teffah.com</>
             ) : (

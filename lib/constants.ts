@@ -54,8 +54,8 @@ export const SITE_CONFIG = {
   email: "zakaria.teffah@gmail.com",
   phone: "+33 6 52 94 27 48",
   title: {
-    en: "Research & development Engineer",
-    fr: "Ingénieur en Recherche & développement",
+    en: "Research & Development Engineer",
+    fr: "Ingénieur en Recherche & Développement",
   },
   description: {
     en: "Experienced professional in software & hardware development. My areas of interest are: compilers, formal methods, optimization and scientific computing",

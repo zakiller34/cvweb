@@ -9,11 +9,11 @@ export function LanguageToggle() {
   return (
     <button
       onClick={toggleLang}
-      className="p-1.5 border border-[var(--border)] rounded hover:border-[var(--accent)] transition-all duration-200 active:scale-95"
-      aria-label={lang === "en" ? "Switch to French" : "Switch to English"}
-      title={lang === "en" ? "Switch to French" : "Passer en anglais"}
+      className="p-2.5 border border-[var(--border)] rounded hover:border-[var(--accent)] transition-all duration-200 active:scale-95"
+      aria-label={lang === "en" ? "Passer en français" : "Switch to English"}
+      title={lang === "en" ? "Passer en français" : "Switch to English"}
     >
-      {lang === "en" ? <FlagGB /> : <FlagFR />}
+      {lang === "en" ? <FlagFR /> : <FlagGB />}
     </button>
   );
 }
