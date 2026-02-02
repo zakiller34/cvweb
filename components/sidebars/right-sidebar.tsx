@@ -4,11 +4,18 @@ import { NAV_LINKS } from "@/lib/constants";
 import { useLanguage } from "@/components/language-provider";
 import { useScrollState } from "@/hooks/use-scroll-state";
 
-export function RightSidebar() {
+interface RightSidebarProps {
+  hideContactForm?: boolean;
+}
+
+export function RightSidebar({ hideContactForm = false }: RightSidebarProps) {
   const { lang } = useLanguage();
   const { activeSection, scrollProgress } = useScrollState();
 
-  const navLinks = NAV_LINKS[lang];
+  const allNavLinks = NAV_LINKS[lang];
+  const navLinks = hideContactForm
+    ? allNavLinks.filter((link) => link.href !== "#contact")
+    : allNavLinks;
 
   return (
     <>

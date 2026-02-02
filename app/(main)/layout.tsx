@@ -18,7 +18,7 @@ export default async function MainLayout({ children }: { children: React.ReactNo
       <AnimatedBackground />
       <Navigation hideContactForm={hideContactForm} />
       <LeftSidebar showMailTo={showMailToSidebar} />
-      <RightSidebar />
+      <RightSidebar hideContactForm={hideContactForm} />
       <ScrollToTop />
       <main className="relative z-10">{children}</main>
     </>
