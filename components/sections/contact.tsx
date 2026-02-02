@@ -5,6 +5,8 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
+import { SectionHeader } from "@/components/ui/section-header";
+import { FormInput, FormTextarea } from "@/components/ui/form-input";
 
 const CONTACT_TEXT = {
   en: {
@@ -71,17 +73,12 @@ export function Contact() {
   return (
     <section id="contact" className="py-20">
       <div className="max-w-6xl mx-auto px-4">
-        <AnimateOnScroll>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.title}</h2>
-          <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
-        </AnimateOnScroll>
+        <SectionHeader title={t.title} />
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact info */}
           <AnimateOnScroll delay={100} className="space-y-6">
-            <p className="text-[var(--muted)]">
-              {t.intro}
-            </p>
+            <p className="text-[var(--muted)]">{t.intro}</p>
 
             <div className="space-y-4">
               <a
@@ -112,82 +109,64 @@ export function Contact() {
                 {SITE_CONFIG.location}
               </div>
             </div>
-
           </AnimateOnScroll>
 
           {/* Contact form */}
           <AnimateOnScroll delay={200}>
             <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-2">
-                {t.name}
-              </label>
-              <input
+              <FormInput
                 type="text"
                 id="name"
                 name="name"
-                required
-                className="w-full px-4 py-2 bg-[var(--card-bg)] border border-[var(--border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent focus:shadow-[0_0_12px_rgba(59,130,246,0.15)] transition-all duration-300"
+                label={t.name}
                 placeholder={t.namePlaceholder}
+                required
               />
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-2">
-                {t.email}
-              </label>
-              <input
+              <FormInput
                 type="email"
                 id="email"
                 name="email"
-                required
-                className="w-full px-4 py-2 bg-[var(--card-bg)] border border-[var(--border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent focus:shadow-[0_0_12px_rgba(59,130,246,0.15)] transition-all duration-300"
+                label={t.email}
                 placeholder={t.emailPlaceholder}
+                required
               />
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium mb-2">
-                {t.message}
-              </label>
-              <textarea
+              <FormTextarea
                 id="message"
                 name="message"
-                required
-                rows={5}
-                className="w-full px-4 py-2 bg-[var(--card-bg)] border border-[var(--border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent focus:shadow-[0_0_12px_rgba(59,130,246,0.15)] transition-all duration-300 resize-none"
+                label={t.message}
                 placeholder={t.messagePlaceholder}
+                rows={5}
+                required
               />
-            </div>
 
-            <Button type="submit" size="lg" className="w-full" disabled={status === "loading"}>
-              {status === "loading" ? (
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              <Button type="submit" size="lg" className="w-full" disabled={status === "loading"}>
+                {status === "loading" ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    {t.sending}
+                  </span>
+                ) : t.send}
+              </Button>
+
+              {status === "success" && (
+                <div className="flex items-center justify-center gap-2 text-green-500 text-sm animate-fade-in">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  {t.sending}
-                </span>
-              ) : t.send}
-            </Button>
-
-            {status === "success" && (
-              <div className="flex items-center justify-center gap-2 text-green-500 text-sm animate-fade-in">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                {t.success}
-              </div>
-            )}
-            {status === "error" && (
-              <div className="flex items-center justify-center gap-2 text-red-500 text-sm animate-fade-in">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                {t.error}
-              </div>
-            )}
+                  {t.success}
+                </div>
+              )}
+              {status === "error" && (
+                <div className="flex items-center justify-center gap-2 text-red-500 text-sm animate-fade-in">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  {t.error}
+                </div>
+              )}
             </form>
           </AnimateOnScroll>
         </div>

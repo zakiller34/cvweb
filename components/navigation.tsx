@@ -1,47 +1,23 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { NAV_LINKS, SITE_CONFIG, UI_TEXT } from "@/lib/constants";
 import { useLanguage } from "./language-provider";
+import { useScrollState } from "@/hooks/use-scroll-state";
 import { ThemeToggle } from "./ui/theme-toggle";
 import { LanguageToggle } from "./ui/language-toggle";
 import { Button } from "./ui/button";
 
 export function Navigation() {
   const { lang } = useLanguage();
+  const { isHome, activeSection } = useScrollState();
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
-  const [isHome, setIsHome] = useState(true);
   const [cvDropdownOpen, setCvDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const navLinks = NAV_LINKS[lang];
   const ui = UI_TEXT[lang];
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const threshold = window.innerHeight * 0.5;
-      setIsHome(window.scrollY < threshold);
-
-      const sections = navLinks.map((link) => link.href.replace("#", ""));
-      for (const section of [...sections].reverse()) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100) {
-            setActiveSection(section);
-            return;
-          }
-        }
-      }
-      setActiveSection("");
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [navLinks]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -53,13 +29,13 @@ export function Navigation() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const scrollToContact = () => {
+  const scrollToContact = useCallback(() => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-  };
+  }, []);
 
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  }, []);
 
   return (
     <header
@@ -125,6 +101,7 @@ export function Navigation() {
                   alt={SITE_CONFIG.name}
                   width={32}
                   height={32}
+                  quality={75}
                   className="object-cover"
                 />
               </div>

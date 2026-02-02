@@ -1,40 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { NAV_LINKS } from "@/lib/constants";
 import { useLanguage } from "@/components/language-provider";
+import { useScrollState } from "@/hooks/use-scroll-state";
 
 export function RightSidebar() {
   const { lang } = useLanguage();
-  const [activeSection, setActiveSection] = useState("");
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const { activeSection, scrollProgress } = useScrollState();
 
   const navLinks = NAV_LINKS[lang];
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = scrollHeight > 0 ? Math.min(window.scrollY / scrollHeight, 1) : 0;
-      setScrollProgress(progress);
-
-      const sections = navLinks.map((link) => link.href.replace("#", ""));
-      for (const section of [...sections].reverse()) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100) {
-            setActiveSection(section);
-            return;
-          }
-        }
-      }
-      setActiveSection("");
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [navLinks]);
 
   return (
     <>

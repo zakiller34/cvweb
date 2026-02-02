@@ -1,6 +1,6 @@
 "use client";
 
-import { HTMLAttributes, forwardRef, ReactNode } from "react";
+import { HTMLAttributes, forwardRef, ReactNode, memo } from "react";
 
 interface HexagonProps extends HTMLAttributes<HTMLDivElement> {
   label: string;
@@ -27,7 +27,7 @@ const labelSizeClasses = {
   lg: "text-sm",
 };
 
-export const Hexagon = forwardRef<HTMLDivElement, HexagonProps>(
+export const Hexagon = memo(forwardRef<HTMLDivElement, HexagonProps>(
   (
     {
       label,
@@ -105,6 +105,6 @@ export const Hexagon = forwardRef<HTMLDivElement, HexagonProps>(
       </div>
     );
   }
-);
+));
 
 Hexagon.displayName = "Hexagon";

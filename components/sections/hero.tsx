@@ -60,6 +60,8 @@ export function Hero() {
                     src="/profile.jpg"
                     alt={SITE_CONFIG.name}
                     fill
+                    sizes="(max-width: 768px) 256px, 320px"
+                    quality={85}
                     className="object-cover"
                     priority
                   />

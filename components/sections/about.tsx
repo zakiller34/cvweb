@@ -3,6 +3,7 @@
 import { ABOUT_TEXT, COMPETENCIES } from "@/lib/constants";
 import { useLanguage } from "@/components/language-provider";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
+import { SectionHeader } from "@/components/ui/section-header";
 import { HexagonGrid } from "@/components/ui/hexagon-grid";
 import {
   CppIcon,
@@ -43,10 +44,7 @@ export function About() {
   return (
     <section id="about" className="py-20">
       <div className="max-w-6xl mx-auto px-4">
-        <AnimateOnScroll>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{sectionTitle}</h2>
-          <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
-        </AnimateOnScroll>
+        <SectionHeader title={sectionTitle} />
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Bio text */}

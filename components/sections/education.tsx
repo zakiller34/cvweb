@@ -5,6 +5,7 @@ import { EDUCATION, INTERNSHIPS, INTERESTS } from "@/lib/constants";
 import { useLanguage } from "@/components/language-provider";
 import { Card } from "@/components/ui/card";
 import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";
+import { SectionHeader } from "@/components/ui/section-header";
 
 const SECTION_TITLES = {
   en: {
@@ -31,10 +32,7 @@ export function Education() {
   return (
     <section id="education" className="py-20 bg-[var(--card-bg)]/50">
       <div className="max-w-6xl mx-auto px-4">
-        <AnimateOnScroll>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{titles.education}</h2>
-          <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
-        </AnimateOnScroll>
+        <SectionHeader title={titles.education} />
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Education */}
@@ -49,6 +47,7 @@ export function Education() {
                       alt={edu.school}
                       width={48}
                       height={48}
+                      quality={70}
                       className="object-contain w-full h-full"
                     />
                   </div>

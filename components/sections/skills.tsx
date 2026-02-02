@@ -3,6 +3,7 @@
 import { SKILLS, LANGUAGES_SPOKEN } from "@/lib/constants";
 import { useLanguage } from "@/components/language-provider";
 import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";
+import { SectionHeader } from "@/components/ui/section-header";
 
 const CATEGORY_LABELS = {
   en: {
@@ -39,10 +40,7 @@ export function Skills() {
   return (
     <section id="skills" className="py-20">
       <div className="max-w-6xl mx-auto px-4">
-        <AnimateOnScroll>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{sectionTitles.skills}</h2>
-          <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
-        </AnimateOnScroll>
+        <SectionHeader title={sectionTitles.skills} />
 
         <div className="space-y-8">
           {categories.map((category, catIndex) => (

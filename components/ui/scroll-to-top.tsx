@@ -1,24 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useCallback } from "react";
+import { useScrollState } from "@/hooks/use-scroll-state";
 
 export function ScrollToTop() {
-  const [isVisible, setIsVisible] = useState(false);
+  const { isHome } = useScrollState();
+  const isVisible = !isHome;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const threshold = window.innerHeight * 0.5;
-      setIsVisible(window.scrollY > threshold);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  }, []);
 
   return (
     <button

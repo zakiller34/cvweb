@@ -6,6 +6,7 @@ import { useLanguage } from "@/components/language-provider";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
+import { SectionHeader } from "@/components/ui/section-header";
 import { AnimatedTimeline, TimelineDot } from "@/components/ui/animated-timeline";
 
 const SECTION_TITLE = {
@@ -21,10 +22,7 @@ export function Experience() {
   return (
     <section id="experience" className="py-20 bg-[var(--card-bg)]/50">
       <div className="max-w-6xl mx-auto px-4">
-        <AnimateOnScroll>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{sectionTitle}</h2>
-          <div className="w-20 h-1 bg-[var(--accent)] mb-12" />
-        </AnimateOnScroll>
+        <SectionHeader title={sectionTitle} />
 
         <AnimatedTimeline>
           {/* Timeline items */}
@@ -50,6 +48,7 @@ export function Experience() {
                           alt={exp.company}
                           width={48}
                           height={48}
+                          quality={70}
                           className="object-contain w-full h-full"
                         />
                       </div>

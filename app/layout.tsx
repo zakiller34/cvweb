@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
+import { ScrollStateProvider } from "@/hooks/use-scroll-state";
 import { Navigation } from "@/components/navigation";
 import { AnimatedBackground } from "@/components/ui/animated-background";
 import { LeftSidebar } from "@/components/sidebars/left-sidebar";
@@ -19,12 +20,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased">
         <ThemeProvider>
           <LanguageProvider>
-            <AnimatedBackground />
-            <Navigation />
-            <LeftSidebar />
-            <RightSidebar />
-            <ScrollToTop />
-            <main className="relative z-10">{children}</main>
+            <ScrollStateProvider>
+              <AnimatedBackground />
+              <Navigation />
+              <LeftSidebar />
+              <RightSidebar />
+              <ScrollToTop />
+              <main className="relative z-10">{children}</main>
+            </ScrollStateProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>
