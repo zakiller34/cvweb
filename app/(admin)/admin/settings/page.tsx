@@ -11,14 +11,14 @@ export default async function AdminSettingsPage() {
     redirect("/admin/login");
   }
 
-  const [showCvSetting, hideContactSetting, showMailToSidebarSetting] = await Promise.all([
+  const [showCvSetting, showContactSetting, showMailToSidebarSetting] = await Promise.all([
     prisma.setting.findUnique({ where: { key: "showCvDownload" } }),
-    prisma.setting.findUnique({ where: { key: "hideContactForm" } }),
+    prisma.setting.findUnique({ where: { key: "showContactForm" } }),
     prisma.setting.findUnique({ where: { key: "showMailToSidebar" } }),
   ]);
 
   const showCvDownload = showCvSetting?.value === "true";
-  const hideContactForm = hideContactSetting?.value === "true";
+  const showContactForm = showContactSetting?.value !== "false"; // default true
   const showMailToSidebar = showMailToSidebarSetting?.value !== "false"; // default true
 
   return (
@@ -37,7 +37,7 @@ export default async function AdminSettingsPage() {
 
       <SettingsForm
         initialShowCv={showCvDownload}
-        initialHideContactForm={hideContactForm}
+        initialShowContactForm={showContactForm}
         initialShowMailToSidebar={showMailToSidebar}
       />
     </div>

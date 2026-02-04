@@ -6,21 +6,21 @@ import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { prisma } from "@/lib/db";
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
-  const [hideContactSetting, showMailToSidebarSetting, showCvDownloadSetting] = await Promise.all([
-    prisma.setting.findUnique({ where: { key: "hideContactForm" } }),
+  const [showContactSetting, showMailToSidebarSetting, showCvDownloadSetting] = await Promise.all([
+    prisma.setting.findUnique({ where: { key: "showContactForm" } }),
     prisma.setting.findUnique({ where: { key: "showMailToSidebar" } }),
     prisma.setting.findUnique({ where: { key: "showCvDownload" } }),
   ]);
-  const hideContactForm = hideContactSetting?.value === "true";
+  const showContactForm = showContactSetting?.value !== "false"; // default true
   const showMailToSidebar = showMailToSidebarSetting?.value !== "false"; // default true
   const showCvDownload = showCvDownloadSetting?.value !== "false"; // default true
 
   return (
     <>
       <AnimatedBackground />
-      <Navigation hideContactForm={hideContactForm} showCvDownload={showCvDownload} />
+      <Navigation showContactForm={showContactForm} showCvDownload={showCvDownload} />
       <LeftSidebar showMailTo={showMailToSidebar} />
-      <RightSidebar hideContactForm={hideContactForm} />
+      <RightSidebar showContactForm={showContactForm} />
       <ScrollToTop />
       <main className="relative z-10">{children}</main>
     </>

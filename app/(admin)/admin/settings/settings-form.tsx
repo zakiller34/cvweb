@@ -4,13 +4,13 @@ import { useState } from "react";
 
 interface SettingsFormProps {
   initialShowCv: boolean;
-  initialHideContactForm: boolean;
+  initialShowContactForm: boolean;
   initialShowMailToSidebar: boolean;
 }
 
-export function SettingsForm({ initialShowCv, initialHideContactForm, initialShowMailToSidebar }: SettingsFormProps) {
+export function SettingsForm({ initialShowCv, initialShowContactForm, initialShowMailToSidebar }: SettingsFormProps) {
   const [showCv, setShowCv] = useState(initialShowCv);
-  const [hideContactForm, setHideContactForm] = useState(initialHideContactForm);
+  const [showContactForm, setShowContactForm] = useState(initialShowContactForm);
   const [showMailToSidebar, setShowMailToSidebar] = useState(initialShowMailToSidebar);
   const [saving, setSaving] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
@@ -69,23 +69,23 @@ export function SettingsForm({ initialShowCv, initialHideContactForm, initialSho
         <div className="flex items-center justify-between">
           <div>
             <h2 className="font-semibold text-[var(--foreground)]">
-              Hide Contact Form
+              Show Contact Form
             </h2>
             <p className="text-sm text-[var(--foreground)]/60 mt-1">
-              Replace &quot;Get in Touch&quot; buttons with email link and hide contact page
+              Show &quot;Get in Touch&quot; buttons and contact section
             </p>
           </div>
 
           <button
-            onClick={() => handleToggle("hideContactForm", hideContactForm, setHideContactForm)}
+            onClick={() => handleToggle("showContactForm", showContactForm, setShowContactForm)}
             disabled={saving !== null}
             className={`relative w-14 h-8 rounded-full transition-colors ${
-              hideContactForm ? "bg-[var(--accent)]" : "bg-[var(--border)]"
+              showContactForm ? "bg-[var(--accent)]" : "bg-[var(--border)]"
             }`}
           >
             <span
               className={`absolute top-1 w-6 h-6 bg-white rounded-full transition-transform ${
-                hideContactForm ? "left-7" : "left-1"
+                showContactForm ? "left-7" : "left-1"
               }`}
             />
           </button>
