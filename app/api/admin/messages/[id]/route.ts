@@ -1,5 +1,6 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
+import { verifyCsrf, csrfError } from "@/lib/csrf";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(
@@ -10,6 +11,10 @@ export async function PATCH(
 
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (!verifyCsrf(req)) {
+    return csrfError();
   }
 
   const { id } = await params;
@@ -35,6 +40,10 @@ export async function DELETE(
 
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (!verifyCsrf(req)) {
+    return csrfError();
   }
 
   const { id } = await params;

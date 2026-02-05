@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useCsrf } from "@/components/csrf-provider";
 
 interface Message {
   id: string;
@@ -13,11 +14,20 @@ interface Message {
 
 export function MessageList({ initialMessages }: { initialMessages: Message[] }) {
   const [messages, setMessages] = useState(initialMessages);
+  const csrfToken = useCsrf();
+
+  const getHeaders = (): Record<string, string> => {
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
+    if (csrfToken) {
+      headers["X-CSRF-Token"] = csrfToken;
+    }
+    return headers;
+  };
 
   const markAsRead = async (id: string, read: boolean) => {
     const res = await fetch(`/api/admin/messages/${id}`, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      headers: getHeaders(),
       body: JSON.stringify({ read }),
     });
 
@@ -33,6 +43,7 @@ export function MessageList({ initialMessages }: { initialMessages: Message[] })
 
     const res = await fetch(`/api/admin/messages/${id}`, {
       method: "DELETE",
+      headers: getHeaders(),
     });
 
     if (res.ok) {

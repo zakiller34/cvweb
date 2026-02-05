@@ -1,12 +1,15 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import Script from "next/script";
 import { SITE_CONFIG } from "@/lib/constants";
 import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { SectionHeader } from "@/components/ui/section-header";
 import { FormInput, FormTextarea } from "@/components/ui/form-input";
+
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
 const CONTACT_TEXT = {
   en: {
@@ -22,6 +25,7 @@ const CONTACT_TEXT = {
     sending: "Sending...",
     success: "Message sent successfully!",
     error: "Something went wrong. Please try again.",
+    rateLimit: "Too many requests. Please wait a moment.",
   },
   fr: {
     title: "Me contacter",
@@ -36,23 +40,43 @@ const CONTACT_TEXT = {
     sending: "Envoi...",
     success: "Message envoyé avec succès !",
     error: "Une erreur s'est produite. Veuillez réessayer.",
+    rateLimit: "Trop de requêtes. Veuillez patienter.",
   },
 };
 
 export function Contact() {
   const { lang } = useLanguage();
   const t = CONTACT_TEXT[lang];
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error" | "rateLimit">("idle");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("loading");
 
     const formData = new FormData(e.currentTarget);
+
+    // Get reCAPTCHA token
+    let recaptchaToken = "";
+    if (RECAPTCHA_SITE_KEY && window.grecaptcha) {
+      try {
+        recaptchaToken = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, {
+          action: "contact",
+        });
+      } catch {
+        setStatus("error");
+        return;
+      }
+    } else {
+      // reCAPTCHA not configured/loaded
+      setStatus("error");
+      return;
+    }
+
     const data = {
       name: formData.get("name"),
       email: formData.get("email"),
       message: formData.get("message"),
+      recaptchaToken,
     };
 
     try {
@@ -62,6 +86,10 @@ export function Contact() {
         body: JSON.stringify(data),
       });
 
+      if (res.status === 429) {
+        setStatus("rateLimit");
+        return;
+      }
       if (!res.ok) throw new Error();
       setStatus("success");
       (e.target as HTMLFormElement).reset();
@@ -71,7 +99,13 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20">
+    <>
+      {RECAPTCHA_SITE_KEY && (
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
+        />
+      )}
+      <section id="contact" className="py-20">
       <div className="max-w-6xl mx-auto px-4">
         <SectionHeader title={t.title} />
 
@@ -167,10 +201,19 @@ export function Contact() {
                   {t.error}
                 </div>
               )}
+              {status === "rateLimit" && (
+                <div className="flex items-center justify-center gap-2 text-orange-500 text-sm animate-fade-in">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {t.rateLimit}
+                </div>
+              )}
             </form>
           </AnimateOnScroll>
         </div>
       </div>
     </section>
+    </>
   );
 }

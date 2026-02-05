@@ -1,11 +1,39 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { sendContactEmail } from "@/lib/email";
+import { checkRateLimit, getClientIp } from "@/lib/ratelimit";
 
 interface ContactForm {
   name: string;
   email: string;
   message: string;
+  recaptchaToken?: string;
+}
+
+const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY;
+const RECAPTCHA_THRESHOLD = 0.5;
+
+async function verifyRecaptcha(token: string): Promise<boolean> {
+  if (!RECAPTCHA_SECRET) {
+    // Fail closed
+    return false;
+  }
+
+  try {
+    const response = await fetch(
+      "https://www.google.com/recaptcha/api/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${RECAPTCHA_SECRET}&response=${token}`,
+      }
+    );
+    const data = await response.json();
+    return data.success && data.score >= RECAPTCHA_THRESHOLD;
+  } catch (err) {
+    console.error("reCAPTCHA verification failed:", err);
+    return false;
+  }
 }
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -15,6 +43,16 @@ const MIN_MESSAGE_LENGTH = 10;
 
 export async function POST(request: Request) {
   try {
+    // Rate limit check
+    const ip = getClientIp(request);
+    const { success: rateLimitOk } = await checkRateLimit(`contact:${ip}`);
+    if (!rateLimitOk) {
+      return NextResponse.json(
+        { error: "Too many requests. Try again later." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json().catch(() => null);
 
     if (!body || typeof body !== "object") {
@@ -24,7 +62,15 @@ export async function POST(request: Request) {
       );
     }
 
-    const { name, email, message } = body as ContactForm;
+    const { name, email, message, recaptchaToken } = body as ContactForm;
+
+    // reCAPTCHA verification
+    if (!recaptchaToken || !(await verifyRecaptcha(recaptchaToken))) {
+      return NextResponse.json(
+        { error: "Verification failed" },
+        { status: 400 }
+      );
+    }
 
     // Validate required fields
     if (!name || !email || !message) {

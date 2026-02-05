@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useCsrf } from "@/components/csrf-provider";
 
 interface SettingsFormProps {
   initialShowCv: boolean;
@@ -18,6 +19,7 @@ export function SettingsForm({ initialShowCv, initialShowContactForm, initialSho
   const [showScheduleMeeting, setShowScheduleMeeting] = useState(initialShowScheduleMeeting);
   const [saving, setSaving] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
+  const csrfToken = useCsrf();
 
   const handleToggle = async (key: string, currentValue: boolean, setter: (v: boolean) => void) => {
     setSaving(key);
@@ -25,9 +27,14 @@ export function SettingsForm({ initialShowCv, initialShowContactForm, initialSho
 
     const newValue = !currentValue;
 
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
+    if (csrfToken) {
+      headers["X-CSRF-Token"] = csrfToken;
+    }
+
     const res = await fetch("/api/admin/settings", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers,
       body: JSON.stringify({ key, value: String(newValue) }),
     });
 
