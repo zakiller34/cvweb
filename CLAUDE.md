@@ -1,7 +1,7 @@
 # Project: CV curriculum vitae and contact
 
 This code is for building a web application that shows my CV and people can contact me by sending someting in the main page.
-See "www.pierrevermeil.com" as a source of implementation
+A portfolio page is also in a different new page.
 
 ## framework
 - Next.js
