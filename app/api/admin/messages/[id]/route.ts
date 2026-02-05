@@ -15,6 +15,10 @@ export async function PATCH(
   const { id } = await params;
   const body = await req.json();
 
+  if (typeof body.read !== "boolean") {
+    return NextResponse.json({ error: "Invalid read value" }, { status: 400 });
+  }
+
   const message = await prisma.message.update({
     where: { id },
     data: { read: body.read },

@@ -1,5 +1,11 @@
 import { Resend } from "resend";
 
+function escapeHtml(str: string): string {
+  return str.replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c] || c)
+  );
+}
+
 interface SendContactEmailParams {
   name: string;
   email: string;
@@ -33,10 +39,10 @@ export async function sendContactEmail({
       subject: `New contact from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
         <p><strong>Message:</strong></p>
-        <p style="white-space: pre-wrap;">${message}</p>
+        <p style="white-space: pre-wrap;">${escapeHtml(message)}</p>
       `,
       text: `
 New Contact Form Submission

@@ -11,14 +11,20 @@ const prisma = new PrismaClient({ adapter });
 import bcrypt from "bcryptjs";
 
 async function main() {
-  // Create default admin user
-  const hashedPassword = await bcrypt.hash("changeme123", 10);
+  const adminEmail = process.env.ADMIN_EMAIL;
+  const adminPassword = process.env.ADMIN_PASSWORD;
+
+  if (!adminEmail || !adminPassword) {
+    throw new Error("ADMIN_EMAIL and ADMIN_PASSWORD env vars required");
+  }
+
+  const hashedPassword = await bcrypt.hash(adminPassword, 10);
 
   await prisma.user.upsert({
-    where: { email: "admin@example.com" },
+    where: { email: adminEmail },
     update: {},
     create: {
-      email: "admin@example.com",
+      email: adminEmail,
       password: hashedPassword,
     },
   });

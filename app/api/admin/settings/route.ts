@@ -31,6 +31,12 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  const ALLOWED_SETTINGS = ["showCvDownload", "showScheduleMeeting"] as const;
+
+  if (!ALLOWED_SETTINGS.includes(key as (typeof ALLOWED_SETTINGS)[number])) {
+    return NextResponse.json({ error: "Invalid setting key" }, { status: 400 });
+  }
+
   const setting = await prisma.setting.upsert({
     where: { key },
     update: { value },
