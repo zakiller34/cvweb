@@ -23,6 +23,7 @@ export const UI_TEXT = {
     contactInfo: "Contact Info",
     location: "Location",
     allRightsReserved: "All rights reserved.",
+    scheduleMeeting: "Schedule Meeting",
   },
   fr: {
     getInTouch: "Me contacter",
@@ -45,6 +46,7 @@ export const UI_TEXT = {
     contactInfo: "Coordonnées",
     location: "Localisation",
     allRightsReserved: "Tous droits réservés.",
+    scheduleMeeting: "Planifier un RDV",
   },
 };
 

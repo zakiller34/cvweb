@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { NAV_LINKS, SITE_CONFIG, UI_TEXT } from "@/lib/constants";
 import { useLanguage } from "./language-provider";
 import { useScrollState } from "@/hooks/use-scroll-state";
@@ -84,14 +85,14 @@ export function Navigation({ showContactForm = true, showCvDownload = true }: Na
           </div>
 
           {/* Center - Logo (centered when home, hidden when scrolled) */}
-          <a
+          <Link
             href="/"
             className={`font-semibold text-xl absolute left-1/2 -translate-x-1/2 transition-all duration-300 ${
               isHome ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >
             <span className="text-[#38bdf8]">zakaria</span>teffah.com
-          </a>
+          </Link>
 
           {/* Right side */}
           <div className="flex items-center gap-3">
@@ -183,13 +184,13 @@ export function Navigation({ showContactForm = true, showCvDownload = true }: Na
 
         {/* Mobile layout */}
         <div className="flex md:hidden items-center justify-between w-full">
-          <a href="/" className="font-semibold text-xl">
+          <Link href="/" className="font-semibold text-xl">
             {isHome ? (
               <><span className="text-[#38bdf8]">zakaria</span>teffah.com</>
             ) : (
               <><span className="text-[#38bdf8]">Zakaria</span> Teffah</>
             )}
-          </a>
+          </Link>
           <div className="flex items-center gap-2">
             <LanguageToggle />
             <ThemeToggle />

@@ -10,9 +10,10 @@ import { Typewriter } from "@/components/ui/typewriter";
 interface HeroProps {
   showCvDownload?: boolean;
   showContactForm?: boolean;
+  showScheduleMeeting?: boolean;
 }
 
-export function Hero({ showCvDownload = true, showContactForm = true }: HeroProps) {
+export function Hero({ showCvDownload = true, showContactForm = true, showScheduleMeeting = true }: HeroProps) {
   const { lang } = useLanguage();
   const stats = STATS[lang];
   const ui = UI_TEXT[lang];
@@ -58,6 +59,16 @@ export function Hero({ showCvDownload = true, showContactForm = true }: HeroProp
                   <span className="text-xs px-1.5 py-0.5 bg-[var(--card-bg)] rounded">{cv.lang}</span>
                 </a>
               ))}
+              {showScheduleMeeting && (
+                <a
+                  href="https://calendly.com/zakaria-teffah/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-[var(--accent)] text-white hover:bg-[var(--accent-hover)] focus:ring-[var(--accent)] px-6 py-3 text-base"
+                >
+                  {ui.scheduleMeeting}
+                </a>
+              )}
             </div>
 
           </AnimateOnScroll>

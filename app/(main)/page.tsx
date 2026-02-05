@@ -26,16 +26,18 @@ const Contact = dynamic(
 );
 
 export default async function Home() {
-  const [showCvSetting, showContactSetting] = await Promise.all([
+  const [showCvSetting, showContactSetting, showScheduleMeetingSetting] = await Promise.all([
     prisma.setting.findUnique({ where: { key: "showCvDownload" } }),
     prisma.setting.findUnique({ where: { key: "showContactForm" } }),
+    prisma.setting.findUnique({ where: { key: "showScheduleMeeting" } }),
   ]);
   const showCvDownload = showCvSetting?.value !== "false";
   const showContactForm = showContactSetting?.value !== "false"; // default true
+  const showScheduleMeeting = showScheduleMeetingSetting?.value !== "false"; // default true
 
   return (
     <>
-      <Hero showCvDownload={showCvDownload} showContactForm={showContactForm} />
+      <Hero showCvDownload={showCvDownload} showContactForm={showContactForm} showScheduleMeeting={showScheduleMeeting} />
       <About />
       <Experience />
       <Skills />
