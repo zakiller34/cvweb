@@ -85,8 +85,7 @@ export function Navigation({ showContactForm = true, showCvDownload = true }: Na
 
           {/* Center - Logo (centered when home, hidden when scrolled) */}
           <a
-            href="#"
-            onClick={(e) => { e.preventDefault(); scrollToTop(); }}
+            href="/"
             className={`font-semibold text-xl absolute left-1/2 -translate-x-1/2 transition-all duration-300 ${
               isHome ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
@@ -184,7 +183,7 @@ export function Navigation({ showContactForm = true, showCvDownload = true }: Na
 
         {/* Mobile layout */}
         <div className="flex md:hidden items-center justify-between w-full">
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="font-semibold text-xl">
+          <a href="/" className="font-semibold text-xl">
             {isHome ? (
               <><span className="text-[#38bdf8]">zakaria</span>teffah.com</>
             ) : (
