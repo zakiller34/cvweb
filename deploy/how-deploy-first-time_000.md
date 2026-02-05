@@ -1,0 +1,161 @@
+# First-Time Deployment Guide (Docker)
+
+## Prerequisites
+
+- VPS/server with Ubuntu 22.04+ (or similar)
+- SSH access
+- Domain name (optional, can add later)
+
+## Step 1: Install Docker on Server
+
+```bash
+ssh user@your-server-ip
+
+# Install Docker
+curl -fsSL https://get.docker.com | sh
+sudo usermod -aG docker $USER
+
+# Logout and login again for group changes
+exit
+ssh user@your-server-ip
+
+# Verify
+docker --version
+```
+
+## Step 2: Clone Repository
+
+```bash
+git clone <your-repo-url> ~/cvweb
+cd ~/cvweb
+```
+
+## Step 3: Create Production Environment File
+
+```bash
+# Generate AUTH_SECRET
+openssl rand -base64 32
+# Copy the output for next step
+
+# Create .env file
+nano .env
+```
+
+Add these variables:
+```env
+DATABASE_URL="file:./prod.db"
+AUTH_SECRET="<paste-generated-secret-here>"
+AUTH_URL="https://yourdomain.com"
+RESEND_API_KEY="re_your_api_key"
+NOTIFICATION_EMAIL="your@email.com"
+```
+
+Save: `Ctrl+O`, `Enter`, `Ctrl+X`
+
+## Step 4: Initialize Database
+
+```bash
+# Install deps temporarily for migration
+npm install
+npx prisma migrate deploy
+```
+
+## Step 5: Build and Run
+
+```bash
+docker compose up -d --build
+```
+
+Verify running:
+```bash
+docker compose ps
+curl http://localhost:3000
+```
+
+## Step 6: Setup Nginx Reverse Proxy
+
+```bash
+sudo apt update
+sudo apt install nginx -y
+
+# Create config
+sudo nano /etc/nginx/sites-available/cvweb
+```
+
+Paste:
+```nginx
+server {
+    listen 80;
+    server_name yourdomain.com www.yourdomain.com;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+Enable site:
+```bash
+sudo ln -s /etc/nginx/sites-available/cvweb /etc/nginx/sites-enabled/
+sudo rm /etc/nginx/sites-enabled/default  # Remove default
+sudo nginx -t  # Test config
+sudo systemctl restart nginx
+```
+
+## Step 7: SSL Certificate (HTTPS)
+
+```bash
+sudo apt install certbot python3-certbot-nginx -y
+sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
+```
+
+Follow prompts. Certbot auto-renews.
+
+## Step 8: Update AUTH_URL
+
+After domain is configured:
+```bash
+nano .env
+# Change AUTH_URL to https://yourdomain.com
+docker compose up -d --build
+```
+
+## Verify Deployment
+
+1. Visit `https://yourdomain.com`
+2. Test contact form
+3. Check admin login works
+
+## Troubleshooting
+
+```bash
+# View logs
+docker compose logs -f
+
+# Restart
+docker compose restart
+
+# Check nginx
+sudo nginx -t
+sudo systemctl status nginx
+
+# Check ports
+sudo lsof -i :3000
+sudo lsof -i :80
+```
+
+## Firewall (if enabled)
+
+```bash
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw allow 22
+```
