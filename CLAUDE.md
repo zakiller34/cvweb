@@ -35,3 +35,4 @@ A portfolio page is also in a different new page.
 
 - NEVER commit .env files
 - Don't write 500-line components (break them up!)
+- Rate limiting is in-memory (resets on server restart, single-process only)

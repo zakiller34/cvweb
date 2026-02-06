@@ -1,41 +1,37 @@
-import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
+const WINDOW_MS = 60 * 1000; // 1 minute
+const MAX_REQUESTS = 5;
+const CLEANUP_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
 
-function createRatelimit() {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+const store = new Map<string, number[]>();
 
-  if (!url || !token) {
-    return null;
+// Periodic cleanup of stale entries
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, timestamps] of store) {
+    const valid = timestamps.filter((t) => now - t < WINDOW_MS);
+    if (valid.length === 0) {
+      store.delete(key);
+    } else {
+      store.set(key, valid);
+    }
   }
-
-  const redis = new Redis({ url, token });
-
-  return new Ratelimit({
-    redis,
-    limiter: Ratelimit.slidingWindow(5, "1 m"),
-    analytics: true,
-  });
-}
-
-const ratelimit = createRatelimit();
+}, CLEANUP_INTERVAL_MS);
 
 export async function checkRateLimit(
   identifier: string
 ): Promise<{ success: boolean; error?: string }> {
-  if (!ratelimit) {
-    // Fail closed: block if not configured
-    return { success: false, error: "Rate limiter not configured" };
+  const now = Date.now();
+  const timestamps = store.get(identifier) ?? [];
+  const valid = timestamps.filter((t) => now - t < WINDOW_MS);
+
+  if (valid.length >= MAX_REQUESTS) {
+    store.set(identifier, valid);
+    return { success: false };
   }
 
-  try {
-    const { success } = await ratelimit.limit(identifier);
-    return { success };
-  } catch (err) {
-    console.error("Rate limit check failed:", err);
-    // Fail closed
-    return { success: false, error: "Rate limit service unavailable" };
-  }
+  valid.push(now);
+  store.set(identifier, valid);
+  return { success: true };
 }
 
 export function getClientIp(request: Request): string {
