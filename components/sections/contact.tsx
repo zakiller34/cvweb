@@ -55,7 +55,7 @@ export function Contact() {
 
     const formData = new FormData(e.currentTarget);
 
-    // Get reCAPTCHA token
+    // Get reCAPTCHA token (skip if not configured)
     let recaptchaToken = "";
     if (RECAPTCHA_SITE_KEY && window.grecaptcha) {
       try {
@@ -63,13 +63,8 @@ export function Contact() {
           action: "contact",
         });
       } catch {
-        setStatus("error");
-        return;
+        // reCAPTCHA failed, proceed without token
       }
-    } else {
-      // reCAPTCHA not configured/loaded
-      setStatus("error");
-      return;
     }
 
     const data = {
@@ -101,9 +96,12 @@ export function Contact() {
   return (
     <>
       {RECAPTCHA_SITE_KEY && (
-        <Script
-          src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
-        />
+        <>
+          <Script
+            src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
+          />
+          <style>{`.grecaptcha-badge { visibility: hidden !important; }`}</style>
+        </>
       )}
       <section id="contact" className="py-20">
       <div className="max-w-6xl mx-auto px-4">
@@ -172,6 +170,15 @@ export function Contact() {
                 rows={5}
                 required
               />
+
+              {RECAPTCHA_SITE_KEY && (
+                <p className="text-xs text-[var(--muted)] text-center">
+                  Protected by reCAPTCHA.{" "}
+                  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline">Privacy</a>
+                  {" - "}
+                  <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline">Terms</a>
+                </p>
+              )}
 
               <Button type="submit" size="lg" className="w-full" disabled={status === "loading"}>
                 {status === "loading" ? (

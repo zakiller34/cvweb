@@ -42,6 +42,8 @@ export function SettingsForm({ initialShowCv, initialShowContactForm, initialSho
       setter(newValue);
       setSaved(true);
       setTimeout(() => setSaved(false), 2000);
+    } else {
+      console.error("Failed to save setting:", key, res.status);
     }
 
     setSaving(null);

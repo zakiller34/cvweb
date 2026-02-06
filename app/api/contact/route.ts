@@ -15,8 +15,8 @@ const RECAPTCHA_THRESHOLD = 0.5;
 
 async function verifyRecaptcha(token: string): Promise<boolean> {
   if (!RECAPTCHA_SECRET) {
-    // Fail closed
-    return false;
+    // Skip reCAPTCHA when not configured
+    return true;
   }
 
   try {
@@ -64,8 +64,8 @@ export async function POST(request: Request) {
 
     const { name, email, message, recaptchaToken } = body as ContactForm;
 
-    // reCAPTCHA verification
-    if (!recaptchaToken || !(await verifyRecaptcha(recaptchaToken))) {
+    // reCAPTCHA verification (skip if no token provided)
+    if (recaptchaToken && !(await verifyRecaptcha(recaptchaToken))) {
       return NextResponse.json(
         { error: "Verification failed" },
         { status: 400 }

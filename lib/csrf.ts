@@ -12,7 +12,7 @@ export function setCsrfCookie(response: NextResponse, token: string): void {
     httpOnly: false, // Must be readable by JS
     sameSite: "strict",
     secure: process.env.NODE_ENV === "production",
-    path: "/admin",
+    path: "/",
     maxAge: 60 * 60 * 24, // 24 hours
   });
 }
