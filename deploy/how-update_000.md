@@ -5,8 +5,10 @@
 | Change Type | Commands |
 |-------------|----------|
 | Code only | `git pull && docker compose up -d --build` |
-| DB schema | `git pull && npx prisma migrate deploy && docker compose up -d --build` |
+| DB schema | `git pull && backup DB && docker compose up -d --build` |
 | Env vars | Edit `.env` then `docker compose up -d` |
+
+> Migrations run automatically on container startup — no manual `prisma migrate deploy` needed.
 
 ---
 
@@ -21,7 +23,7 @@ docker compose up -d --build
 Verify:
 ```bash
 docker compose ps
-curl -I http://localhost:3000
+curl http://localhost:3000/api/health
 ```
 
 ## Database Schema Changes
@@ -33,26 +35,10 @@ cd ~/cvweb
 git pull
 
 # Backup DB first
-cp prod.db prod.db.backup.$(date +%Y%m%d)
+cp data/prod.db data/prod.db.backup.$(date +%Y%m%d)
 
-# Run migrations
-npx prisma migrate deploy
-
-# Rebuild app
+# Rebuild — migrations auto-run on startup
 docker compose up -d --build
-```
-
-## Code + Database Changes
-
-```bash
-cd ~/cvweb
-git pull
-
-# Backup
-cp prod.db prod.db.backup.$(date +%Y%m%d)
-
-# Migrate then rebuild
-npx prisma migrate deploy && docker compose up -d --build
 ```
 
 ## Environment Variable Changes
@@ -85,7 +71,7 @@ docker compose up -d --build
 docker compose down
 
 # Restore backup
-cp prod.db.backup.YYYYMMDD prod.db
+cp data/prod.db.backup.YYYYMMDD data/prod.db
 
 # Start app
 docker compose up -d
@@ -96,7 +82,7 @@ docker compose up -d
 ```bash
 docker compose down
 git checkout <commit-hash>
-cp prod.db.backup.YYYYMMDD prod.db
+cp data/prod.db.backup.YYYYMMDD data/prod.db
 docker compose up -d --build
 ```
 
@@ -115,31 +101,30 @@ docker compose up -d
 ## Check Deployment Status
 
 ```bash
-# Container status
+# Container status + health
 docker compose ps
 
 # Live logs
 docker compose logs -f
 
 # Health check
-curl -I https://yourdomain.com
+curl https://yourdomain.com/api/health
 ```
 
 ## Common Issues
 
-**Migration fails:**
-```bash
-# Check migration status
-npx prisma migrate status
-
-# Reset if needed (DESTROYS DATA)
-npx prisma migrate reset
-```
-
 **Container won't start:**
 ```bash
-docker compose logs app
-# Check for errors
+docker compose logs cvweb
+```
+
+**Migration fails on startup:**
+```bash
+# Check migration status
+docker compose exec cvweb npx prisma migrate status
+
+# Check logs for error details
+docker compose logs cvweb | head -20
 ```
 
 **Old version still showing:**

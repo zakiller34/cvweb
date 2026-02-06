@@ -43,7 +43,7 @@ nano .env
 
 Add these variables:
 ```env
-DATABASE_URL="file:./prod.db"
+DATABASE_URL="file:/app/data/prod.db"
 AUTH_SECRET="<paste-generated-secret-here>"
 AUTH_URL="https://yourdomain.com"
 RESEND_API_KEY="re_your_api_key"
@@ -52,27 +52,28 @@ NOTIFICATION_EMAIL="your@email.com"
 
 Save: `Ctrl+O`, `Enter`, `Ctrl+X`
 
-## Step 4: Initialize Database
+## Step 4: Prepare Data Directory and Build
 
 ```bash
-# Install deps temporarily for migration
-npm install
-npx prisma migrate deploy
-```
+# Create persistent data dir for SQLite
+mkdir -p data
 
-## Step 5: Build and Run
-
-```bash
+# Build and start (migrations run automatically on container startup)
 docker compose up -d --build
 ```
 
 Verify running:
 ```bash
 docker compose ps
-curl http://localhost:3000
+curl http://localhost:3000/api/health
 ```
 
-## Step 6: Setup Nginx Reverse Proxy
+> **Existing production DB?** Move your DB file into `data/prod.db` before starting the container, then run:
+> ```bash
+> docker compose exec cvweb npx prisma migrate resolve --applied 20260206000000_init
+> ```
+
+## Step 5: Setup Nginx Reverse Proxy
 
 ```bash
 sudo apt update
@@ -110,7 +111,7 @@ sudo nginx -t  # Test config
 sudo systemctl restart nginx
 ```
 
-## Step 7: SSL Certificate (HTTPS)
+## Step 6: SSL Certificate (HTTPS)
 
 ```bash
 sudo apt install certbot python3-certbot-nginx -y
@@ -119,7 +120,7 @@ sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
 
 Follow prompts. Certbot auto-renews.
 
-## Step 8: Update AUTH_URL
+## Step 7: Update AUTH_URL
 
 After domain is configured:
 ```bash
@@ -133,6 +134,7 @@ docker compose up -d --build
 1. Visit `https://yourdomain.com`
 2. Test contact form
 3. Check admin login works
+4. `curl https://yourdomain.com/api/health` — should return `{"status":"healthy",...}`
 
 ## Troubleshooting
 
@@ -150,6 +152,9 @@ sudo systemctl status nginx
 # Check ports
 sudo lsof -i :3000
 sudo lsof -i :80
+
+# Check health
+curl http://localhost:3000/api/health
 ```
 
 ## Firewall (if enabled)
