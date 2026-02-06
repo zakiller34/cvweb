@@ -19,6 +19,7 @@ export async function GET() {
   }
 
   checks.resendKey = !!process.env.RESEND_API_KEY;
+  checks.senderEmail = !!process.env.SENDER_EMAIL;
   checks.recaptcha = !!(
     process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY &&
     process.env.RECAPTCHA_SECRET_KEY

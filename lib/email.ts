@@ -20,6 +20,7 @@ export async function sendContactEmail({
 }: SendContactEmailParams) {
   const notificationEmail = process.env.NOTIFICATION_EMAIL;
   const apiKey = process.env.RESEND_API_KEY;
+  const senderEmail = process.env.SENDER_EMAIL;
 
   if (!notificationEmail) {
     logger.warn("NOTIFICATION_EMAIL not set, skipping email");
@@ -31,10 +32,15 @@ export async function sendContactEmail({
     return { success: true, skipped: true };
   }
 
+  if (!senderEmail) {
+    logger.warn("SENDER_EMAIL not set, skipping email");
+    return { success: true, skipped: true };
+  }
+
   try {
     const resend = new Resend(apiKey);
     const { data, error } = await resend.emails.send({
-      from: "CV Contact Form <onboarding@resend.dev>",
+      from: senderEmail,
       to: notificationEmail,
       replyTo: email,
       subject: `New contact from ${name}`,
