@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { sendContactEmail } from "@/lib/email";
 import { checkRateLimit, getClientIp } from "@/lib/ratelimit";
+import { logger } from "@/lib/logger";
 
 interface ContactForm {
   name: string;
@@ -31,7 +32,7 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
     const data = await response.json();
     return data.success && data.score >= RECAPTCHA_THRESHOLD;
   } catch (err) {
-    console.error("reCAPTCHA verification failed:", err);
+    logger.error({ err }, "reCAPTCHA verification failed");
     return false;
   }
 }
@@ -133,14 +134,15 @@ export async function POST(request: Request) {
       email: savedMessage.email,
       message: savedMessage.message,
     }).catch((err) => {
-      console.error("Failed to send notification email:", err);
+      logger.error({ err }, "notification email failed");
     });
 
     return NextResponse.json(
       { success: true, id: savedMessage.id },
       { headers: { "Cache-Control": "no-store" } }
     );
-  } catch {
+  } catch (err) {
+    logger.error({ err }, "POST /api/contact failed");
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

@@ -8,6 +8,7 @@ const dbPath = dbUrl.replace("file:", "");
 const absolutePath = path.isAbsolute(dbPath) ? dbPath : path.join(process.cwd(), dbPath);
 const adapter = new PrismaBetterSqlite3({ url: absolutePath });
 const prisma = new PrismaClient({ adapter });
+import { logger } from "../lib/logger";
 
 async function main() {
   // Read existing hideContactForm setting
@@ -31,15 +32,15 @@ async function main() {
       where: { key: "hideContactForm" },
     });
 
-    console.log(`Migrated: hideContactForm=${oldSetting.value} -> showContactForm=${newValue}`);
+    logger.info(`migrated: hideContactForm=${oldSetting.value} -> showContactForm=${newValue}`);
   } else {
-    console.log("No hideContactForm setting found, nothing to migrate");
+    logger.info("no hideContactForm setting found, nothing to migrate");
   }
 }
 
 main()
   .catch((e) => {
-    console.error(e);
+    logger.error({ err: e }, "migration failed");
     process.exit(1);
   })
   .finally(async () => {

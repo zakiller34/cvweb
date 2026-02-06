@@ -9,6 +9,7 @@ const absolutePath = path.isAbsolute(dbPath) ? dbPath : path.join(process.cwd(),
 const adapter = new PrismaBetterSqlite3({ url: absolutePath });
 const prisma = new PrismaClient({ adapter });
 import bcrypt from "bcryptjs";
+import { logger } from "../lib/logger";
 
 async function main() {
   const adminEmail = process.env.ADMIN_EMAIL;
@@ -39,12 +40,12 @@ async function main() {
     },
   });
 
-  console.log("Seed completed: admin user + default settings");
+  logger.info("seed completed: admin user + default settings");
 }
 
 main()
   .catch((e) => {
-    console.error(e);
+    logger.error({ err: e }, "seed failed");
     process.exit(1);
   })
   .finally(async () => {

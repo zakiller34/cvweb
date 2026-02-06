@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { logger } from "@/lib/logger";
 
 function escapeHtml(str: string): string {
   return str.replace(/[&<>"']/g, (c) =>
@@ -21,12 +22,12 @@ export async function sendContactEmail({
   const apiKey = process.env.RESEND_API_KEY;
 
   if (!notificationEmail) {
-    console.warn("NOTIFICATION_EMAIL not set, skipping email send");
+    logger.warn("NOTIFICATION_EMAIL not set, skipping email");
     return { success: true, skipped: true };
   }
 
   if (!apiKey || apiKey === "re_xxxxx") {
-    console.warn("RESEND_API_KEY not configured, skipping email send");
+    logger.warn("RESEND_API_KEY not configured, skipping email");
     return { success: true, skipped: true };
   }
 
@@ -56,13 +57,13 @@ ${message}
     });
 
     if (error) {
-      console.error("Resend error:", error);
+      logger.error({ err: error }, "resend API error");
       return { success: false, error };
     }
 
     return { success: true, data };
   } catch (err) {
-    console.error("Email send error:", err);
+    logger.error({ err }, "email send error");
     return { success: false, error: err };
   }
 }

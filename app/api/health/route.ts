@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 
 export const dynamic = "force-dynamic";
 
@@ -24,6 +25,10 @@ export async function GET() {
   );
 
   const healthy = Object.values(checks).every(Boolean);
+
+  if (!healthy) {
+    logger.warn({ checks }, "health degraded");
+  }
 
   return NextResponse.json(
     { status: healthy ? "healthy" : "degraded", checks },

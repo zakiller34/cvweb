@@ -50,3 +50,9 @@ yarn-error.log*
 # Database
 *.db
 *.db-journal
+
+# Playwright MCP
+.playwright-mcp/
+
+# Claude
+todos.md

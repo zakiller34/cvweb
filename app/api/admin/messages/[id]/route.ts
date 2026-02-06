@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { verifyCsrf, csrfError } from "@/lib/csrf";
+import { logger } from "@/lib/logger";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(
@@ -17,19 +18,24 @@ export async function PATCH(
     return csrfError();
   }
 
-  const { id } = await params;
-  const body = await req.json();
+  try {
+    const { id } = await params;
+    const body = await req.json();
 
-  if (typeof body.read !== "boolean") {
-    return NextResponse.json({ error: "Invalid read value" }, { status: 400 });
+    if (typeof body.read !== "boolean") {
+      return NextResponse.json({ error: "Invalid read value" }, { status: 400 });
+    }
+
+    const message = await prisma.message.update({
+      where: { id },
+      data: { read: body.read },
+    });
+
+    return NextResponse.json(message);
+  } catch (err) {
+    logger.error({ err }, "PATCH /api/admin/messages/[id] failed");
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
-
-  const message = await prisma.message.update({
-    where: { id },
-    data: { read: body.read },
-  });
-
-  return NextResponse.json(message);
 }
 
 export async function DELETE(
@@ -46,11 +52,16 @@ export async function DELETE(
     return csrfError();
   }
 
-  const { id } = await params;
+  try {
+    const { id } = await params;
 
-  await prisma.message.delete({
-    where: { id },
-  });
+    await prisma.message.delete({
+      where: { id },
+    });
 
-  return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    logger.error({ err }, "DELETE /api/admin/messages/[id] failed");
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
 }
