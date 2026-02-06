@@ -11,16 +11,6 @@
 - [x] CSRF protection (double submit cookie on admin routes)
 
 
-# TODO
-  Setup required:
-  1. Create Upstash Redis at https://upstash.com
-  2. Create reCAPTCHA v3 at https://www.google.com/recaptcha/admin
-  3. Add to .env:
-  UPSTASH_REDIS_REST_URL=
-  UPSTASH_REDIS_REST_TOKEN=
-  NEXT_PUBLIC_RECAPTCHA_SITE_KEY=
-  RECAPTCHA_SECRET_KEY=
-
 
 # How it works:
   1. Middleware sets csrf_token cookie (HttpOnly=false, SameSite=Strict) on first /admin visit
