@@ -28,3 +28,30 @@ model User {
   email    String @unique
   password String
 }
+
+model SecurityEvent {
+  id        String   @id @default(cuid())
+  type      String
+  ip        String
+  detail    String   @default("")
+  userAgent String   @default("")
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([type])
+  @@index([ip])
+}
+
+model PageView {
+  id        String   @id @default(cuid())
+  path      String
+  referrer  String   @default("")
+  browser   String   @default("")
+  os        String   @default("")
+  device    String   @default("")
+  ipHash    String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([path])
+}

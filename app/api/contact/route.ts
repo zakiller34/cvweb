@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db";
 import { sendContactEmail } from "@/lib/email";
 import { checkRateLimit, getClientIp } from "@/lib/ratelimit";
 import { logger } from "@/lib/logger";
+import { trackSecurityEvent } from "@/lib/analytics";
 
 interface ContactForm {
   name: string;
@@ -46,8 +47,10 @@ export async function POST(request: Request) {
   try {
     // Rate limit check
     const ip = getClientIp(request);
+    const ua = request.headers.get("user-agent") ?? "";
     const { success: rateLimitOk } = await checkRateLimit(`contact:${ip}`);
     if (!rateLimitOk) {
+      trackSecurityEvent({ type: "rate_limit", ip, detail: "contact", userAgent: ua });
       return NextResponse.json(
         { error: "Too many requests. Try again later." },
         { status: 429 }
@@ -67,6 +70,7 @@ export async function POST(request: Request) {
 
     // reCAPTCHA verification (skip if no token provided)
     if (recaptchaToken && !(await verifyRecaptcha(recaptchaToken))) {
+      trackSecurityEvent({ type: "recaptcha_fail", ip, detail: "contact form", userAgent: ua });
       return NextResponse.json(
         { error: "Verification failed" },
         { status: 400 }

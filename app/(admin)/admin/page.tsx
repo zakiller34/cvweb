@@ -2,6 +2,7 @@ import { auth, signOut } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/db";
+import { HealthStatus } from "./health-status";
 
 export default async function AdminDashboard() {
   const session = await auth();
@@ -45,7 +46,7 @@ export default async function AdminDashboard() {
         </form>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="p-6 bg-[var(--card-bg)] rounded-lg border border-[var(--border)]">
           <h2 className="text-lg font-semibold text-[var(--foreground)] mb-2">
             Messages
@@ -66,9 +67,11 @@ export default async function AdminDashboard() {
             Control CV visibility and more
           </p>
         </div>
+
+        <HealthStatus />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Link
           href="/admin/messages"
           className="p-4 bg-[var(--card-bg)] rounded-lg border border-[var(--border)] hover:border-[var(--accent)] transition-colors"
@@ -90,6 +93,18 @@ export default async function AdminDashboard() {
           </span>
           <span className="block text-sm text-[var(--foreground)]/60 mt-1">
             Toggle CV download buttons and more
+          </span>
+        </Link>
+
+        <Link
+          href="/admin/analytics"
+          className="p-4 bg-[var(--card-bg)] rounded-lg border border-[var(--border)] hover:border-[var(--accent)] transition-colors"
+        >
+          <span className="font-medium text-[var(--foreground)]">
+            Analytics
+          </span>
+          <span className="block text-sm text-[var(--foreground)]/60 mt-1">
+            Traffic, security events, and trends
           </span>
         </Link>
       </div>
