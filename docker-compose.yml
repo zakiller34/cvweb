@@ -5,7 +5,7 @@ services:
       - "3000:3000"
     restart: unless-stopped
     volumes:
-      - ./data:/app/data
+      - cvweb-data:/app/data
     environment:
       - DATABASE_URL=file:/app/data/prod.db
     healthcheck:
@@ -14,3 +14,6 @@ services:
       timeout: 5s
       start_period: 10s
       retries: 3
+
+volumes:
+  cvweb-data:

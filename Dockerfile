@@ -26,6 +26,8 @@ COPY --from=builder /app/node_modules/dotenv ./node_modules/dotenv
 COPY --from=builder --chown=nextjs:nodejs /app/scripts/docker-entrypoint.sh ./scripts/docker-entrypoint.sh
 RUN chmod +x ./scripts/docker-entrypoint.sh
 
+RUN mkdir -p /app/data && chown nextjs:nodejs /app/data
+
 USER nextjs
 EXPOSE 3000
 ENV PORT=3000
