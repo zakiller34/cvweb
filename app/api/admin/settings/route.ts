@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db";
 import { verifyCsrf, csrfError } from "@/lib/csrf";
 import { logger } from "@/lib/logger";
 import { getAllSettings } from "@/lib/settings";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
@@ -55,6 +56,7 @@ export async function POST(req: NextRequest) {
       create: { key, value },
     });
 
+    revalidatePath("/", "layout");
     return NextResponse.json(setting);
   } catch (err) {
     logger.error({ err }, "POST /api/admin/settings failed");
