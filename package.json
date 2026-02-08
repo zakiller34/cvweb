@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma migrate deploy && npx tsx scripts/seed.ts && next build && touch tmp/restart.txt",
+    "build": "prisma generate && prisma migrate deploy && npx tsx scripts/seed.ts && next build && mkdir -p tmp && touch tmp/restart.txt",
     "start": "next start",
     "lint": "next lint",
     "db:push": "prisma db push",
