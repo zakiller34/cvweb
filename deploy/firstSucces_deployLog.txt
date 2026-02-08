@@ -1,0 +1,121 @@
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @auth/core@0.41.0
+npm warn Found: nodemailer@7.0.11
+npm warn node_modules/nodemailer
+npm warn   nodemailer@"7.0.11" from mailparser@3.9.1
+npm warn   node_modules/mailparser
+npm warn     mailparser@"3.9.1" from resend@6.9.1
+npm warn     node_modules/resend
+npm warn   1 more (next-auth)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peerOptional nodemailer@"^6.8.0" from @auth/core@0.41.0
+npm warn node_modules/@auth/core
+npm warn   @auth/core@"0.41.0" from next-auth@5.0.0-beta.30
+npm warn   node_modules/next-auth
+npm warn
+npm warn Conflicting peer dependency: nodemailer@6.10.1
+npm warn node_modules/nodemailer
+npm warn   peerOptional nodemailer@"^6.8.0" from @auth/core@0.41.0
+npm warn   node_modules/@auth/core
+npm warn     @auth/core@"0.41.0" from next-auth@5.0.0-beta.30
+npm warn     node_modules/next-auth
+
+added 559 packages, and audited 560 packages in 11s
+
+185 packages are looking for funding
+  run `npm fund` for details
+
+8 moderate severity vulnerabilities
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+> cvweb@0.1.0 build
+> prisma generate && prisma migrate deploy && next build
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+
+✔ Generated Prisma Client (v7.3.0) to ./node_modules/@prisma/client in 65ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+Datasource "db": SQLite database "dev.db" at "file:./dev.db"
+
+SQLite database dev.db created at file:./dev.db
+
+2 migrations found in prisma/migrations
+
+Applying migration `20260206000000_init`
+Applying migration `20260207112447_add_analytics`
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 20260206000000_init/
+    └─ migration.sql
+  └─ 20260207112447_add_analytics/
+    └─ migration.sql
+
+All migrations have been successfully applied.
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+   ▲ Next.js 15.5.11
+
+   Creating an optimized production build ...
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+ ✓ Compiled successfully in 11.5s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/19) ...
+   Generating static pages (4/19) 
+   Generating static pages (9/19) 
+   Generating static pages (14/19) 
+ ✓ Generating static pages (19/19)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    15.8 kB         123 kB
+├ ○ /_not-found                             1 kB         103 kB
+├ ƒ /admin                               1.11 kB         106 kB
+├ ƒ /admin/analytics                      121 kB         226 kB
+├ ○ /admin/login                           956 B         106 kB
+├ ƒ /admin/messages                      1.15 kB         106 kB
+├ ƒ /admin/settings                      1.37 kB         107 kB
+├ ƒ /api/admin/analytics/purge             153 B         102 kB
+├ ƒ /api/admin/analytics/security          153 B         102 kB
+├ ƒ /api/admin/analytics/traffic           153 B         102 kB
+├ ƒ /api/admin/messages                    153 B         102 kB
+├ ƒ /api/admin/messages/[id]               153 B         102 kB
+├ ƒ /api/admin/settings                    153 B         102 kB
+├ ƒ /api/auth/[...nextauth]                153 B         102 kB
+├ ƒ /api/contact                           153 B         102 kB
+├ ƒ /api/health                            153 B         102 kB
+├ ƒ /api/settings                          153 B         102 kB
+├ ƒ /api/track                             153 B         102 kB
+├ ○ /icon.svg                                0 B            0 B
+└ ○ /portfolio                             153 B         102 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/255-596a00806980443d.js       45.8 kB
+  ├ chunks/4bd1b696-409494caf8c83275.js  54.2 kB
+  └ other shared chunks (total)          1.93 kB
+
+
+ƒ Middleware                             34.1 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

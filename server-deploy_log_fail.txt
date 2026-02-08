@@ -1,0 +1,74 @@
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @auth/core@0.41.0
+npm warn Found: nodemailer@7.0.11
+npm warn node_modules/nodemailer
+npm warn   nodemailer@"7.0.11" from mailparser@3.9.1
+npm warn   node_modules/mailparser
+npm warn     mailparser@"3.9.1" from resend@6.9.1
+npm warn     node_modules/resend
+npm warn   1 more (next-auth)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peerOptional nodemailer@"^6.8.0" from @auth/core@0.41.0
+npm warn node_modules/@auth/core
+npm warn   @auth/core@"0.41.0" from next-auth@5.0.0-beta.30
+npm warn   node_modules/next-auth
+npm warn
+npm warn Conflicting peer dependency: nodemailer@6.10.1
+npm warn node_modules/nodemailer
+npm warn   peerOptional nodemailer@"^6.8.0" from @auth/core@0.41.0
+npm warn   node_modules/@auth/core
+npm warn     @auth/core@"0.41.0" from next-auth@5.0.0-beta.30
+npm warn     node_modules/next-auth
+
+added 559 packages, and audited 560 packages in 16s
+
+185 packages are looking for funding
+  run `npm fund` for details
+
+8 moderate severity vulnerabilities
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+npm notice
+npm notice New major version of npm available! 10.9.3 -> 11.9.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.9.0
+npm notice To update run: npm install -g npm@11.9.0
+npm notice
+
+> cvweb@0.1.0 build
+> next build
+
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+   ▲ Next.js 15.5.11
+
+   Creating an optimized production build ...
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+ ✓ Compiled successfully in 12.0s
+   Linting and checking validity of types ...
+Failed to compile.
+
+./app/api/admin/analytics/security/route.ts:51:45
+Type error: Parameter 'e' implicitly has an 'any' type.
+
+[0m [90m 49 |[39m
+ [90m 50 |[39m     [90m// Recent events (last 50)[39m
+[31m[1m>[22m[39m[90m 51 |[39m     [36mconst[39m recent [33m=[39m events[33m.[39mslice([35m0[39m[33m,[39m [35m50[39m)[33m.[39mmap((e) [33m=>[39m ({
+ [90m    |[39m                                             [31m[1m^[22m[39m
+ [90m 52 |[39m       id[33m:[39m e[33m.[39mid[33m,[39m
+ [90m 53 |[39m       type[33m:[39m e[33m.[39mtype[33m,[39m
+ [90m 54 |[39m       ip[33m:[39m e[33m.[39mip[33m,[39m[0m
+Next.js build worker exited with code: 1 and signal: null
+[31mERROR: Failed to build the application[0m

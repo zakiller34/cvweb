@@ -91,7 +91,7 @@ export function Navigation({ showContactForm = true, showCvDownload = true }: Na
               isHome ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >
-            <span className="text-[#38bdf8]">zakaria</span>teffah.com
+            <span className="text-[#38bdf8]">zakaria</span>-teffah.com
           </Link>
 
           {/* Right side */}
