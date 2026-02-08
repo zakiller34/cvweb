@@ -1,8 +1,10 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { prisma } from "@/lib/db";
 import { SettingsForm } from "./settings-form";
+import { getAllSettings } from "@/lib/settings";
+import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 
 export default async function AdminSettingsPage() {
   const session = await auth();
@@ -11,19 +13,15 @@ export default async function AdminSettingsPage() {
     redirect("/admin/login");
   }
 
-  const [showCvSetting, showContactSetting, showMailToSidebarSetting, showPortfolioSetting, showScheduleMeetingSetting] = await Promise.all([
-    prisma.setting.findUnique({ where: { key: "showCvDownload" } }),
-    prisma.setting.findUnique({ where: { key: "showContactForm" } }),
-    prisma.setting.findUnique({ where: { key: "showMailToSidebar" } }),
-    prisma.setting.findUnique({ where: { key: "showPortfolio" } }),
-    prisma.setting.findUnique({ where: { key: "showScheduleMeeting" } }),
-  ]);
+  let dbAvailable = true;
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+  } catch {
+    dbAvailable = false;
+    logger.warn("DB unavailable on admin settings page");
+  }
 
-  const showCvDownload = showCvSetting?.value === "true";
-  const showContactForm = showContactSetting?.value !== "false"; // default true
-  const showMailToSidebar = showMailToSidebarSetting?.value !== "false"; // default true
-  const showPortfolio = showPortfolioSetting?.value !== "false"; // default true
-  const showScheduleMeeting = showScheduleMeetingSetting?.value !== "false"; // default true
+  const { showCvDownload, showContactForm, showMailToSidebar, showPortfolio, showScheduleMeeting } = await getAllSettings();
 
   return (
     <div className="p-8 max-w-4xl mx-auto">
@@ -38,6 +36,12 @@ export default async function AdminSettingsPage() {
           Settings
         </h1>
       </div>
+
+      {!dbAvailable && (
+        <div className="mb-6 rounded-lg border border-yellow-500/50 bg-yellow-500/10 p-4 text-yellow-200">
+          Database is unavailable. Showing defaults from environment variables. Changes cannot be saved.
+        </div>
+      )}
 
       <SettingsForm
         initialShowCv={showCvDownload}

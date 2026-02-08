@@ -4,19 +4,10 @@ import { LeftSidebar } from "@/components/sidebars/left-sidebar";
 import { RightSidebar } from "@/components/sidebars/right-sidebar";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { PageTracker } from "@/components/page-tracker";
-import { prisma } from "@/lib/db";
+import { getAllSettings } from "@/lib/settings";
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
-  const [showContactSetting, showMailToSidebarSetting, showCvDownloadSetting, showPortfolioSetting] = await Promise.all([
-    prisma.setting.findUnique({ where: { key: "showContactForm" } }),
-    prisma.setting.findUnique({ where: { key: "showMailToSidebar" } }),
-    prisma.setting.findUnique({ where: { key: "showCvDownload" } }),
-    prisma.setting.findUnique({ where: { key: "showPortfolio" } }),
-  ]);
-  const showContactForm = showContactSetting?.value !== "false"; // default true
-  const showMailToSidebar = showMailToSidebarSetting?.value !== "false"; // default true
-  const showCvDownload = showCvDownloadSetting?.value !== "false"; // default true
-  const showPortfolio = showPortfolioSetting?.value !== "false"; // default true
+  const { showContactForm, showMailToSidebar, showCvDownload, showPortfolio } = await getAllSettings();
 
   return (
     <>

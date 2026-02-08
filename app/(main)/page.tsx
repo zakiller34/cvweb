@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
 import { Footer } from "@/components/footer";
-import { prisma } from "@/lib/db";
+import { getAllSettings } from "@/lib/settings";
 
 // Dynamic imports for below-fold sections (SSR enabled for SEO)
 const Experience = dynamic(
@@ -26,14 +26,7 @@ const Contact = dynamic(
 );
 
 export default async function Home() {
-  const [showCvSetting, showContactSetting, showScheduleMeetingSetting] = await Promise.all([
-    prisma.setting.findUnique({ where: { key: "showCvDownload" } }),
-    prisma.setting.findUnique({ where: { key: "showContactForm" } }),
-    prisma.setting.findUnique({ where: { key: "showScheduleMeeting" } }),
-  ]);
-  const showCvDownload = showCvSetting?.value !== "false";
-  const showContactForm = showContactSetting?.value !== "false"; // default true
-  const showScheduleMeeting = showScheduleMeetingSetting?.value !== "false"; // default true
+  const { showCvDownload, showContactForm, showScheduleMeeting } = await getAllSettings();
 
   return (
     <>

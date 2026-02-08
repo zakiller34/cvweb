@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { verifyCsrf, csrfError } from "@/lib/csrf";
 import { logger } from "@/lib/logger";
+import { getAllSettings } from "@/lib/settings";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
@@ -12,7 +13,7 @@ export async function GET() {
   }
 
   try {
-    const settings = await prisma.setting.findMany();
+    const settings = await getAllSettings();
     return NextResponse.json(settings);
   } catch (err) {
     logger.error({ err }, "GET /api/admin/settings failed");
