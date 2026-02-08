@@ -6,6 +6,7 @@ import { trackSecurityEvent } from "./analytics";
 import { getClientIp } from "./ratelimit";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  trustHost: true,
   providers: [
     Credentials({
       name: "credentials",
