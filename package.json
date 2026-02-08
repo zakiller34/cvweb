@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma migrate deploy && npx tsx scripts/seed.ts && next build",
+    "build": "prisma generate && prisma migrate deploy && npx tsx scripts/seed.ts && next build && touch tmp/restart.txt",
     "start": "next start",
     "lint": "next lint",
     "db:push": "prisma db push",
@@ -18,7 +18,7 @@
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.6.2",
     "dotenv": "^17.2.3",
-    "next": "^15.1.0",
+    "next": "15.5.11",
     "next-auth": "^5.0.0-beta.30",
     "pino": "^10.3.0",
     "prisma": "^7.3.0",
