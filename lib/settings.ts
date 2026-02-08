@@ -7,6 +7,8 @@ const SETTING_KEYS = [
   "showMailToSidebar",
   "showPortfolio",
   "showScheduleMeeting",
+  "showGitHub",
+  "showLinkedIn",
 ] as const;
 
 export type SettingKey = (typeof SETTING_KEYS)[number];

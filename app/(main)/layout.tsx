@@ -9,13 +9,13 @@ import { getAllSettings } from "@/lib/settings";
 export const revalidate = 3600;
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
-  const { showContactForm, showMailToSidebar, showCvDownload, showPortfolio } = await getAllSettings();
+  const { showContactForm, showMailToSidebar, showCvDownload, showPortfolio, showGitHub, showLinkedIn } = await getAllSettings();
 
   return (
     <>
       <AnimatedBackground />
-      <Navigation showContactForm={showContactForm} showCvDownload={showCvDownload} />
-      <LeftSidebar showMailTo={showMailToSidebar} showPortfolio={showPortfolio} />
+      <Navigation showContactForm={showContactForm} showCvDownload={showCvDownload} showMailTo={showMailToSidebar} showPortfolio={showPortfolio} showGitHub={showGitHub} showLinkedIn={showLinkedIn} />
+      <LeftSidebar showMailTo={showMailToSidebar} showPortfolio={showPortfolio} showGitHub={showGitHub} showLinkedIn={showLinkedIn} />
       <RightSidebar showContactForm={showContactForm} />
       <ScrollToTop />
       <PageTracker />

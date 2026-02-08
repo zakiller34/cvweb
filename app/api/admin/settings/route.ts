@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const ALLOWED_SETTINGS = ["showCvDownload", "showContactForm", "showMailToSidebar", "showPortfolio", "showScheduleMeeting"] as const;
+    const ALLOWED_SETTINGS = ["showCvDownload", "showContactForm", "showMailToSidebar", "showPortfolio", "showScheduleMeeting", "showGitHub", "showLinkedIn"] as const;
 
     if (!ALLOWED_SETTINGS.includes(key as (typeof ALLOWED_SETTINGS)[number])) {
       return NextResponse.json({ error: "Invalid setting key" }, { status: 400 });

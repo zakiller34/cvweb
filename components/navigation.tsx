@@ -9,13 +9,18 @@ import { useScrollState } from "@/hooks/use-scroll-state";
 import { ThemeToggle } from "./ui/theme-toggle";
 import { LanguageToggle } from "./ui/language-toggle";
 import { Button } from "./ui/button";
+import { GitHubIcon, LinkedInIcon, EmailIcon, PortfolioIcon } from "./sidebars/sidebar-icons";
 
 interface NavigationProps {
   showContactForm?: boolean;
   showCvDownload?: boolean;
+  showMailTo?: boolean;
+  showPortfolio?: boolean;
+  showGitHub?: boolean;
+  showLinkedIn?: boolean;
 }
 
-export function Navigation({ showContactForm = true, showCvDownload = true }: NavigationProps) {
+export function Navigation({ showContactForm = true, showCvDownload = true, showMailTo = true, showPortfolio = true, showGitHub = true, showLinkedIn = true }: NavigationProps) {
   const { lang } = useLanguage();
   const { isHome, activeSection } = useScrollState();
   const [isOpen, setIsOpen] = useState(false);
@@ -262,6 +267,30 @@ export function Navigation({ showContactForm = true, showCvDownload = true }: Na
             <span className="text-base font-medium text-[var(--accent)] py-2">
               zakaria.teffah [at] gmail [dot] com
             </span>
+          )}
+          {(showGitHub || showLinkedIn || showPortfolio || showMailTo) && (
+            <div className="flex gap-4 pt-3 border-t border-[var(--border)]">
+              {showGitHub && (
+                <a href={SITE_CONFIG.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
+                  <GitHubIcon />
+                </a>
+              )}
+              {showLinkedIn && (
+                <a href={SITE_CONFIG.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
+                  <LinkedInIcon />
+                </a>
+              )}
+              {showPortfolio && (
+                <a href="/portfolio" aria-label="Portfolio" onClick={() => setIsOpen(false)} className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
+                  <PortfolioIcon />
+                </a>
+              )}
+              {showMailTo && (
+                <a href={`mailto:${SITE_CONFIG.email}`} aria-label="Email" className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
+                  <EmailIcon />
+                </a>
+              )}
+            </div>
           )}
         </div>
       </div>

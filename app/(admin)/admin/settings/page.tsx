@@ -21,7 +21,7 @@ export default async function AdminSettingsPage() {
     logger.warn("DB unavailable on admin settings page");
   }
 
-  const { showCvDownload, showContactForm, showMailToSidebar, showPortfolio, showScheduleMeeting } = await getAllSettings();
+  const { showCvDownload, showContactForm, showMailToSidebar, showPortfolio, showScheduleMeeting, showGitHub, showLinkedIn } = await getAllSettings();
 
   return (
     <div className="p-8 max-w-4xl mx-auto">
@@ -49,6 +49,8 @@ export default async function AdminSettingsPage() {
         initialShowMailToSidebar={showMailToSidebar}
         initialShowPortfolio={showPortfolio}
         initialShowScheduleMeeting={showScheduleMeeting}
+        initialShowGitHub={showGitHub}
+        initialShowLinkedIn={showLinkedIn}
       />
     </div>
   );
