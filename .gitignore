@@ -56,3 +56,4 @@ yarn-error.log*
 
 # Claude
 todos.md
+tmp/restart.txt
