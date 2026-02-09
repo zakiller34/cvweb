@@ -25,7 +25,7 @@ export function Hero({ showCvDownload = true, showContactForm = true, showSchedu
   const ui = UI_TEXT[lang];
 
   return (
-    <section className="min-h-screen flex items-center pt-16">
+    <section id="hero" className="min-h-screen flex items-center pt-16">
       <div className="max-w-6xl mx-auto px-4 py-20 w-full">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Text content */}

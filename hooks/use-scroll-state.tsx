@@ -31,7 +31,7 @@ export function ScrollStateProvider({ children }: { children: ReactNode }) {
       const progress = scrollHeight > 0 ? Math.min(window.scrollY / scrollHeight, 1) : 0;
 
       const sections = navLinks.map((link) => link.href.replace("#", ""));
-      let active = "";
+      let active = "hero";
       for (const section of [...sections].reverse()) {
         const element = document.getElementById(section);
         if (element) {

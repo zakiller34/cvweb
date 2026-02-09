@@ -75,6 +75,7 @@ export const SITE_CONFIG = {
 
 export const NAV_LINKS = {
   en: [
+    { href: "#hero", label: "Home" },
     { href: "#about", label: "About" },
     { href: "#experience", label: "Experience" },
     { href: "#skills", label: "Skills" },
@@ -82,6 +83,7 @@ export const NAV_LINKS = {
     { href: "#contact", label: "Contact" },
   ],
   fr: [
+    { href: "#hero", label: "Accueil" },
     { href: "#about", label: "À propos" },
     { href: "#experience", label: "Expérience" },
     { href: "#skills", label: "Compétences" },
