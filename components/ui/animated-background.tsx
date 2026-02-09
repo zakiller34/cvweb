@@ -37,6 +37,7 @@ export function AnimatedBackground() {
   const nodesRef = useRef<Node[]>([]);
   const pulsesRef = useRef<Pulse[]>([]);
   const particlesRef = useRef<Particle[]>([]);
+  const dimsRef = useRef({ width: 0, height: 0 });
   const colorsRef = useRef({
     node: "",
     line: "",
@@ -214,14 +215,22 @@ export function AnimatedBackground() {
       const dpr = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
 
+      const oldW = dimsRef.current.width;
+      const oldH = dimsRef.current.height;
+      const widthChanged = Math.abs(rect.width - oldW) > 1;
+      const heightDelta = Math.abs(rect.height - oldH);
+
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
-
       ctx.scale(dpr, dpr);
+      dimsRef.current = { width: rect.width, height: rect.height };
 
-      nodesRef.current = initNodes(rect.width, rect.height);
-      particlesRef.current = initParticles(rect.width, rect.height);
-      pulsesRef.current = [];
+      // Skip full reinit for small height-only changes (mobile chrome address bar)
+      if (oldW === 0 || widthChanged || heightDelta > 150) {
+        nodesRef.current = initNodes(rect.width, rect.height);
+        particlesRef.current = initParticles(rect.width, rect.height);
+        pulsesRef.current = [];
+      }
     };
 
     resize();
@@ -240,9 +249,9 @@ export function AnimatedBackground() {
       draw(ctx, canvas.width, canvas.height);
     } else {
       const animate = () => {
-        const rect = canvas.getBoundingClientRect();
-        update(rect.width, rect.height);
-        draw(ctx, rect.width, rect.height);
+        const { width, height } = dimsRef.current;
+        update(width, height);
+        draw(ctx, width, height);
         animationRef.current = requestAnimationFrame(animate);
       };
 
