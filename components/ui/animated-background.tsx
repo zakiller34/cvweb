@@ -24,12 +24,23 @@ interface Particle {
   vy: number;
   size: number;
   opacity: number;
+  color: string;
 }
 
-const NODE_COUNT = 25;
-const CONNECTION_DISTANCE = 200;
+const MOBILE_BREAKPOINT = 768;
 const PULSE_SPAWN_RATE = 0.005;
-const PARTICLE_COUNT = 15;
+
+function getMobileFlag() {
+  return window.innerWidth < MOBILE_BREAKPOINT;
+}
+
+function getConfig(mobile: boolean) {
+  return {
+    nodeCount: mobile ? 12 : 25,
+    particleCount: mobile ? 6 : 15,
+    connectionDistance: mobile ? 150 : 200,
+  };
+}
 
 export function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -38,6 +49,8 @@ export function AnimatedBackground() {
   const pulsesRef = useRef<Pulse[]>([]);
   const particlesRef = useRef<Particle[]>([]);
   const dimsRef = useRef({ width: 0, height: 0 });
+  const staticCanvasRef = useRef<OffscreenCanvas | null>(null);
+  const mobileRef = useRef(false);
   const colorsRef = useRef({
     node: "",
     line: "",
@@ -58,11 +71,11 @@ export function AnimatedBackground() {
     };
   }, []);
 
-  const initNodes = useCallback((width: number, height: number) => {
+  const initNodes = useCallback((width: number, height: number, connectionDistance: number, nodeCount: number) => {
     const nodes: Node[] = [];
     const padding = 50;
 
-    for (let i = 0; i < NODE_COUNT; i++) {
+    for (let i = 0; i < nodeCount; i++) {
       nodes.push({
         x: padding + Math.random() * (width - padding * 2),
         y: padding + Math.random() * (height - padding * 2),
@@ -70,14 +83,13 @@ export function AnimatedBackground() {
       });
     }
 
-    // Build connections
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
         const dx = nodes[i].x - nodes[j].x;
         const dy = nodes[i].y - nodes[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < CONNECTION_DISTANCE) {
+        if (dist < connectionDistance) {
           nodes[i].connections.push(j);
           nodes[j].connections.push(i);
         }
@@ -87,21 +99,57 @@ export function AnimatedBackground() {
     return nodes;
   }, []);
 
-  const initParticles = useCallback((width: number, height: number) => {
+  const initParticles = useCallback((width: number, height: number, particleCount: number, particleColor: string) => {
     const particles: Particle[] = [];
 
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
+    for (let i = 0; i < particleCount; i++) {
+      const opacity = 0.3 + Math.random() * 0.4;
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.3,
         vy: (Math.random() - 0.5) * 0.3,
         size: 1 + Math.random() * 2,
-        opacity: 0.3 + Math.random() * 0.4,
+        opacity,
+        color: particleColor.replace(")", `, ${opacity})`),
       });
     }
 
     return particles;
+  }, []);
+
+  /** Draw static nodes + connections to an offscreen canvas (called once per init) */
+  const buildStaticLayer = useCallback((width: number, height: number, dpr: number) => {
+    const nodes = nodesRef.current;
+    const colors = colorsRef.current;
+
+    const offscreen = new OffscreenCanvas(width * dpr, height * dpr);
+    const ctx = offscreen.getContext("2d")!;
+    ctx.scale(dpr, dpr);
+
+    // Draw connections
+    ctx.strokeStyle = colors.line;
+    ctx.lineWidth = 1;
+    for (let i = 0; i < nodes.length; i++) {
+      for (const connIdx of nodes[i].connections) {
+        if (connIdx > i) {
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[connIdx].x, nodes[connIdx].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw nodes
+    ctx.fillStyle = colors.node;
+    for (const node of nodes) {
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    staticCanvasRef.current = offscreen;
   }, []);
 
   const draw = useCallback(
@@ -113,32 +161,14 @@ export function AnimatedBackground() {
 
       ctx.clearRect(0, 0, width, height);
 
-      // Draw connections
-      ctx.strokeStyle = colors.line;
-      ctx.lineWidth = 1;
-
-      for (const node of nodes) {
-        for (const connIdx of node.connections) {
-          if (connIdx > nodes.indexOf(node)) {
-            ctx.beginPath();
-            ctx.moveTo(node.x, node.y);
-            ctx.lineTo(nodes[connIdx].x, nodes[connIdx].y);
-            ctx.stroke();
-          }
-        }
+      // Blit cached static layer (nodes + connections)
+      if (staticCanvasRef.current) {
+        ctx.drawImage(staticCanvasRef.current, 0, 0, width, height);
       }
 
-      // Draw nodes
-      ctx.fillStyle = colors.node;
-      for (const node of nodes) {
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // Draw particles
+      // Draw particles (pre-computed colors)
       for (const particle of particles) {
-        ctx.fillStyle = colors.particle.replace(")", `, ${particle.opacity})`).replace("rgba", "rgba");
+        ctx.fillStyle = particle.color;
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fill();
@@ -194,7 +224,6 @@ export function AnimatedBackground() {
         particle.x += particle.vx;
         particle.y += particle.vy;
 
-        // Wrap around edges
         if (particle.x < 0) particle.x = width;
         if (particle.x > width) particle.x = 0;
         if (particle.y < 0) particle.y = height;
@@ -212,8 +241,11 @@ export function AnimatedBackground() {
     if (!ctx) return;
 
     const resize = () => {
-      const dpr = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
+      const mobile = getMobileFlag();
+      mobileRef.current = mobile;
+      const dpr = mobile ? 1 : (window.devicePixelRatio || 1);
+      const config = getConfig(mobile);
 
       const oldW = dimsRef.current.width;
       const oldH = dimsRef.current.height;
@@ -222,19 +254,24 @@ export function AnimatedBackground() {
 
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       dimsRef.current = { width: rect.width, height: rect.height };
 
       // Skip full reinit for small height-only changes (mobile chrome address bar)
       if (oldW === 0 || widthChanged || heightDelta > 150) {
-        nodesRef.current = initNodes(rect.width, rect.height);
-        particlesRef.current = initParticles(rect.width, rect.height);
+        nodesRef.current = initNodes(rect.width, rect.height, config.connectionDistance, config.nodeCount);
+        particlesRef.current = initParticles(rect.width, rect.height, config.particleCount, colorsRef.current.particle);
         pulsesRef.current = [];
+        buildStaticLayer(rect.width, rect.height, dpr);
       }
     };
 
     resize();
     colorsRef.current = getColors();
+    // Rebuild static layer after colors are set
+    const { width, height } = dimsRef.current;
+    const dpr = mobileRef.current ? 1 : (window.devicePixelRatio || 1);
+    buildStaticLayer(width, height, dpr);
 
     let resizeTimeout: NodeJS.Timeout;
     const handleResize = () => {
@@ -245,13 +282,19 @@ export function AnimatedBackground() {
     window.addEventListener("resize", handleResize);
 
     if (reducedMotion) {
-      // Static render for reduced motion
-      draw(ctx, canvas.width, canvas.height);
+      draw(ctx, width, height);
     } else {
+      let frame = 0;
       const animate = () => {
-        const { width, height } = dimsRef.current;
-        update(width, height);
-        draw(ctx, width, height);
+        frame++;
+        // Throttle to ~30fps on mobile
+        if (mobileRef.current && frame % 2 === 0) {
+          animationRef.current = requestAnimationFrame(animate);
+          return;
+        }
+        const dims = dimsRef.current;
+        update(dims.width, dims.height);
+        draw(ctx, dims.width, dims.height);
         animationRef.current = requestAnimationFrame(animate);
       };
 
@@ -263,12 +306,21 @@ export function AnimatedBackground() {
       cancelAnimationFrame(animationRef.current);
       clearTimeout(resizeTimeout);
     };
-  }, [reducedMotion, initNodes, initParticles, draw, update, getColors]);
+  }, [reducedMotion, initNodes, initParticles, draw, update, getColors, buildStaticLayer]);
 
-  // Update colors on theme change
+  // Update colors + static layer on theme change
   useEffect(() => {
     colorsRef.current = getColors();
-  }, [resolvedTheme, getColors]);
+    const { width, height } = dimsRef.current;
+    if (width > 0) {
+      const dpr = mobileRef.current ? 1 : (window.devicePixelRatio || 1);
+      buildStaticLayer(width, height, dpr);
+      // Re-compute particle colors
+      for (const p of particlesRef.current) {
+        p.color = colorsRef.current.particle.replace(")", `, ${p.opacity})`);
+      }
+    }
+  }, [resolvedTheme, getColors, buildStaticLayer]);
 
   return (
     <canvas
