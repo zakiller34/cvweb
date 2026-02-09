@@ -6,14 +6,20 @@ import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { Typewriter } from "@/components/ui/typewriter";
+import { GitHubIcon, LinkedInIcon, EmailIcon, PortfolioIcon } from "@/components/sidebars/sidebar-icons";
+import { SITE_CONFIG as SC } from "@/lib/constants";
 
 interface HeroProps {
   showCvDownload?: boolean;
   showContactForm?: boolean;
   showScheduleMeeting?: boolean;
+  showMailTo?: boolean;
+  showPortfolio?: boolean;
+  showGitHub?: boolean;
+  showLinkedIn?: boolean;
 }
 
-export function Hero({ showCvDownload = true, showContactForm = true, showScheduleMeeting = true }: HeroProps) {
+export function Hero({ showCvDownload = true, showContactForm = true, showScheduleMeeting = true, showMailTo = true, showPortfolio = true, showGitHub = true, showLinkedIn = true }: HeroProps) {
   const { lang } = useLanguage();
   const stats = STATS[lang];
   const ui = UI_TEXT[lang];
@@ -38,15 +44,43 @@ export function Hero({ showCvDownload = true, showContactForm = true, showSchedu
               {SITE_CONFIG.description[lang]}
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              {showContactForm ? (
-                <Button size="lg" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
-                  {ui.getInTouch}
-                </Button>
-              ) : (
+            {!showContactForm && (
+              <div className="space-y-3">
                 <span className="text-xl md:text-2xl font-medium text-[var(--accent)]">
                   zakaria.teffah [at] gmail [dot] com
                 </span>
+                {(showGitHub || showLinkedIn || showPortfolio || showMailTo) && (
+                  <div className="flex gap-3 pt-6">
+                    {showGitHub && (
+                      <a href={SC.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                        <GitHubIcon className="w-7 h-7" />
+                      </a>
+                    )}
+                    {showLinkedIn && (
+                      <a href={SC.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                        <LinkedInIcon className="w-7 h-7" />
+                      </a>
+                    )}
+                    {showPortfolio && (
+                      <a href="/portfolio" aria-label="Portfolio" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                        <PortfolioIcon className="w-7 h-7" />
+                      </a>
+                    )}
+                    {showMailTo && (
+                      <a href={`mailto:${SC.email}`} aria-label="Email" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                        <EmailIcon className="w-7 h-7" />
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div className="flex flex-wrap gap-4">
+              {showContactForm && (
+                <Button size="lg" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+                  {ui.getInTouch}
+                </Button>
               )}
               {showCvDownload && SITE_CONFIG.cvFiles.map((cv) => (
                 <a

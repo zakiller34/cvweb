@@ -26,11 +26,11 @@ const Contact = dynamic(
 );
 
 export default function Home() {
-  const { showCvDownload, showContactForm, showScheduleMeeting } = getAllSettings();
+  const { showCvDownload, showContactForm, showScheduleMeeting, showMailToSidebar, showPortfolio, showGitHub, showLinkedIn } = getAllSettings();
 
   return (
     <>
-      <Hero showCvDownload={showCvDownload} showContactForm={showContactForm} showScheduleMeeting={showScheduleMeeting} />
+      <Hero showCvDownload={showCvDownload} showContactForm={showContactForm} showScheduleMeeting={showScheduleMeeting} showMailTo={showMailToSidebar} showPortfolio={showPortfolio} showGitHub={showGitHub} showLinkedIn={showLinkedIn} />
       <About />
       <Experience />
       <Skills />

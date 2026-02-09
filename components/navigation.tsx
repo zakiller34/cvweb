@@ -62,31 +62,32 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
       <nav className="max-w-6xl mx-auto px-4 h-20 flex items-center">
         {/* Desktop layout */}
         <div className="hidden md:flex items-center justify-between w-full">
-          {/* Left side - Nav links (hidden when home) */}
+          {/* Left side - Social icons (visible when scrolled) */}
           <div
-            className={`flex items-center gap-6 transition-all duration-300 ${
+            className={`flex items-center gap-3 transition-all duration-300 ${
               isHome ? "opacity-0 -translate-x-4 pointer-events-none" : "opacity-100 translate-x-0"
             }`}
           >
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.href.replace("#", "");
-              return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className={`text-sm transition-colors relative ${
-                    isActive
-                      ? "text-[var(--accent)]"
-                      : "text-[var(--muted)] hover:text-[var(--foreground)]"
-                  }`}
-                >
-                  {link.label}
-                  {isActive && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[var(--accent)] rounded-full" />
-                  )}
-                </a>
-              );
-            })}
+            {showGitHub && (
+              <a href={SITE_CONFIG.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                <GitHubIcon className="w-6 h-6" />
+              </a>
+            )}
+            {showLinkedIn && (
+              <a href={SITE_CONFIG.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                <LinkedInIcon className="w-6 h-6" />
+              </a>
+            )}
+            {showPortfolio && (
+              <a href="/portfolio" aria-label="Portfolio" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                <PortfolioIcon className="w-6 h-6" />
+              </a>
+            )}
+            {showMailTo && (
+              <a href={`mailto:${SITE_CONFIG.email}`} aria-label="Email" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                <EmailIcon className="w-6 h-6" />
+              </a>
+            )}
           </div>
 
           {/* Center - Logo (centered when home, hidden when scrolled) */}
