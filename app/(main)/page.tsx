@@ -25,8 +25,8 @@ const Contact = dynamic(
   { ssr: true }
 );
 
-export default async function Home() {
-  const { showCvDownload, showContactForm, showScheduleMeeting } = await getAllSettings();
+export default function Home() {
+  const { showCvDownload, showContactForm, showScheduleMeeting } = getAllSettings();
 
   return (
     <>

@@ -4,45 +4,28 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma migrate deploy && npx tsx scripts/seed.ts && next build && mkdir -p tmp && touch tmp/restart.txt",
+    "build": "next build && mkdir -p tmp && touch tmp/restart.txt",
     "start": "next start",
-    "lint": "next lint",
-    "db:push": "prisma db push",
-    "db:seed": "npx tsx --tsconfig tsconfig.json scripts/seed.ts",
-    "db:migrate": "prisma migrate dev",
-    "db:migrate:deploy": "prisma migrate deploy"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/adapter-better-sqlite3": "^7.3.0",
-    "@prisma/client": "^7.3.0",
-    "bcryptjs": "^3.0.3",
-    "better-sqlite3": "^12.6.2",
-    "dotenv": "^17.2.3",
     "next": "15.5.11",
-    "next-auth": "^5.0.0-beta.30",
     "pino": "^10.3.0",
-    "prisma": "^7.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "recharts": "^3.7.0",
-    "resend": "^6.9.1",
-    "ua-parser-js": "^2.0.9"
+    "resend": "^6.9.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.0.0",
     "@tailwindcss/postcss": "^4.0.0",
-    "@types/bcryptjs": "^2.4.6",
-    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@types/ua-parser-js": "^0.7.39",
     "eslint": "^9.0.0",
     "eslint-config-next": "^15.1.0",
     "pino-pretty": "^13.1.3",
     "postcss": "^8.0.0",
     "tailwindcss": "^4.0.0",
-    "tsx": "^4.21.0",
     "typescript": "^5.0.0"
   }
 }

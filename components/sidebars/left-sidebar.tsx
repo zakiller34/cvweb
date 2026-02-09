@@ -1,9 +1,8 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import { SITE_CONFIG } from "@/lib/constants";
 import { IconButton } from "@/components/ui/icon-button";
-import { GitHubIcon, LinkedInIcon, EmailIcon, PortfolioIcon, AdminIcon } from "./sidebar-icons";
+import { GitHubIcon, LinkedInIcon, EmailIcon, PortfolioIcon } from "./sidebar-icons";
 
 interface LeftSidebarProps {
   showMailTo?: boolean;
@@ -13,8 +12,6 @@ interface LeftSidebarProps {
 }
 
 export function LeftSidebar({ showMailTo = true, showPortfolio = true, showGitHub = true, showLinkedIn = true }: LeftSidebarProps) {
-  const { data: session } = useSession();
-
   return (
     <aside className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-3 animate-fade-in">
       {showGitHub && (
@@ -35,11 +32,6 @@ export function LeftSidebar({ showMailTo = true, showPortfolio = true, showGitHu
       {showMailTo && (
         <IconButton href={`mailto:${SITE_CONFIG.email}`} ariaLabel="Email">
           <EmailIcon />
-        </IconButton>
-      )}
-      {session && (
-        <IconButton href="/admin" ariaLabel="Admin">
-          <AdminIcon />
         </IconButton>
       )}
     </aside>

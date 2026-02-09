@@ -3,7 +3,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
 import { ScrollStateProvider } from "@/hooks/use-scroll-state";
-import { SessionProvider } from "@/components/session-provider";
 
 export const metadata: Metadata = {
   title: "Zakaria Teffah - Research and Development Engineer",
@@ -14,15 +13,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
-        <SessionProvider>
-          <ThemeProvider>
-            <LanguageProvider>
-              <ScrollStateProvider>
-                {children}
-              </ScrollStateProvider>
-            </LanguageProvider>
-          </ThemeProvider>
-        </SessionProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            <ScrollStateProvider>
+              {children}
+            </ScrollStateProvider>
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

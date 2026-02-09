@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
         { key: "Access-Control-Allow-Methods", value: "GET, POST" },
         {
           key: "Access-Control-Allow-Headers",
-          value: "Content-Type, x-csrf-token",
+          value: "Content-Type",
         },
       ],
     },

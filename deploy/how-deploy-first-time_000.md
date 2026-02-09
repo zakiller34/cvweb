@@ -35,29 +35,13 @@ cd ~/cvweb
 ## Step 3: Create Production Environment File
 
 ```bash
-# Generate AUTH_SECRET
-openssl rand -base64 32
-# Copy the output for next step
-
-# Create .env file
 nano .env
 ```
 
 Add all required variables:
 ```env
-# Database (don't change this for Docker)
-DATABASE_URL="file:/app/data/prod.db"
-
-# NextAuth v5
-AUTH_SECRET="<paste-generated-secret-here>"
-AUTH_URL="https://yourdomain.com"
-
 # App URL (used for CORS headers)
 NEXT_PUBLIC_APP_URL="https://yourdomain.com"
-
-# Admin credentials (used by seed script to create admin user)
-ADMIN_EMAIL="admin@yourdomain.com"
-ADMIN_PASSWORD="<strong-password-here>"
 
 # Resend (email notifications)
 RESEND_API_KEY="re_your_api_key"
@@ -70,6 +54,15 @@ RECAPTCHA_SECRET_KEY="6Lxxx"
 
 # Logging (debug | info | warn | error)
 LOG_LEVEL="info"
+
+# Feature toggles
+SHOW_CV_DOWNLOAD=true
+SHOW_CONTACT_FORM=true
+SHOW_MAIL_TO_SIDEBAR=true
+SHOW_PORTFOLIO=false
+SHOW_SCHEDULE_MEETING=false
+SHOW_GIT_HUB=true
+SHOW_LINKED_IN=true
 ```
 
 Save: `Ctrl+O`, `Enter`, `Ctrl+X`
@@ -77,27 +70,14 @@ Save: `Ctrl+O`, `Enter`, `Ctrl+X`
 ## Step 4: Build and Start
 
 ```bash
-# Build and start (migrations + seed run automatically on container startup)
 docker compose up -d --build
 ```
 
 Verify running:
 ```bash
 docker compose ps
-curl http://localhost:3000/api/health
+curl http://localhost:3000
 ```
-
-Expected health response:
-```json
-{"status":"healthy","checks":{"db":true,"resendKey":true,"senderEmail":true,"recaptcha":true}}
-```
-
-If any check is `false`, review the matching env var in `.env`.
-
-> **Existing production DB?** Move your DB file into the Docker volume before starting, then resolve migrations:
-> ```bash
-> docker compose exec cvweb npx prisma migrate resolve --applied 20260206000000_init
-> ```
 
 ## Step 5: Setup Nginx Reverse Proxy
 
@@ -151,7 +131,7 @@ Follow prompts. Certbot auto-renews.
 After domain + SSL are configured:
 ```bash
 nano .env
-# Set AUTH_URL and NEXT_PUBLIC_APP_URL to https://yourdomain.com
+# Set NEXT_PUBLIC_APP_URL to https://yourdomain.com
 docker compose up -d --build
 ```
 
@@ -159,10 +139,6 @@ docker compose up -d --build
 
 1. Visit `https://yourdomain.com` — site loads
 2. Test contact form — sends email notification
-3. Login at `https://yourdomain.com/admin/login` with ADMIN_EMAIL/ADMIN_PASSWORD
-4. Check admin dashboard — health widget should show all green
-5. Visit `/admin/analytics` — analytics page loads
-6. `curl https://yourdomain.com/api/health` — returns `{"status":"healthy",...}`
 
 ## Troubleshooting
 
@@ -180,15 +156,6 @@ sudo systemctl status nginx
 # Check ports
 sudo lsof -i :3000
 sudo lsof -i :80
-
-# Check health
-curl http://localhost:3000/api/health
-
-# Check migration status
-docker compose exec cvweb npx prisma migrate status
-
-# Re-seed admin user (if locked out)
-docker compose exec cvweb npx tsx scripts/seed.ts
 ```
 
 ## Firewall (if enabled)
