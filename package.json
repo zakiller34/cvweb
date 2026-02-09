@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build && mkdir -p tmp && touch tmp/restart.txt",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "github-export": "bash scripts/github-export.sh"
   },
   "dependencies": {
     "next": "15.5.11",
