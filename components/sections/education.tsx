@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { EDUCATION, INTERNSHIPS, INTERESTS } from "@/lib/constants";
+import { EDUCATION, INTERNSHIPS, INTERESTS } from "@/lib/cv-data";
 import { useLanguage } from "@/components/language-provider";
 import { Card } from "@/components/ui/card";
 import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { NAV_LINKS } from "@/lib/constants";
+import { NAV_LINKS } from "@/lib/cv-data";
 import { useLanguage } from "@/components/language-provider";
 
 interface ScrollState {

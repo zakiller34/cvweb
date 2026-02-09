@@ -1,6 +1,6 @@
 "use client";
 
-import { ABOUT_TEXT, COMPETENCIES } from "@/lib/constants";
+import { ABOUT_TEXT, COMPETENCIES } from "@/lib/cv-data";
 import { useLanguage } from "@/components/language-provider";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { SectionHeader } from "@/components/ui/section-header";

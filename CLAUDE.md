@@ -6,34 +6,27 @@ A portfolio page is also in a different new page.
 ## framework
 - Next.js
 - App Router
-- Prisma ORM
-- SQLite
 
 ## Code Style
 
 - TypeScript strict mode, no `any` types
-- Use named exports, not default exports
+- Use named exports, not default exports (except Next.js pages/layouts/error boundaries which require default exports)
 - CSS: Tailwind utility classes, no custom CSS files
 
 ## Commands
 
 - `npm run dev`: Start development server (port 3000)
-- `npm run test`: Run Jest tests
-- `npm run test:e2e`: Run Playwright end-to-end tests
 - `npm run lint`: ESLint check
-- `npm run db:migrate`: Run Prisma migrations
 
 ## Architecture
 
 - `/app`: Next.js App Router pages and layouts
 - `/components/ui`: Reusable UI components
 - `/lib`: Utilities and shared logic
-- `/prisma`: Database schema and migrations
 - `/app/api`: API routes
 
 ## Important Notes
 
 - NEVER commit .env files
 - Don't write 500-line components (break them up!)
-- Rate limiting is in-memory (resets on server restart, single-process only)
 - Quote paths with parentheses in bash (e.g. `"app/(main)/page.tsx"`) to avoid shell syntax errors

@@ -1,6 +1,6 @@
 "use client";
 
-import { NAV_LINKS } from "@/lib/constants";
+import { NAV_LINKS } from "@/lib/cv-data";
 import { useLanguage } from "@/components/language-provider";
 import { useScrollState } from "@/hooks/use-scroll-state";
 

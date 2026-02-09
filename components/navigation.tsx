@@ -3,7 +3,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { NAV_LINKS, SITE_CONFIG, UI_TEXT } from "@/lib/constants";
+import { NAV_LINKS } from "@/lib/cv-data";
+import { SITE_CONFIG } from "@/lib/site-config";
+import { UI_TEXT } from "@/lib/translations";
 import { useLanguage } from "./language-provider";
 import { useScrollState } from "@/hooks/use-scroll-state";
 import { ThemeToggle } from "./ui/theme-toggle";

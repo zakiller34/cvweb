@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import Script from "next/script";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/site-config";
 import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";

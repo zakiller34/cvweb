@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { EXPERIENCES } from "@/lib/constants";
+import { EXPERIENCES } from "@/lib/cv-data";
 import { useLanguage } from "@/components/language-provider";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";

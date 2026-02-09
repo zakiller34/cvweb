@@ -1,6 +1,6 @@
 "use client";
 
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/site-config";
 import { IconButton } from "@/components/ui/icon-button";
 import { GitHubIcon, LinkedInIcon, EmailIcon, PortfolioIcon } from "./sidebar-icons";
 

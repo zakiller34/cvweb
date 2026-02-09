@@ -1,6 +1,6 @@
 "use client";
 
-import { SKILLS, LANGUAGES_SPOKEN } from "@/lib/constants";
+import { SKILLS, LANGUAGES_SPOKEN } from "@/lib/cv-data";
 import { useLanguage } from "@/components/language-provider";
 import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";
 import { SectionHeader } from "@/components/ui/section-header";

@@ -1,78 +1,3 @@
-import { Language } from "@/components/language-provider";
-
-// UI Translations
-export const UI_TEXT = {
-  en: {
-    getInTouch: "Get in Touch",
-    downloadCV: "CV",
-    english: "English",
-    french: "Français",
-    yearsExperience: "Years Experience",
-    coreLanguages: "Core Languages",
-    compiler: "Compiler",
-    formalVerification: "Formal Verification tools",
-    mscEngineering: "MSc Engineering",
-    sendMessage: "Send Message",
-    sending: "Sending...",
-    messageSent: "Message sent successfully!",
-    messageError: "Failed to send message. Please try again.",
-    yourName: "Your Name",
-    yourEmail: "Your Email",
-    subject: "Subject",
-    message: "Message",
-    contactInfo: "Contact Info",
-    location: "Location",
-    allRightsReserved: "All rights reserved.",
-    scheduleMeeting: "Schedule Meeting",
-  },
-  fr: {
-    getInTouch: "Me contacter",
-    downloadCV: "CV",
-    english: "English",
-    french: "Français",
-    yearsExperience: "Années d'expérience",
-    coreLanguages: "Langages principaux",
-    compiler: "Compilateur",
-    formalVerification: "Outils de vérification formelle",
-    mscEngineering: "Diplôme d'ingénieur",
-    sendMessage: "Envoyer",
-    sending: "Envoi...",
-    messageSent: "Message envoyé avec succès !",
-    messageError: "Échec de l'envoi. Veuillez réessayer.",
-    yourName: "Votre nom",
-    yourEmail: "Votre email",
-    subject: "Sujet",
-    message: "Message",
-    contactInfo: "Coordonnées",
-    location: "Localisation",
-    allRightsReserved: "Tous droits réservés.",
-    scheduleMeeting: "Planifier un RDV",
-  },
-};
-
-export const SITE_CONFIG = {
-  name: "Zakaria Teffah",
-  location: "Montpellier, France",
-  email: "zakaria.teffah@gmail.com",
-  phone: "+33 6 52 94 27 48",
-  title: {
-    en: "Research & Development Engineer",
-    fr: "Ingénieur en Recherche & Développement",
-  },
-  description: {
-    en: "Experienced professional in software & hardware development. My areas of interest are: compilers, formal methods, optimization and scientific computing",
-    fr: "Professionnel expérimenté en développement logiciel et matériel. Mes domaines d'intérêt sont : les compilateurs, les méthodes formelles, l'optimisation et le calcul scientifique",
-  },
-  social: {
-    github: "https://github.com/zakiller34",
-    linkedin: "https://www.linkedin.com/in/zakaria-teffah-8545959a/",
-  },
-  cvFiles: [
-    { lang: "EN", path: "/CV_ZAKARIA_TEFFAH_EN.pdf" },
-    { lang: "FR", path: "/CV_ZAKARIA_TEFFAH_FR.pdf" },
-  ],
-};
-
 export const NAV_LINKS = {
   en: [
     { href: "#hero", label: "Home" },
@@ -290,27 +215,6 @@ export const LANGUAGES_SPOKEN = {
   ],
 };
 
-export const REFERENCES = [
-  {
-    name: "Bastien Talgorn",
-    role: "Qualcomm, Toronto, Canada",
-    email: "bastientalgorn@fastmail.com",
-    phone: "+1 647 269 3152",
-  },
-  {
-    name: "Vivian Bréguier",
-    role: "NanoXplore, Montpellier, France",
-    email: "vbreguier@nanoxplore.com",
-    phone: "+33 6 64 70 29 23",
-  },
-  {
-    name: "Chaka Kone",
-    role: "Arteris IP, Staff Software Engineer, Paris",
-    email: "chakakone93@yahoo.fr",
-    phone: "+33 6 69 02 63 59",
-  },
-];
-
 export const INTERESTS = {
   en: [
     "Traveling (England, USA, Norway, Spain, Portugal, Italy, Maldives, Corsica)",
@@ -407,8 +311,3 @@ export const COMPETENCIES = {
     },
   ],
 };
-
-// Helper function to get translated content
-export function getTranslated<T>(content: { en: T; fr: T }, lang: Language): T {
-  return content[lang];
-}

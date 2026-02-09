@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { SITE_CONFIG, STATS, UI_TEXT } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/site-config";
+import { STATS } from "@/lib/cv-data";
+import { UI_TEXT } from "@/lib/translations";
 import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { Typewriter } from "@/components/ui/typewriter";
 import { GitHubIcon, LinkedInIcon, EmailIcon, PortfolioIcon } from "@/components/sidebars/sidebar-icons";
-import { SITE_CONFIG as SC } from "@/lib/constants";
 
 interface HeroProps {
   showCvDownload?: boolean;
@@ -52,12 +53,12 @@ export function Hero({ showCvDownload = true, showContactForm = true, showSchedu
                 {(showGitHub || showLinkedIn || showPortfolio || showMailTo) && (
                   <div className="flex gap-3 pt-6">
                     {showGitHub && (
-                      <a href={SC.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                      <a href={SITE_CONFIG.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
                         <GitHubIcon className="w-7 h-7" />
                       </a>
                     )}
                     {showLinkedIn && (
-                      <a href={SC.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                      <a href={SITE_CONFIG.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
                         <LinkedInIcon className="w-7 h-7" />
                       </a>
                     )}
@@ -67,7 +68,7 @@ export function Hero({ showCvDownload = true, showContactForm = true, showSchedu
                       </a>
                     )}
                     {showMailTo && (
-                      <a href={`mailto:${SC.email}`} aria-label="Email" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                      <a href={`mailto:${SITE_CONFIG.email}`} aria-label="Email" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
                         <EmailIcon className="w-7 h-7" />
                       </a>
                     )}

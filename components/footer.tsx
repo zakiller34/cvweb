@@ -1,4 +1,4 @@
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/site-config";
 
 export function Footer() {
   const year = new Date().getFullYear();
