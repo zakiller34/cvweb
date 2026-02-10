@@ -13,20 +13,6 @@ cp "$GITHUB_CONFIG" "$CONFIG"
 restore() { mv "$BACKUP" "$CONFIG"; }
 trap restore EXIT
 
-# Environment variables for static build
-export NEXT_PUBLIC_APP_URL="http://www.zakaria-teffah.com"
-export NEXT_PUBLIC_OWNER_EMAIL="zakaria.teffah@gmail.com"
-export NEXT_PUBLIC_OWNER_PHONE="+33 6 52 94 27 48"
-
-# Feature flags
-export SHOW_CONTACT_FORM=false
-export SHOW_CV_DOWNLOAD=false
-export SHOW_MAIL_TO_SIDEBAR=true
-export SHOW_PORTFOLIO=true
-export SHOW_SCHEDULE_MEETING=false
-export SHOW_GIT_HUB=true
-export SHOW_LINKED_IN=true
-
 next build
 
 # GitHub Pages needs .nojekyll to serve _next/ dirs
