@@ -30,3 +30,4 @@ A portfolio page is also in a different new page.
 - NEVER commit .env files
 - Don't write 500-line components (break them up!)
 - Quote paths with parentheses in bash (e.g. `"app/(main)/page.tsx"`) to avoid shell syntax errors
+- NEVER use `rm -rf` — use `trash` instead
