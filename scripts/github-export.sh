@@ -32,6 +32,9 @@ next build
 # GitHub Pages needs .nojekyll to serve _next/ dirs
 touch "$ROOT/out/.nojekyll"
 
+# CNAME for custom domain
+echo "www.zakaria-teffah.com" > "$ROOT/out/CNAME"
+
 echo ""
 echo "Static export ready in out/"
 echo "Serve locally: npx serve out"
