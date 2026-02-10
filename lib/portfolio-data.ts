@@ -42,21 +42,4 @@ export const PROJECTS: Project[] = [
     tags: ["C++", "LLVM", "Compiler"],
     github: "https://github.com/example/minicompiler",
   },
-  {
-    slug: "rustfuzz",
-    title: {
-      en: "RustFuzz",
-      fr: "RustFuzz",
-    },
-    description: {
-      en: "A property-based fuzzing framework for Rust with coverage-guided mutation strategies.",
-      fr: "Un framework de fuzzing basé sur les propriétés pour Rust avec des stratégies de mutation guidées par la couverture.",
-    },
-    detail: {
-      en: "RustFuzz provides a flexible API for writing property-based tests with automatic input generation and shrinking. It integrates coverage feedback to guide mutations toward unexplored code paths. Built with performance in mind, it supports parallel execution and persistent corpora for continuous fuzzing campaigns.",
-      fr: "RustFuzz fournit une API flexible pour écrire des tests basés sur les propriétés avec génération automatique d'entrées et réduction. Il intègre un retour de couverture pour guider les mutations vers des chemins de code inexplorés. Conçu pour la performance, il supporte l'exécution parallèle et les corpus persistants pour des campagnes de fuzzing continues.",
-    },
-    tags: ["Rust", "Testing", "Fuzzing"],
-    github: "https://github.com/example/rustfuzz",
-  }, 
 ];
