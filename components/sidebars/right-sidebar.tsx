@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/lib/cv-data";
 import { useLanguage } from "@/components/language-provider";
 import { useScrollState } from "@/hooks/use-scroll-state";
@@ -9,8 +10,12 @@ interface RightSidebarProps {
 }
 
 export function RightSidebar({ showContactForm = true }: RightSidebarProps) {
+  const pathname = usePathname();
   const { lang } = useLanguage();
   const { activeSection, scrollProgress } = useScrollState();
+
+  // Only show on homepage
+  if (pathname !== "/") return null;
 
   const allNavLinks = NAV_LINKS[lang];
   const navLinks = showContactForm

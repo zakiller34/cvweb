@@ -24,6 +24,9 @@ export const UI_TEXT = {
     location: "Location",
     allRightsReserved: "All rights reserved.",
     scheduleMeeting: "Schedule Meeting",
+    portfolioTitle: "Portfolio",
+    backToProjects: "Back to projects",
+    viewOnGithub: "View on GitHub",
   },
   fr: {
     getInTouch: "Me contacter",
@@ -47,6 +50,9 @@ export const UI_TEXT = {
     location: "Localisation",
     allRightsReserved: "Tous droits réservés.",
     scheduleMeeting: "Planifier un RDV",
+    portfolioTitle: "Portfolio",
+    backToProjects: "Retour aux projets",
+    viewOnGithub: "Voir sur GitHub",
   },
 };
 
