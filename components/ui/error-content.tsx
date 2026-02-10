@@ -1,6 +1,28 @@
 "use client";
 
-export function ErrorContent({ reset }: { reset: () => void }) {
+import { useEffect } from "react";
+
+function isChunkLoadError(error: Error): boolean {
+  return (
+    error.name === "ChunkLoadError" ||
+    error.message.includes("Loading chunk") ||
+    error.message.includes("ChunkLoadError")
+  );
+}
+
+export function ErrorContent({
+  error,
+  reset,
+}: {
+  error: Error;
+  reset: () => void;
+}) {
+  useEffect(() => {
+    if (isChunkLoadError(error)) {
+      window.location.reload();
+    }
+  }, [error]);
+
   return (
     <div className="flex min-h-screen items-center justify-center">
       <div className="text-center">

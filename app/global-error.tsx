@@ -3,6 +3,7 @@
 import { ErrorContent } from "@/components/ui/error-content";
 
 export default function GlobalError({
+  error,
   reset,
 }: {
   error: Error & { digest?: string };
@@ -11,7 +12,7 @@ export default function GlobalError({
   return (
     <html>
       <body className="bg-gray-50">
-        <ErrorContent reset={reset} />
+        <ErrorContent error={error} reset={reset} />
       </body>
     </html>
   );

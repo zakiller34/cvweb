@@ -2,7 +2,7 @@
 
 import { ErrorContent } from "@/components/ui/error-content";
 
-export default function MainError({
+export default function RootError({
   error,
   reset,
 }: {
