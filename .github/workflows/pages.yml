@@ -14,23 +14,7 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
-env:
-  RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-  NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
-  SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
-  NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
-  RECAPTCHA_SECRET_KEY: ${{ secrets.RECAPTCHA_SECRET_KEY }}
-  NEXT_PUBLIC_OWNER_EMAIL: ${{ secrets.NEXT_PUBLIC_OWNER_EMAIL }}
-  NEXT_PUBLIC_OWNER_PHONE: ${{ secrets.NEXT_PUBLIC_OWNER_PHONE }}
-  LOG_LEVEL: ${{ secrets.LOG_LEVEL }}
-  NEXT_PUBLIC_APP_URL: ${{ vars.NEXT_PUBLIC_APP_URL }}
-  SHOW_CONTACT_FORM: ${{ vars.SHOW_CONTACT_FORM }}
-  SHOW_CV_DOWNLOAD: ${{ vars.SHOW_CV_DOWNLOAD }}
-  SHOW_MAIL_TO_SIDEBAR: ${{ vars.SHOW_MAIL_TO_SIDEBAR }}
-  SHOW_PORTFOLIO: ${{ vars.SHOW_PORTFOLIO }}
-  SHOW_SCHEDULE_MEETING: ${{ vars.SHOW_SCHEDULE_MEETING }}
-  SHOW_GIT_HUB: ${{ vars.SHOW_GIT_HUB }}
-  SHOW_LINKED_IN: ${{ vars.SHOW_LINKED_IN }}
+
 
 jobs:
   build:
@@ -42,11 +26,23 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - name: Print environment variables
-        run: |
-          echo "SHOW_LINKED_IN: $SHOW_LINKED_IN"
-          echo "SHOW_GIT_HUB: $SHOW_GIT_HUB"
-          echo "SHOW_PORTFOLIO: $SHOW_PORTFOLIO"
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+          NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
+          RECAPTCHA_SECRET_KEY: ${{ secrets.RECAPTCHA_SECRET_KEY }}
+          NEXT_PUBLIC_OWNER_EMAIL: ${{ secrets.NEXT_PUBLIC_OWNER_EMAIL }}
+          NEXT_PUBLIC_OWNER_PHONE: ${{ secrets.NEXT_PUBLIC_OWNER_PHONE }}
+          LOG_LEVEL: ${{ secrets.LOG_LEVEL }}
+          NEXT_PUBLIC_APP_URL: ${{ vars.NEXT_PUBLIC_APP_URL }}
+          SHOW_CONTACT_FORM: ${{ vars.SHOW_CONTACT_FORM }}
+          SHOW_CV_DOWNLOAD: ${{ vars.SHOW_CV_DOWNLOAD }}
+          SHOW_MAIL_TO_SIDEBAR: ${{ vars.SHOW_MAIL_TO_SIDEBAR }}
+          SHOW_PORTFOLIO: ${{ vars.SHOW_PORTFOLIO }}
+          SHOW_SCHEDULE_MEETING: ${{ vars.SHOW_SCHEDULE_MEETING }}
+          SHOW_GIT_HUB: ${{ vars.SHOW_GIT_HUB }}
+          SHOW_LINKED_IN: ${{ vars.SHOW_LINKED_IN }}
       - name: Build static export
         run: npm run github-export
       - uses: actions/upload-pages-artifact@v3
