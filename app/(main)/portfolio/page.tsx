@@ -117,13 +117,11 @@ function ProjectDetail({
         </Card>
       </AnimateOnScroll>
 
-      <AnimateOnScroll animation="fade-up" delay={200}>
-        <div className="prose prose-invert max-w-none prose-headings:text-[var(--foreground)] prose-p:text-[var(--foreground)] prose-strong:text-[var(--foreground)] prose-li:text-[var(--foreground)] prose-td:text-[var(--foreground)] prose-th:text-[var(--foreground)]">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {getTranslated(project.detail, lang)}
-          </ReactMarkdown>
-        </div>
-      </AnimateOnScroll>
+      <div className="prose prose-invert max-w-none prose-headings:text-[var(--foreground)] prose-p:text-[var(--foreground)] prose-strong:text-[var(--foreground)] prose-li:text-[var(--foreground)] prose-td:text-[var(--foreground)] prose-th:text-[var(--foreground)]">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {getTranslated(project.detail, lang)}
+        </ReactMarkdown>
+      </div>
 
       <AnimateOnScroll animation="fade-up" delay={300}>
         <a
