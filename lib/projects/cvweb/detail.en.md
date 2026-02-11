@@ -1,0 +1,1 @@
+CVWeb is the website you're currently viewing. It features a particle-based animated background, bilingual support (English/French), a contact form with email integration, and this portfolio section. Built with Next.js App Router, TypeScript strict mode, and Tailwind CSS for a fully responsive experience.

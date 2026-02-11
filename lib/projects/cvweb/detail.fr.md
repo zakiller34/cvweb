@@ -1,0 +1,1 @@
+CVWeb est le site que vous consultez actuellement. Il comprend un arrière-plan animé à base de particules, un support bilingue (anglais/français), un formulaire de contact avec intégration email, et cette section portfolio. Construit avec Next.js App Router, TypeScript strict mode, et Tailwind CSS pour une expérience entièrement responsive.

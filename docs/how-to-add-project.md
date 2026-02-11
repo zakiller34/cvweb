@@ -1,56 +1,19 @@
 # How to Add a Project to the Portfolio
 
-## Edit `lib/portfolio-data.ts`
+## 1. Create the project folder
 
-Add a new entry to the `PROJECTS` array:
-
-```ts
-{
-  slug: "my-project",          // URL-safe identifier, must be unique
-  title: {
-    en: "My Project",
-    fr: "Mon Projet",
-  },
-  description: {
-    en: "Short one-liner shown in the project list.",
-    fr: "Courte description affichee dans la liste.",
-  },
-  detail: {
-    en: `## Overview
-
-Full description in **Markdown** shown on the detail page.
-
-- Supports **bold**, *italic*, lists
-- Headings (##, ###)
-- Tables (GFM)
-- Code snippets
-
-| Column A | Column B |
-|----------|----------|
-| data     | data     |`,
-    fr: `## Apercu
-
-Same structure in French.`,
-  },
-  tags: ["TypeScript", "React"],  // Shown as badges
-  github: "https://github.com/you/my-project",
-},
+```
+lib/projects/{slug}/
+  index.ts
+  detail.en.md
+  detail.fr.md
 ```
 
-## Fields
+`slug` must be URL-safe (lowercase, hyphens).
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `slug` | Yes | Unique URL-safe ID (lowercase, hyphens) |
-| `title` | Yes | `{ en, fr }` — project name |
-| `description` | Yes | `{ en, fr }` — short summary for the list view (plain text) |
-| `detail` | Yes | `{ en, fr }` — **Markdown** content for the detail view |
-| `tags` | Yes | String array of technologies/skills |
-| `github` | Yes | GitHub repository URL |
+## 2. Write markdown detail files
 
-## Markdown in `detail`
-
-The detail field is rendered via `react-markdown` with GFM support. Use template literals (backtick strings) for multiline markdown. Supported features:
+`detail.en.md` and `detail.fr.md` contain the full project description in Markdown (GFM). Supported features:
 
 - Headings (`##`, `###`)
 - **Bold** and *italic*
@@ -58,10 +21,52 @@ The detail field is rendered via `react-markdown` with GFM support. Use template
 - Tables (GitHub-Flavored Markdown)
 - Horizontal rules (`---`)
 - Inline code and code blocks
+- Images: `![caption](/projects/slug/image.png)`
 
-## Order
+## 3. Create `index.ts`
+
+```ts
+import type { Project } from "@/lib/portfolio-data";
+import detailEn from "./detail.en.md";
+import detailFr from "./detail.fr.md";
+
+export const myProject: Project = {
+  slug: "my-project",
+  title: {
+    en: "My Project",
+    fr: "Mon Projet",
+  },
+  description: {
+    en: "Short one-liner shown in the project list.",
+    fr: "Courte description affichée dans la liste.",
+  },
+  detail: {
+    en: detailEn,
+    fr: detailFr,
+  },
+  tags: ["TypeScript", "React"],
+  github: "https://github.com/you/my-project",
+};
+```
+
+## 4. Register in `lib/portfolio-data.ts`
+
+```ts
+import { myProject } from "./projects/my-project";
+
+export const PROJECTS: Project[] = [/* existing */, myProject];
+```
 
 Projects display in array order. Put the most important ones first.
+
+## 5. Images
+
+Store project images in `public/projects/{slug}/`. Use markdown image syntax:
+
+```md
+![Description](/projects/my-project/figure.png)
+*Fig. 1 — Caption.*
+```
 
 ## Type Reference
 
