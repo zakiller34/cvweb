@@ -8,6 +8,8 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 function ProjectList({
   projects,
@@ -116,10 +118,10 @@ function ProjectDetail({
       </AnimateOnScroll>
 
       <AnimateOnScroll animation="fade-up" delay={200}>
-        <div className="prose prose-invert max-w-none">
-          <p className="text-[var(--foreground)] leading-relaxed text-base">
+        <div className="prose prose-invert max-w-none prose-headings:text-[var(--foreground)] prose-p:text-[var(--foreground)] prose-strong:text-[var(--foreground)] prose-li:text-[var(--foreground)] prose-td:text-[var(--foreground)] prose-th:text-[var(--foreground)]">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {getTranslated(project.detail, lang)}
-          </p>
+          </ReactMarkdown>
         </div>
       </AnimateOnScroll>
 

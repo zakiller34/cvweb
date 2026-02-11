@@ -10,10 +10,13 @@
     "github-export": "bash scripts/github-export.sh"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "next": "15.5.11",
     "pino": "^10.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
     "resend": "^6.9.1"
   },
   "devDependencies": {
