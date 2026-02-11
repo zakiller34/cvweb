@@ -41,6 +41,11 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - name: Print environment variables
+        run: |
+          echo "SHOW_LINKED_IN: $SHOW_LINKED_IN"
+          echo "SHOW_GIT_HUB: $SHOW_GIT_HUB"
+          echo "SHOW_PORTFOLIO: $SHOW_PORTFOLIO"
       - name: Build static export
         run: npm run github-export
       - uses: actions/upload-pages-artifact@v3
