@@ -25,7 +25,6 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Build static export
-        run: npm run github-export
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
@@ -42,6 +41,7 @@ jobs:
           SHOW_SCHEDULE_MEETING: ${{ vars.SHOW_SCHEDULE_MEETING }}
           SHOW_GIT_HUB: ${{ vars.SHOW_GIT_HUB }}
           SHOW_LINKED_IN: ${{ vars.SHOW_LINKED_IN }}
+        run: npm run github-export
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
