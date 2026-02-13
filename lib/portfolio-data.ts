@@ -1,4 +1,5 @@
 import { cvweb } from "./projects/cvweb";
+import { seaIceDrift } from "./projects/sea-ice-drift";
 import { satExplo } from "./projects/sat-explo";
 
 export interface Project {
@@ -10,4 +11,4 @@ export interface Project {
   github: string;
 }
 
-export const PROJECTS: Project[] = [cvweb, satExplo];
+export const PROJECTS: Project[] = [cvweb, seaIceDrift, satExplo];
