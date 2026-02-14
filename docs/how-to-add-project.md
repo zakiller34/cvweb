@@ -46,6 +46,8 @@ export const myProject: Project = {
   },
   tags: ["TypeScript", "React"],
   github: "https://github.com/you/my-project",
+  category: "Web",
+  defaultUnfolded: true,
 };
 ```
 
@@ -58,6 +60,8 @@ export const PROJECTS: Project[] = [/* existing */, myProject];
 ```
 
 Projects display in array order. Put the most important ones first.
+Projects with the same `category` are grouped under a collapsible section.
+Categories start unfolded by default. A category starts folded only if **all** its projects have `defaultUnfolded: false`.
 
 ## 5. Images
 
@@ -78,5 +82,7 @@ export interface Project {
   detail: { en: string; fr: string };
   tags: string[];
   github: string;
+  category: string;
+  defaultUnfolded?: boolean; // defaults to false
 }
 ```

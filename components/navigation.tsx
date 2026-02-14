@@ -57,7 +57,7 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
     <header
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
         isHome
-          ? "border-transparent bg-transparent"
+          ? "border-transparent bg-[var(--background)]/1 backdrop-blur-sm"
           : "border-transparent bg-[var(--background)]/70 backdrop-blur-sm"
       }`}
     >

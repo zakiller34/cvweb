@@ -16,6 +16,8 @@ export const cvweb: Project = {
     en: detailEn,
     fr: detailFr,
   },
-  tags: ["Next.js", "TypeScript", "Tailwind"],
+  tags: ["Next.js", "TypeScript"],
   github: "https://github.com/zakiller34/cvweb",
+  category: "Other",
+  defaultUnfolded: false,
 };

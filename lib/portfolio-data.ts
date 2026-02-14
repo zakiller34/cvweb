@@ -9,6 +9,8 @@ export interface Project {
   detail: { en: string; fr: string };
   tags: string[];
   github: string;
+  category: string;
+  defaultUnfolded?: boolean;
 }
 
-export const PROJECTS: Project[] = [cvweb, seaIceDrift, satExplo];
+export const PROJECTS: Project[] = [seaIceDrift, satExplo, cvweb];
