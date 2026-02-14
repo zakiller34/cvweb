@@ -8,6 +8,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";
+import { SocraticQuote } from "@/components/ui/socratic-quote";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -22,6 +23,7 @@ function ProjectList({
 }) {
   return (
     <section className="min-h-screen px-6 md:px-16 lg:px-24 py-24 max-w-5xl mx-auto">
+      <SocraticQuote />
       <SectionHeader title={UI_TEXT[lang].portfolioTitle} />
       <StaggerContainer className="flex flex-col gap-4" staggerDelay={120}>
         {projects.map((project) => (
