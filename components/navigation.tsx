@@ -70,6 +70,11 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
               isHome ? "opacity-0 -translate-x-4 pointer-events-none" : "opacity-100 translate-x-0"
             }`}
           >
+            {showPortfolio && (
+              <a href="/portfolio" aria-label="Portfolio" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                <PortfolioIcon className="w-6 h-6" />
+              </a>
+            )}
             {showGitHub && (
               <a href={SITE_CONFIG.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
                 <GitHubIcon className="w-6 h-6" />
@@ -78,11 +83,6 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
             {showLinkedIn && (
               <a href={SITE_CONFIG.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
                 <LinkedInIcon className="w-6 h-6" />
-              </a>
-            )}
-            {showPortfolio && (
-              <a href="/portfolio" aria-label="Portfolio" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
-                <PortfolioIcon className="w-6 h-6" />
               </a>
             )}
             {showMailTo && (
