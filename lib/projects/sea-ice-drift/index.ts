@@ -18,5 +18,5 @@ export const seaIceDrift: Project = {
   },
   tags: ["Rust", "Python", "AMSR2 data", "ASCAT data"],
   github: "https://github.com/zakiller34/sea-ice-drift",
-  category: "Remote sensing",
+  category: { en: "Remote sensing", fr: "Télédétection" },
 };

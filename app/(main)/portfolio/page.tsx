@@ -12,14 +12,19 @@ import { SocraticQuote } from "@/components/ui/socratic-quote";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-function groupByCategory(projects: Project[]): { category: string; projects: Project[] }[] {
-  const groups: { category: string; projects: Project[] }[] = [];
+function categoryKey(cat: { en: string; fr: string }): string {
+  return cat.en + cat.fr;
+}
+
+function groupByCategory(projects: Project[]): { category: { en: string; fr: string }; key: string; projects: Project[] }[] {
+  const groups: { category: { en: string; fr: string }; key: string; projects: Project[] }[] = [];
   for (const project of projects) {
-    const existing = groups.find((g) => g.category === project.category);
+    const k = categoryKey(project.category);
+    const existing = groups.find((g) => g.key === k);
     if (existing) {
       existing.projects.push(project);
     } else {
-      groups.push({ category: project.category, projects: [project] });
+      groups.push({ category: project.category, key: k, projects: [project] });
     }
   }
   return groups;
@@ -94,7 +99,7 @@ function ProjectList({
     () => {
       const init: Record<string, boolean> = {};
       for (const group of groups) {
-        init[group.category] = categoryDefaultOpen(group.projects);
+        init[group.key] = categoryDefaultOpen(group.projects);
       }
       return init;
     }
@@ -146,11 +151,11 @@ function ProjectList({
       </div>
       <div className="flex flex-col gap-6">
         {groups.map((group) => {
-          const isOpen = openCategories[group.category] ?? false;
+          const isOpen = openCategories[group.key] ?? false;
           return (
-            <div key={group.category}>
+            <div key={group.key}>
               <button
-                onClick={() => toggleCategory(group.category)}
+                onClick={() => toggleCategory(group.key)}
                 className="flex items-center gap-2 mb-3 text-xl font-bold text-[var(--foreground)] hover:text-[var(--accent)] transition-colors cursor-pointer"
               >
                 <svg
@@ -160,7 +165,7 @@ function ProjectList({
                 >
                   <path d="M6 4l8 6-8 6V4z" />
                 </svg>
-                {group.category}
+                {getTranslated(group.category, lang)}
               </button>
               {isOpen && (
                 <StaggerContainer className="flex flex-col gap-4" staggerDelay={120}>

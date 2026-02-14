@@ -9,7 +9,7 @@ export interface Project {
   detail: { en: string; fr: string };
   tags: string[];
   github: string;
-  category: string;
+  category: { en: string; fr: string };
   defaultUnfolded?: boolean;
 }
 

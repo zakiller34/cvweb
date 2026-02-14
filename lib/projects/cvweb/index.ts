@@ -18,6 +18,6 @@ export const cvweb: Project = {
   },
   tags: ["Next.js", "TypeScript"],
   github: "https://github.com/zakiller34/cvweb",
-  category: "Other",
+  category: { en: "Other", fr: "Autre" },
   defaultUnfolded: false,
 };
