@@ -45,43 +45,33 @@ export function Hero({ showCvDownload = true, showContactForm = true, showSchedu
               {SITE_CONFIG.description[lang]}
             </p>
 
-            {!showContactForm && (
-              <div className="space-y-3">
-                <span className="text-xl md:text-2xl font-medium text-[var(--accent)]">
-                  zakaria.teffah [at] gmail [dot] com
-                </span>
-                {(showGitHub || showLinkedIn || showPortfolio || showMailTo) && (
-                  <div className="flex gap-3 pt-6">
-                    {showGitHub && (
-                      <a href={SITE_CONFIG.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
-                        <GitHubIcon className="w-7 h-7" />
-                      </a>
-                    )}
-                    {showLinkedIn && (
-                      <a href={SITE_CONFIG.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
-                        <LinkedInIcon className="w-7 h-7" />
-                      </a>
-                    )}
-                    {showPortfolio && (
-                      <a href="/portfolio" aria-label="Portfolio" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
-                        <PortfolioIcon className="w-7 h-7" />
-                      </a>
-                    )}
-                    {showMailTo && (
-                      <a href={`mailto:${SITE_CONFIG.email}`} aria-label="Email" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
-                        <EmailIcon className="w-7 h-7" />
-                      </a>
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
-
             <div className="flex flex-wrap gap-4">
               {showContactForm && (
                 <Button size="lg" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
                   {ui.getInTouch}
                 </Button>
+              )}
+              {showPortfolio && (
+                <a
+                  href="/portfolio"
+                  aria-label="Portfolio"
+                  className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 border-2 border-[var(--accent)]/30 bg-[var(--accent)]/15 text-[var(--foreground)] hover:bg-[var(--accent)]/25 hover:border-[var(--accent)] hover:text-[var(--accent)] px-4 py-3 text-base gap-2"
+                >
+                  <PortfolioIcon className="w-6 h-6" />
+                  <span>Portfolio</span>
+                </a>
+              )}
+              {showGitHub && (
+                <a
+                  href={SITE_CONFIG.social.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 border-2 border-[var(--accent)]/30 bg-[var(--accent)]/15 text-[var(--foreground)] hover:bg-[var(--accent)]/25 hover:border-[var(--accent)] hover:text-[var(--accent)] px-4 py-3 text-base gap-2"
+                >
+                  <GitHubIcon className="w-6 h-6" />
+                  <span>GitHub</span>
+                </a>
               )}
               {showCvDownload && SITE_CONFIG.cvFiles.map((cv) => (
                 <a
@@ -105,6 +95,28 @@ export function Hero({ showCvDownload = true, showContactForm = true, showSchedu
                 </a>
               )}
             </div>
+
+            {!showContactForm && (
+              <div className="space-y-3">
+                <span className="text-xl md:text-2xl font-medium text-[var(--accent)]">
+                  zakaria.teffah [at] gmail [dot] com
+                </span>
+                {(showLinkedIn || showMailTo) && (
+                  <div className="flex gap-3 pt-6">
+                    {showLinkedIn && (
+                      <a href={SITE_CONFIG.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                        <LinkedInIcon className="w-7 h-7" />
+                      </a>
+                    )}
+                    {showMailTo && (
+                      <a href={`mailto:${SITE_CONFIG.email}`} aria-label="Email" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                        <EmailIcon className="w-7 h-7" />
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
 
           </AnimateOnScroll>
 
