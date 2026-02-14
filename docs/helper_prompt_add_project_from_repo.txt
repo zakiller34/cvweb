@@ -1,5 +1,7 @@
 I want you to add a project in the portfolio page. You have the process already documented. You should read the file           
   @docs/how-to-add-project.md .                                                                                                  
-  Read and bring the file @../sea-ice-drift/SUMMARY.md from its folder to here. Bring also all the figures that are used in this 
-   SUMMARY.md file from the folder @../sea-ice-drift/docs/figures/* . Create the what is necessary for this project. the slug    
-  name is "sea-ice-drift". Plan First and ask me if something is not clear. 
+  Read and bring the file @../cut-defi-roadef-2018/SYNTHESIS.md from its folder to here. Bring also all the figures that are used in this 
+   SYNTHESIS.md file from the folder @../cut-defi-roadef-2018/figures/* . Create the what is necessary for this project. the slug    
+  name is "cut-defi-roadef-2018". 
+  the github adress is : "https://github.com/zakiller34/cut-defi-roadef-2018". 
+  Plan First and ask me if something is not clear. 
