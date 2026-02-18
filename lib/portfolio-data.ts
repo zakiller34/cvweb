@@ -2,6 +2,7 @@ import { cvweb } from "./projects/cvweb";
 import { cutDefiRoadef2018 } from "./projects/cut-defi-roadef-2018";
 import { seaIceDrift } from "./projects/sea-ice-drift";
 import { satExplo } from "./projects/sat-explo";
+import { simGuitar } from "./projects/sim-guitar";
 
 export interface Project {
   slug: string;
@@ -14,4 +15,4 @@ export interface Project {
   defaultUnfolded?: boolean;
 }
 
-export const PROJECTS: Project[] = [seaIceDrift, satExplo, cutDefiRoadef2018, cvweb];
+export const PROJECTS: Project[] = [seaIceDrift, satExplo, simGuitar, cutDefiRoadef2018, cvweb];

@@ -11,6 +11,7 @@ import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-sc
 import { SocraticQuote } from "@/components/ui/socratic-quote";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 function categoryKey(cat: { en: string; fr: string }): string {
   return cat.en + cat.fr;
@@ -233,7 +234,7 @@ function ProjectDetail({
       </AnimateOnScroll>
 
       <div className="prose prose-invert max-w-none prose-headings:text-[var(--foreground)] prose-p:text-[var(--foreground)] prose-strong:text-[var(--foreground)] prose-li:text-[var(--foreground)] prose-td:text-[var(--foreground)] prose-th:text-[var(--foreground)]">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
           {getTranslated(project.detail, lang)}
         </ReactMarkdown>
       </div>

@@ -5,3 +5,13 @@ I want you to add a project in the portfolio page. You have the process already 
   name is "cut-defi-roadef-2018". 
   the github adress is : "https://github.com/zakiller34/cut-defi-roadef-2018". 
   Plan First and ask me if something is not clear. 
+
+
+
+I want you to add a project in the portfolio page. You have the process already documented. You should read the file           
+  @docs/how-to-add-project.md .                                                                                                  
+  Read and bring the file @../sim-guitar/README.md from its folder to here. Bring also all the figures and mp3 files that are used in this 
+   README.md file from their location. Create the what is necessary for this project. the slug    
+  name is "sim-guitar". 
+  the github adress is : "https://github.com/zakiller34/sim-guitar". 
+  Plan First and ask me if something is not clear. 
