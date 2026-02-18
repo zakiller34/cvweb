@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useLanguage } from "@/components/language-provider";
 import { UI_TEXT, getTranslated } from "@/lib/translations";
 import { PROJECTS, Project } from "@/lib/portfolio-data";
@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";
 import { SocraticQuote } from "@/components/ui/socratic-quote";
+import { PatternQuote } from "@/components/ui/pattern-quote";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -181,6 +182,7 @@ function ProjectList({
           );
         })}
       </div>
+      <PatternQuote />
     </section>
   );
 }
@@ -259,21 +261,32 @@ function ProjectDetail({
 export default function PortfolioPage() {
   const { lang } = useLanguage();
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
+  const savedScrollY = useRef(0);
 
   const selectProject = useCallback((slug: string) => {
+    savedScrollY.current = window.scrollY;
     setSelectedSlug(slug);
     window.history.pushState({ project: slug }, "", `/portfolio?project=${slug}`);
+    window.scrollTo(0, 0);
   }, []);
 
   const goBack = useCallback(() => {
     setSelectedSlug(null);
     window.history.pushState(null, "", "/portfolio");
+    requestAnimationFrame(() => window.scrollTo(0, savedScrollY.current));
   }, []);
 
   useEffect(() => {
     const onPopState = (e: PopStateEvent) => {
       const slug = (e.state as { project?: string } | null)?.project ?? null;
-      setSelectedSlug(slug);
+      if (slug) {
+        savedScrollY.current = window.scrollY;
+        setSelectedSlug(slug);
+        window.scrollTo(0, 0);
+      } else {
+        setSelectedSlug(null);
+        requestAnimationFrame(() => window.scrollTo(0, savedScrollY.current));
+      }
     };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
