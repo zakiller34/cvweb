@@ -2,7 +2,7 @@ Simulation physique d'une guitare acoustique — du pincement de corde au son ra
 
 ## Chaîne de simulation
 
-Trois domaines physiques couplés simulent le trajet acoustique complet : une **corde 1D** (EF mixtes vitesse/contrainte, avance temporelle leapfrog) transmet la force au chevalet vers une **table d'harmonie 2D** (plaque de Kirchhoff-Love, décomposition modale), dont la vitesse normale excite l'**air 3D** environnant (équations d'Euler linéarisées sur grille de Yee décalée avec couches PML absorbantes). Tous les domaines sont couplés à chaque pas de temps via un complément de Schur imposant la continuité des vitesses et l'équilibre des forces. Le système couplé conserve un invariant d'énergie discret (modulo amortissement et absorption PML).
+Trois domaines physiques couplés simulent le trajet acoustique complet : une **corde 1D** (EF mixtes vitesse/contrainte, avance temporelle leapfrog) transmet la force au chevalet vers une **table d'harmonie 2D** (plaque de Kirchhoff-Love, décomposition modale), dont la vitesse normale excite l'**air 3D** environnant (équations d'Euler linéarisées sur grille de Yee décalée avec couches PML absorbantes). Tous les domaines sont couplés à chaque pas de temps via un complément de Schur imposant la continuité des vitesses et l'équilibre des forces. Le système couplé conserve un invariant d'énergie discret (modulo amortissement et absorption PML). Ce projet est basé sur la thèse de G. Derveaux [1].
 
 <audio controls src="/projects/sim-guitar/mi6_pluck.mp3">
   Mi6 pluck (4 s)
@@ -73,3 +73,9 @@ Simulation étendue d'un pincement de corde de Mi grave : 4,0 s de temps physiqu
 ### Bibliothèques
 
 Python, NumPy, SciPy, GetFEM (assemblage EF + résolution modale), Gmsh (génération de maillage), Matplotlib.
+
+---
+
+## Références
+
+[1] G. Derveaux, *Modélisation numérique de la guitare acoustique*, thèse de doctorat, École Polytechnique, 2002. Dirigée par P. Joly. [theses.fr](https://www.theses.fr/2002EPXX0029)

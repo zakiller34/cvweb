@@ -2,7 +2,7 @@ Physical simulation of an acoustic guitar — from string pluck to radiated soun
 
 ## Simulation Chain
 
-Three coupled physical domains simulate the full acoustic path: a **1D string** (mixed velocity/stress FEM, leapfrog time-stepping) transfers force at the bridge to a **2D soundboard** (Kirchhoff-Love plate, modal decomposition), whose normal velocity drives the surrounding **3D air** (linearized Euler equations on a Yee staggered grid with PML absorbing boundaries). All domains are coupled at each time step through a Schur complement system that enforces velocity continuity and force balance. The coupled system conserves a discrete energy invariant (modulo damping and PML absorption).
+Three coupled physical domains simulate the full acoustic path: a **1D string** (mixed velocity/stress FEM, leapfrog time-stepping) transfers force at the bridge to a **2D soundboard** (Kirchhoff-Love plate, modal decomposition), whose normal velocity drives the surrounding **3D air** (linearized Euler equations on a Yee staggered grid with PML absorbing boundaries). All domains are coupled at each time step through a Schur complement system that enforces velocity continuity and force balance. The coupled system conserves a discrete energy invariant (modulo damping and PML absorption). This project is based on the thesis by G. Derveaux [1].
 
 <audio controls src="/projects/sim-guitar/mi6_pluck.mp3">
   Mi6 pluck (4 s)
@@ -73,3 +73,9 @@ Extended simulation of a single low E string pluck: 4.0 s physical time, 216k ti
 ### Libraries
 
 Python, NumPy, SciPy, GetFEM (FEM assembly + eigensolve), Gmsh (mesh generation), Matplotlib.
+
+---
+
+## References
+
+[1] G. Derveaux, *Modelisation numerique de la guitare acoustique*, PhD thesis, Ecole Polytechnique, 2002. Directed by P. Joly. [theses.fr](https://www.theses.fr/2002EPXX0029)
