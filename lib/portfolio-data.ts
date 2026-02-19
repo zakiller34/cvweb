@@ -4,6 +4,7 @@ import { seaIceDrift } from "./projects/sea-ice-drift";
 import { satExplo } from "./projects/sat-explo";
 import { simGuitar } from "./projects/sim-guitar";
 import { lineFollow } from "./projects/line-follow";
+import { gmt } from "./projects/gmt";
 
 export interface Project {
   slug: string;
@@ -16,4 +17,4 @@ export interface Project {
   defaultUnfolded?: boolean;
 }
 
-export const PROJECTS: Project[] = [seaIceDrift, satExplo, simGuitar, cutDefiRoadef2018, lineFollow, cvweb];
+export const PROJECTS: Project[] = [seaIceDrift, satExplo, simGuitar, cutDefiRoadef2018, lineFollow, gmt, cvweb];

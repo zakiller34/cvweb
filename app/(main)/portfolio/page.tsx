@@ -10,9 +10,13 @@ import { Badge } from "@/components/ui/badge";
 import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";
 import { SocraticQuote } from "@/components/ui/socratic-quote";
 import { PatternQuote } from "@/components/ui/pattern-quote";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 import rehypeRaw from "rehype-raw";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
+import { MermaidDiagram } from "@/components/ui/markdown-mermaid";
 
 function categoryKey(cat: { en: string; fr: string }): string {
   return cat.en + cat.fr;
@@ -187,6 +191,16 @@ function ProjectList({
   );
 }
 
+const markdownComponents: Components = {
+  code: ({ className, children, ...props }) => {
+    const lang = className?.replace("language-", "");
+    if (lang === "mermaid") {
+      return <MermaidDiagram content={String(children).trim()} />;
+    }
+    return <code className={className} {...props}>{children}</code>;
+  },
+};
+
 function ProjectDetail({
   project,
   lang,
@@ -236,7 +250,11 @@ function ProjectDetail({
       </AnimateOnScroll>
 
       <div className="prose prose-invert max-w-none prose-headings:text-[var(--foreground)] prose-p:text-[var(--foreground)] prose-strong:text-[var(--foreground)] prose-li:text-[var(--foreground)] prose-td:text-[var(--foreground)] prose-th:text-[var(--foreground)]">
-        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm, remarkMath]}
+          rehypePlugins={[rehypeKatex, rehypeRaw]}
+          components={markdownComponents}
+        >
           {getTranslated(project.detail, lang)}
         </ReactMarkdown>
       </div>
