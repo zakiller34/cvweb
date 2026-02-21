@@ -40,3 +40,12 @@ I want you to add a project in the portfolio page. You have the process already 
   name is "card-game". 
   the github adress is : "https://github.com/zakiller34/card-game". 
   Plan First and ask me if something is not clear. 
+
+  I want you to add a project in the portfolio page. You have the process already documented. You should read the file           
+  @docs/how-to-add-project.md .                                                                                                  
+  Read and bring the file @../ctu-solver/blog.md from its folder to here. Bring also all the images files that are used in this 
+   blog.md file from their location. Create the what is necessary for this project. the slug    
+  name is "ctu-solver". 
+  the github adress is : "https://github.com/zakiller34/ctu-solver". 
+  Plan First and ask me if something is not clear. 
+

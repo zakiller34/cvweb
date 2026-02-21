@@ -15,7 +15,9 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeRaw from "rehype-raw";
 import rehypeKatex from "rehype-katex";
+import rehypeHighlight from "rehype-highlight";
 import "katex/dist/katex.min.css";
+import "highlight.js/styles/github-dark.css";
 import { MermaidDiagram } from "@/components/ui/markdown-mermaid";
 
 function categoryKey(cat: { en: string; fr: string }): string {
@@ -252,7 +254,7 @@ function ProjectDetail({
       <div className="prose prose-invert max-w-none prose-headings:text-[var(--foreground)] prose-p:text-[var(--foreground)] prose-strong:text-[var(--foreground)] prose-li:text-[var(--foreground)] prose-td:text-[var(--foreground)] prose-th:text-[var(--foreground)]">
         <ReactMarkdown
           remarkPlugins={[remarkGfm, remarkMath]}
-          rehypePlugins={[rehypeKatex, rehypeRaw]}
+          rehypePlugins={[rehypeKatex, rehypeRaw, [rehypeHighlight, { plainText: ['mermaid'] }]]}
           components={markdownComponents}
         >
           {getTranslated(project.detail, lang)}
