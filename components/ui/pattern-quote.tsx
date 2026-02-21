@@ -15,7 +15,7 @@ const QUOTES: QuoteEntry[] = [
     type: "pattern",
     lines: {
       en: [
-        "WRITING shows how sloppy your THINKIN is,",
+        "WRITING shows how sloppy your THINKING is,",
         "MATHS shows how sloppy your WRITING is,",
         "PROGRAMMING shows how sloppy your MATH is.",
       ],

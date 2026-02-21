@@ -1,4 +1,4 @@
-# Laboratoire de stratégie optimale pour le Texas Hold'em
+
 ## Etude de la strategie optimale au Texas Hold'em par simulation Monte Carlo
 
 ---
