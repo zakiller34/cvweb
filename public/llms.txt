@@ -1,0 +1,40 @@
+# Zakaria Teffah - R&D Engineer
+
+> Experienced R&D engineer with 14+ years in compilers, formal verification, optimization, and scientific computing. Based in Montpellier, France.
+
+## Professional Summary
+
+I specialize in C/C++ and Rust development for performance-critical systems. My core expertise includes FPGA compiler development, formal verification (Lean4, TLA+, Z3/SMT solvers), combinatorial and numerical optimization, and mathematical modelling. I hold an MSc in Computer Science, Mathematics and Modelling from INSA Toulouse.
+
+## Skills
+
+- **Languages**: C/C++ (advanced), Python (advanced), Rust, Lean4, TLA+, MiniZinc, Bash, VHDL/Verilog
+- **Expertise**: Compilers, Formal Verification, Numerical Optimization, Mathematical Modelling, Software Architecture, HPC
+- **Spoken Languages**: French (native), English (C1 fluent), Spanish (reading), Chinese (reading)
+
+## Experience
+
+### NanoXplore — C++/Python R&D Engineer (Feb 2021 – Dec 2025, Montpellier)
+FPGA compiler development, DSP pattern matching, formal verification with SMT solvers, ROBDD development for equivalence checking, graph/hypergraph algorithms for circuit abstractions.
+Technologies: C++, Python, SMT Solvers, TLA+, VHDL/Verilog, ROBDD, ModelSim
+
+### Liebherr Aerospace — Scientific Tools Engineer (Jan 2015 – Apr 2019, Toulouse)
+Heat transfer algorithms for aircraft icing prediction, scientific computation library for roller bearing modeling, uncertainties propagation computation for sensor-dependent physical quantities.
+Technologies: C++, Python, Scientific Computing, Numerical Optimization
+
+### Airbus (via Altran) — Methods & Tools Consultant (Aug 2011 – Dec 2014, Toulouse)
+Airbus flight simulator stability optimization, aircraft trajectory simulation and optimization tools, multi-physics simulation for A30X wing optimization using kriging ML.
+Technologies: C++, Optimization, Machine Learning, Design Patterns, Aerodynamics
+
+## Education
+
+**INSA Toulouse** — Master of Science, Computer Science, Mathematics and Modelling (2006–2011)
+Department of Mathematics Engineering
+
+## Links
+
+- Portfolio: https://www.zakaria-teffah.com/portfolio
+- GitHub: https://github.com/zakiller34
+- LinkedIn: https://www.linkedin.com/in/zakaria-teffah-8545959a/
+- Full content: https://www.zakaria-teffah.com/llms-full.txt
+- Machine-readable API: https://www.zakaria-teffah.com/api/cv

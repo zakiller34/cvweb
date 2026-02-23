@@ -1,0 +1,156 @@
+# Zakaria Teffah - R&D Engineer (Full Content)
+
+> Experienced R&D engineer with 14+ years in compilers, formal verification, optimization, and scientific computing. Based in Montpellier, France.
+
+## Professional Summary
+
+I am an experienced professional with 14+ years in computer science, specializing in compilers and formal verification. I'm excited to tackle cutting-edge software & hardware problems.
+
+My expertise spans C/C++ development, combinatorial and numerical optimization, mathematical modelling, and software architecture design. I am specialized in formal verification using Lean, TLA+ and SMT solvers like Z3.
+
+## Core Competencies
+
+- **C++**: Systems programming, performance-critical applications, compiler development and low-level optimization.
+- **Rust**: Memory-safe systems programming, concurrent applications, and high-reliability software development.
+- **Python**: Scripting, data analysis, ML prototyping, and rapid tool development for scientific computing.
+- **Formal Verification**: Mathematical proofs for software correctness using Lean, TLA+, and SMT solvers like Z3.
+- **HPC**: Parallel computing, performance optimization, and scientific simulations on high-performance systems.
+- **Tech Scouting**: Emerging technology evaluation, innovation tracking, and strategic technical recommendations.
+
+## Technical Skills
+
+### Languages
+- C/C++ (advanced)
+- Python (advanced)
+- Bash (advanced)
+- Lean4 (good)
+- TLA+ (good)
+- MiniZinc (advanced)
+- VHDL/Verilog (good)
+
+### Expertise Areas
+- Compilers (advanced)
+- Numerical Optimization (advanced)
+- Mathematical Modelling (advanced)
+- Formal Verification (advanced)
+- Software Architecture (advanced)
+
+## Professional Experience
+
+### NanoXplore — C++/Python R&D Engineer
+**Period**: Feb 2021 – Dec 2025 | **Location**: Montpellier, France
+
+FPGA compiler development, DSP pattern matching, formal verification with SMT solvers, Reduced Ordered Binary Decision Diagram development for equivalence checking, graph/hypergraph algorithms for circuit abstractions.
+
+**Technologies**: C++, Python, SMT Solvers, TLA+, VHDL/Verilog, ROBDD, ModelSim
+
+### Liebherr Aerospace — Scientific Tools Engineer
+**Period**: Jan 2015 – Apr 2019 | **Location**: Toulouse, France
+
+Heat transfer algorithms for aircraft icing prediction, scientific computation library for roller bearing modeling, uncertainties propagation computation for sensor-dependent physical quantities.
+
+**Technologies**: C++, Python, Scientific Computing, Numerical Optimization
+
+### Airbus (via Altran) — Methods & Tools Consultant
+**Period**: Aug 2011 – Dec 2014 | **Location**: Toulouse, France
+
+Airbus flight simulator stability optimization, aircraft trajectory simulation and optimization tools, multi-physics simulation for A30X wing optimization using kriging ML.
+
+**Technologies**: C++, Optimization, Machine Learning, Design Patterns, Aerodynamics
+
+### Internships
+
+- **IMFT Toulouse** — Graduate Internship (Feb–Jun 2011): Finite volume code for Biot poro-elastic coupling simulation and numerical analysis.
+- **Mercator Ocean** — Internship (Jun–Sep 2010, Toulouse): Generation of oceanic initial conditions from meso-scale oceanic re-analysis.
+- **Norwegian Meteorological Institute** — Internship (Jul–Aug 2009, Oslo): OSI SAF daily ice drift product development and validation.
+
+## Education
+
+**INSA Toulouse** — Master of Science (2006–2011)
+Field: Computer Science, Mathematics and Modelling
+Department of Mathematics Engineering
+
+## Spoken Languages
+
+- French (native)
+- English (C1 — fluent)
+- Spanish (reading knowledge)
+- Chinese (reading knowledge)
+
+## Portfolio Projects
+
+### CTU-Solver — Constraint & Integer Programming in Rust
+A Rust library combining Constraint Programming (CP) and Integer Programming (IP) with 33+ constraint types, AC-3 propagation, and a simplex solver.
+**Tags**: Rust, Constraint Programming, Integer Programming, Optimization
+**Category**: Operations Research
+**GitHub**: https://github.com/zakiller34/ctu-solver
+**Details**: https://www.zakaria-teffah.com/portfolio?project=ctu-solver
+
+### Glass Cutting Optimization — ROADEF 2018
+6th place out of 64 teams in the ROADEF/EURO 2018 industrial optimization challenge by Saint-Gobain.
+**Tags**: C++, OpenMP, Genetic/Evolutionary, Simulated Annealing, Heuristics
+**Category**: Operations Research
+**GitHub**: https://github.com/zakiller34/cut-defi-roadef-2018
+**Details**: https://www.zakaria-teffah.com/portfolio?project=cut-defi-roadef-2018
+
+### Optimal Texas Hold'em Strategy Laboratory
+Texas Hold'em engine with Monte Carlo simulation, formal Lean4 proofs, and RL agents.
+**Tags**: Python, Lean4, Monte Carlo, Reinforcement Learning, Machine Learning
+**Category**: Game Theory & AI
+**GitHub**: https://github.com/zakiller34/card-game
+**Details**: https://www.zakaria-teffah.com/portfolio?project=card-game
+
+### Sea Ice Drift Estimation: MCC vs CMCC
+Cross-correlation methods for Arctic sea ice drift from satellite imagery, validated against IABP buoy tracks.
+**Tags**: Rust, Python, AMSR2 data, ASCAT data
+**Category**: Remote sensing
+**GitHub**: https://github.com/zakiller34/sea-ice-drift
+**Details**: https://www.zakaria-teffah.com/portfolio?project=sea-ice-drift
+
+### Space Altimetry and Continental Hydrology
+Multi-level satellite altimetry pipeline: Kalman filtering, kriging, waveform retracking, and multi-mission fusion with Dask.
+**Tags**: Python, Kriging, Kalman Filter, SAR, Satellite Altimetry
+**Category**: Remote sensing
+**GitHub**: https://github.com/zakiller34/sat-explo
+**Details**: https://www.zakaria-teffah.com/portfolio?project=sat-explo
+
+### Acoustic Guitar Physical Simulation
+Full acoustic chain: 1D string FEM, 2D Kirchhoff-Love soundboard, 3D Yee grid air radiation with PML.
+**Tags**: Python, NumPy, SciPy, GetFEM, Gmsh, FEM
+**Category**: Scientific Computing
+**GitHub**: https://github.com/zakiller34/sim-guitar
+**Details**: https://www.zakaria-teffah.com/portfolio?project=sim-guitar
+
+### GMT — Generic Maths Tool
+Scientific computing library: Gaussian process regression, tension splines, ridge regression, Monte Carlo simulation, and neural networks.
+**Tags**: Python, NumPy, SciPy, Machine Learning, GP Regression
+**Category**: Scientific Computing
+**GitHub**: https://github.com/zakiller34/gmt
+**Details**: https://www.zakaria-teffah.com/portfolio?project=gmt
+
+### Line-Following Robot with micro:bit
+A line-following robot using BBC micro:bit, SparkFun MotoBit, and IR sensors with calibration and state-machine control.
+**Tags**: MicroPython, micro:bit, Robotics, I2C
+**Category**: Robotics
+**GitHub**: https://github.com/zakiller34/line-follow
+**Details**: https://www.zakaria-teffah.com/portfolio?project=line-follow
+
+### CVWeb
+This portfolio website — a bilingual, animated CV built with Next.js and Tailwind CSS.
+**Tags**: Next.js, TypeScript
+**GitHub**: https://github.com/zakiller34/cvweb
+**Details**: https://www.zakaria-teffah.com/portfolio?project=cvweb
+
+## Interests
+
+- Traveling (England, USA, Norway, Spain, Portugal, Italy, Maldives, Corsica)
+- Running
+- Football
+- Guitar (~20 years of practice)
+
+## Contact
+
+- Email: zakaria.teffah@gmail.com
+- LinkedIn: https://www.linkedin.com/in/zakaria-teffah-8545959a/
+- GitHub: https://github.com/zakiller34
+- Website: https://www.zakaria-teffah.com
