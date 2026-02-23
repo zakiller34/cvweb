@@ -48,6 +48,19 @@ export function PortfolioIcon({ className = "w-5 h-5" }: IconProps) {
   );
 }
 
+export function BotIcon({ className = "w-5 h-5" }: IconProps) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <rect x="4" y="8" width="16" height="12" rx="2" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="9" cy="14" r="1.5" fill="currentColor" stroke="none" />
+      <circle cx="15" cy="14" r="1.5" fill="currentColor" stroke="none" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8V5" />
+      <circle cx="12" cy="4" r="1" fill="currentColor" stroke="none" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.5 17.5h5" />
+    </svg>
+  );
+}
+
 export function AdminIcon({ className = "w-5 h-5" }: IconProps) {
   return (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">

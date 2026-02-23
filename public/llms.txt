@@ -37,4 +37,16 @@ Department of Mathematics Engineering
 - GitHub: https://github.com/zakiller34
 - LinkedIn: https://www.linkedin.com/in/zakaria-teffah-8545959a/
 - Full content: https://www.zakaria-teffah.com/llms-full.txt
-- Machine-readable API: https://www.zakaria-teffah.com/api/cv
+- Machine-readable API: https://www.zakaria-teffah.com/api/cv.json
+
+## Portfolio Projects
+
+- Sea Ice Drift Estimation: https://www.zakaria-teffah.com/portfolio?project=sea-ice-drift
+- Space Altimetry and Continental Hydrology: https://www.zakaria-teffah.com/portfolio?project=sat-explo
+- Acoustic Guitar Physical Simulation: https://www.zakaria-teffah.com/portfolio?project=sim-guitar
+- Optimal Texas Hold'em Strategy Laboratory: https://www.zakaria-teffah.com/portfolio?project=card-game
+- CTU-Solver — Constraint & Integer Programming in Rust: https://www.zakaria-teffah.com/portfolio?project=ctu-solver
+- Glass Cutting Optimization — ROADEF 2018: https://www.zakaria-teffah.com/portfolio?project=cut-defi-roadef-2018
+- Line-Following Robot with micro:bit: https://www.zakaria-teffah.com/portfolio?project=line-follow
+- GMT — Generic Maths Tool: https://www.zakaria-teffah.com/portfolio?project=gmt
+- CVWeb: https://www.zakaria-teffah.com/portfolio?project=cvweb

@@ -2,7 +2,7 @@
 
 import { SITE_CONFIG } from "@/lib/site-config";
 import { IconButton } from "@/components/ui/icon-button";
-import { GitHubIcon, LinkedInIcon, EmailIcon, PortfolioIcon } from "./sidebar-icons";
+import { GitHubIcon, LinkedInIcon, EmailIcon, PortfolioIcon, BotIcon } from "./sidebar-icons";
 
 interface LeftSidebarProps {
   showMailTo?: boolean;
@@ -34,6 +34,9 @@ export function LeftSidebar({ showMailTo = true, showPortfolio = true, showGitHu
           <EmailIcon />
         </IconButton>
       )}
+      <IconButton href="/llms.txt" ariaLabel="Machine-Readable CV">
+        <BotIcon />
+      </IconButton>
     </aside>
   );
 }

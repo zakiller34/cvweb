@@ -11,7 +11,7 @@ import { useScrollState } from "@/hooks/use-scroll-state";
 import { ThemeToggle } from "./ui/theme-toggle";
 import { LanguageToggle } from "./ui/language-toggle";
 import { Button } from "./ui/button";
-import { GitHubIcon, LinkedInIcon, EmailIcon, PortfolioIcon } from "./sidebars/sidebar-icons";
+import { GitHubIcon, LinkedInIcon, EmailIcon, PortfolioIcon, BotIcon } from "./sidebars/sidebar-icons";
 
 interface NavigationProps {
   showContactForm?: boolean;
@@ -90,6 +90,9 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
                 <EmailIcon className="w-6 h-6" />
               </a>
             )}
+            <a href="/llms.txt" aria-label="Machine-Readable CV" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+              <BotIcon className="w-6 h-6" />
+            </a>
           </div>
 
           {/* Center - Logo (centered when home, hidden when scrolled) */}
@@ -293,6 +296,9 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
                   <EmailIcon />
                 </a>
               )}
+              <a href="/llms.txt" aria-label="Machine-Readable CV" onClick={() => setIsOpen(false)} className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
+                <BotIcon />
+              </a>
             </div>
           )}
         </div>

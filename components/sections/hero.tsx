@@ -8,7 +8,7 @@ import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { Typewriter } from "@/components/ui/typewriter";
-import { GitHubIcon, LinkedInIcon, EmailIcon, PortfolioIcon } from "@/components/sidebars/sidebar-icons";
+import { GitHubIcon, LinkedInIcon, EmailIcon, PortfolioIcon, BotIcon } from "@/components/sidebars/sidebar-icons";
 
 interface HeroProps {
   showCvDownload?: boolean;
@@ -113,6 +113,9 @@ export function Hero({ showCvDownload = true, showContactForm = true, showSchedu
                         <EmailIcon className="w-7 h-7" />
                       </a>
                     )}
+                    <a href="/llms.txt" aria-label="Machine-Readable CV" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+                      <BotIcon className="w-7 h-7" />
+                    </a>
                   </div>
                 )}
               </div>

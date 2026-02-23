@@ -18,6 +18,10 @@ next build
 # GitHub Pages needs .nojekyll to serve _next/ dirs
 touch "$ROOT/out/.nojekyll"
 
+# Copy pre-rendered API route body to static JSON (API routes don't export)
+mkdir -p "$ROOT/out/api"
+cp "$ROOT/.next/server/app/api/cv.body" "$ROOT/out/api/cv.json"
+
 # CNAME for custom domain
 echo "www.zakaria-teffah.com" > "$ROOT/out/CNAME"
 
