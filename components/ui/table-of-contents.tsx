@@ -99,92 +99,119 @@ export function TableOfContents({ contentRef, lang, projectSlug }: TableOfConten
   const sections = groupIntoSections(headings);
 
   return (
-    <nav className="hidden xl:block sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto w-56 shrink-0">
-      <button
-        onClick={() => setTocOpen((v) => !v)}
-        className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[var(--muted)] hover:text-[var(--foreground)] transition-colors mb-3 cursor-pointer"
-        aria-label={tocOpen ? "Collapse table of contents" : "Expand table of contents"}
-      >
-        <svg
-          className={`w-3 h-3 transition-transform duration-200 ${tocOpen ? "rotate-90" : ""}`}
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path d="M6 4l8 6-8 6V4z" />
-        </svg>
-        {UI_TEXT[lang].onThisPage}
-      </button>
-      {tocOpen && <ul className="flex flex-col gap-1 text-sm border-l border-[var(--border)]">
-        {sections.map((section) => {
-          const h = section.heading;
-          const isActive = activeId === h.id;
-          const isCollapsed = collapsed[h.id] ?? false;
-          const hasChildren = section.children.length > 0;
+    <nav
+      className={`hidden xl:block sticky top-28 max-h-[calc(100vh-8rem)] shrink-0 transition-[width] duration-300 ease-in-out ${
+        tocOpen ? "w-56 overflow-y-auto" : "w-8 overflow-hidden"
+      }`}
+    >
+      {tocOpen ? (
+        <>
+          <button
+            onClick={() => setTocOpen(false)}
+            className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[var(--muted)] hover:text-[var(--foreground)] transition-colors mb-3 cursor-pointer"
+            aria-label="Collapse table of contents"
+          >
+            <span className="whitespace-nowrap">{UI_TEXT[lang].onThisPage}</span>
+            <svg
+              className="w-3 h-3"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2.5}
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          <ul className="flex flex-col gap-1 text-sm border-l border-[var(--border)]">
+            {sections.map((section) => {
+              const h = section.heading;
+              const isActive = activeId === h.id;
+              const isCollapsed = collapsed[h.id] ?? false;
+              const hasChildren = section.children.length > 0;
 
-          return (
-            <li key={h.id}>
-              <div className="flex items-center">
-                {hasChildren && (
-                  <button
-                    onClick={() => toggleSection(h.id)}
-                    className="flex items-center justify-center w-4 shrink-0 text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
-                    aria-label={isCollapsed ? "Expand" : "Collapse"}
-                  >
-                    <svg
-                      className={`w-3 h-3 transition-transform duration-200 ${isCollapsed ? "" : "rotate-90"}`}
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M6 4l8 6-8 6V4z" />
-                    </svg>
-                  </button>
-                )}
-                <a
-                  href={`#${h.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollTo(h.id);
-                  }}
-                  className={`block transition-colors duration-200 leading-snug pl-2 ${
-                    !hasChildren ? "ml-4" : ""
-                  } ${
-                    isActive
-                      ? "text-[var(--accent)] border-l-2 border-[var(--accent)] -ml-px font-medium"
-                      : "text-[var(--muted)] hover:text-[var(--foreground)]"
-                  }`}
-                >
-                  {h.text}
-                </a>
-              </div>
-              {hasChildren && !isCollapsed && (
-                <ul className="flex flex-col gap-1 mt-1">
-                  {section.children.map((child) => {
-                    const childActive = activeId === child.id;
-                    return (
-                      <li key={child.id}>
-                        <a
-                          href={`#${child.id}`}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            scrollTo(child.id);
-                          }}
-                          className={`block transition-colors duration-200 leading-snug pl-8 ${
-                            childActive
-                              ? "text-[var(--accent)] border-l-2 border-[var(--accent)] -ml-px font-medium"
-                              : "text-[var(--muted)] hover:text-[var(--foreground)]"
-                          }`}
+              return (
+                <li key={h.id}>
+                  <div className="flex items-center">
+                    {hasChildren && (
+                      <button
+                        onClick={() => toggleSection(h.id)}
+                        className="flex items-center justify-center w-4 shrink-0 text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+                        aria-label={isCollapsed ? "Expand" : "Collapse"}
+                      >
+                        <svg
+                          className={`w-3 h-3 transition-transform duration-200 ${isCollapsed ? "" : "rotate-90"}`}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
                         >
-                          {child.text}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </li>
-          );
-        })}
-      </ul>}
+                          <path d="M6 4l8 6-8 6V4z" />
+                        </svg>
+                      </button>
+                    )}
+                    <a
+                      href={`#${h.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollTo(h.id);
+                      }}
+                      className={`block transition-colors duration-200 leading-snug pl-2 ${
+                        !hasChildren ? "ml-4" : ""
+                      } ${
+                        isActive
+                          ? "text-[var(--accent)] border-l-2 border-[var(--accent)] -ml-px font-medium"
+                          : "text-[var(--muted)] hover:text-[var(--foreground)]"
+                      }`}
+                    >
+                      {h.text}
+                    </a>
+                  </div>
+                  {hasChildren && !isCollapsed && (
+                    <ul className="flex flex-col gap-1 mt-1">
+                      {section.children.map((child) => {
+                        const childActive = activeId === child.id;
+                        return (
+                          <li key={child.id}>
+                            <a
+                              href={`#${child.id}`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                scrollTo(child.id);
+                              }}
+                              className={`block transition-colors duration-200 leading-snug pl-8 ${
+                                childActive
+                                  ? "text-[var(--accent)] border-l-2 border-[var(--accent)] -ml-px font-medium"
+                                  : "text-[var(--muted)] hover:text-[var(--foreground)]"
+                              }`}
+                            >
+                              {child.text}
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </>
+      ) : (
+        <button
+          onClick={() => setTocOpen(true)}
+          className="flex flex-col items-center gap-1 text-[var(--muted)] hover:text-[var(--foreground)] transition-colors cursor-pointer"
+          aria-label="Expand table of contents"
+        >
+          <svg
+            className="w-4 h-4"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M6 4l8 6-8 6V4z" />
+          </svg>
+          <span className="text-[10px] font-semibold uppercase tracking-wider [writing-mode:vertical-lr]">
+            {UI_TEXT[lang].onThisPage}
+          </span>
+        </button>
+      )}
     </nav>
   );
 }
