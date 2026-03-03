@@ -59,7 +59,7 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
-        isHome
+        isHome && !isPortfolio
           ? "border-transparent bg-[var(--background)]/1 backdrop-blur-sm"
           : "border-transparent bg-[var(--background)]/70 backdrop-blur-sm"
       }`}
@@ -67,10 +67,10 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
       <nav className="max-w-6xl mx-auto px-4 h-20 flex items-center">
         {/* Desktop layout */}
         <div className="hidden md:flex items-center justify-between w-full">
-          {/* Left side - Social icons (visible when scrolled) */}
+          {/* Left side - Social icons (visible when scrolled, or always on portfolio) */}
           <div
             className={`flex items-center gap-3 transition-all duration-300 ${
-              isHome ? "opacity-0 -translate-x-4 pointer-events-none" : "opacity-100 translate-x-0"
+              isHome && !isPortfolio ? "opacity-0 -translate-x-4 pointer-events-none" : "opacity-100 translate-x-0"
             }`}
           >
             {showPortfolio && (
@@ -98,7 +98,7 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
             </a>
           </div>
 
-          {/* Center - Logo (centered when home, hidden when scrolled) */}
+          {/* Center - Logo (centered when home, hidden when scrolled or on portfolio) */}
           <Link
             href="/"
             className={`font-semibold text-xl absolute left-1/2 -translate-x-1/2 transition-all duration-300 ${
@@ -110,11 +110,11 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            {/* Profile photo (visible when scrolled) */}
+            {/* Profile photo (visible when scrolled or on portfolio) */}
             <button
               onClick={scrollToTop}
               className={`transition-all duration-300 ${
-                isHome ? "opacity-0 scale-75 pointer-events-none w-0" : "opacity-100 scale-100 w-8"
+                isHome && !isPortfolio ? "opacity-0 scale-75 pointer-events-none w-0" : "opacity-100 scale-100 w-8"
               }`}
             >
               <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-[var(--border)] hover:border-[var(--accent)] transition-colors">
@@ -129,12 +129,12 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
               </div>
             </button>
 
-            {/* Download CV dropdown (visible when scrolled) */}
+            {/* Download CV dropdown (visible when scrolled or on portfolio) */}
             {showCvDownload && (
               <div
                 ref={dropdownRef}
                 className={`relative transition-all duration-300 ${
-                  isHome ? "opacity-0 translate-x-4 pointer-events-none w-0" : "opacity-100 translate-x-0"
+                  isHome && !isPortfolio ? "opacity-0 translate-x-4 pointer-events-none w-0" : "opacity-100 translate-x-0"
                 }`}
               >
                 <Button
@@ -176,7 +176,7 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
                 size="sm"
                 onClick={scrollToContact}
                 className={`transition-all duration-300 ${
-                  isHome ? "opacity-0 translate-x-4 pointer-events-none w-0 px-0" : "opacity-100 translate-x-0"
+                  isHome && !isPortfolio ? "opacity-0 translate-x-4 pointer-events-none w-0 px-0" : "opacity-100 translate-x-0"
                 }`}
               >
                 {ui.getInTouch}
@@ -184,7 +184,7 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
             ) : (
               <span
                 className={`text-base font-medium text-[var(--accent)] transition-all duration-300 ${
-                  isHome ? "opacity-0 translate-x-4 pointer-events-none w-0" : "opacity-100 translate-x-0"
+                  isHome && !isPortfolio ? "opacity-0 translate-x-4 pointer-events-none w-0" : "opacity-100 translate-x-0"
                 }`}
               >
                 zakaria.teffah [at] gmail [dot] com
@@ -199,11 +199,7 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
         {/* Mobile layout */}
         <div className="flex md:hidden items-center justify-between w-full">
           <Link href="/" className="font-semibold text-xl">
-            {isHome ? (
-              <><span className="text-[#38bdf8]">zakaria</span>teffah.com</>
-            ) : (
-              <><span className="text-[#38bdf8]">Zakaria</span> Teffah</>
-            )}
+            <span className="text-[#38bdf8]">zakaria</span>-teffah.com
           </Link>
           <div className="flex items-center gap-2">
             <LanguageToggle />
@@ -278,33 +274,6 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
             <span className="text-base font-medium text-[var(--accent)] py-2">
               zakaria.teffah [at] gmail [dot] com
             </span>
-          )}
-          {(showGitHub || showLinkedIn || showPortfolio || showMailTo) && (
-            <div className="flex gap-4 pt-3 border-t border-[var(--border)]">
-              {showGitHub && (
-                <a href={SITE_CONFIG.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
-                  <GitHubIcon />
-                </a>
-              )}
-              {showLinkedIn && (
-                <a href={SITE_CONFIG.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
-                  <LinkedInIcon />
-                </a>
-              )}
-              {showPortfolio && (
-                <a href="/portfolio" aria-label="Portfolio" onClick={() => setIsOpen(false)} className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
-                  <PortfolioIcon />
-                </a>
-              )}
-              {showMailTo && (
-                <a href={`mailto:${SITE_CONFIG.email}`} aria-label="Email" className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
-                  <EmailIcon />
-                </a>
-              )}
-              <a href="/llms.txt" aria-label="Machine-Readable CV" onClick={() => setIsOpen(false)} className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">
-                <BotIcon />
-              </a>
-            </div>
           )}
         </div>
       </div>}

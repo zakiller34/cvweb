@@ -21,7 +21,6 @@ import "katex/dist/katex.min.css";
 import "highlight.js/styles/github-dark.css";
 import { MermaidDiagram } from "@/components/ui/markdown-mermaid";
 import { TableOfContents } from "@/components/ui/table-of-contents";
-import { MobileBottomBar } from "@/components/ui/mobile-bottom-bar";
 
 function categoryKey(cat: { en: string; fr: string }): string {
   return cat.en + cat.fr;
@@ -194,7 +193,6 @@ function ProjectList({
       </div>
       <PatternQuote />
     </section>
-    <MobileBottomBar />
     </>
   );
 }
@@ -300,7 +298,6 @@ function ProjectDetail({
           projectSlug={project.slug}
         />
       </section>
-      <MobileBottomBar />
     </>
   );
 }

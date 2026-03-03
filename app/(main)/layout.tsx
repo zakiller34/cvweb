@@ -3,6 +3,7 @@ import { AnimatedBackground } from "@/components/ui/animated-background";
 
 import { RightSidebar } from "@/components/sidebars/right-sidebar";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { MobileBottomBar } from "@/components/ui/mobile-bottom-bar";
 import { getAllSettings } from "@/lib/settings";
 
 const jsonLd = {
@@ -62,6 +63,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
       <RightSidebar showContactForm={showContactForm} />
       <ScrollToTop />
       <main className="relative z-10">{children}</main>
+      <MobileBottomBar />
     </>
   );
 }
