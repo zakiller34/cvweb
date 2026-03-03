@@ -29,6 +29,7 @@ export const UI_TEXT = {
     viewOnGithub: "View on GitHub",
     foldAll: "Fold all",
     unfoldAll: "Unfold all",
+    onThisPage: "On this page",
   },
   fr: {
     getInTouch: "Me contacter",
@@ -57,6 +58,7 @@ export const UI_TEXT = {
     viewOnGithub: "Voir sur GitHub",
     foldAll: "Tout replier",
     unfoldAll: "Tout déplier",
+    onThisPage: "Sur cette page",
   },
 };
 

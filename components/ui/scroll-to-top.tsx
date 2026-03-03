@@ -1,10 +1,13 @@
 "use client";
 
 import { useCallback } from "react";
+import { usePathname } from "next/navigation";
 import { useScrollState } from "@/hooks/use-scroll-state";
 
 export function ScrollToTop() {
   const { isHome } = useScrollState();
+  const pathname = usePathname();
+  const isPortfolio = pathname === "/portfolio";
   const isVisible = !isHome;
 
   const scrollToTop = useCallback(() => {
@@ -15,7 +18,9 @@ export function ScrollToTop() {
     <button
       onClick={scrollToTop}
       aria-label="Scroll to top"
-      className={`fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-[var(--accent)] text-white flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] ${
+      className={`fixed right-6 z-40 w-12 h-12 rounded-full bg-[var(--accent)] text-white flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] ${
+        isPortfolio ? "bottom-20 md:bottom-6" : "bottom-6"
+      } ${
         isVisible
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-4 pointer-events-none"

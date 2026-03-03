@@ -31,3 +31,4 @@ A portfolio page is also in a different new page.
 - Don't write 500-line components (break them up!)
 - Quote paths with parentheses in bash (e.g. `"app/(main)/page.tsx"`) to avoid shell syntax errors
 - NEVER use `rm -rf` — use `trash` instead
+- NEVER use anthropic or claude in git messages

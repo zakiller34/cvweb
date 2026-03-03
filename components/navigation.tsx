@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { NAV_LINKS } from "@/lib/cv-data";
@@ -24,6 +25,8 @@ interface NavigationProps {
 
 export function Navigation({ showContactForm = true, showCvDownload = true, showMailTo = true, showPortfolio = true, showGitHub = true, showLinkedIn = true }: NavigationProps) {
   const { lang } = useLanguage();
+  const pathname = usePathname();
+  const isPortfolio = pathname === "/portfolio";
   const { isHome, activeSection } = useScrollState();
   const [isOpen, setIsOpen] = useState(false);
   const [cvDropdownOpen, setCvDropdownOpen] = useState(false);
@@ -205,25 +208,27 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
           <div className="flex items-center gap-2">
             <LanguageToggle />
             <ThemeToggle />
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2"
-              aria-label="Toggle menu"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
+            {!isPortfolio && (
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2"
+                aria-label="Toggle menu"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {isOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            )}
           </div>
         </div>
       </nav>
 
       {/* Mobile menu */}
-      <div
+      {!isPortfolio && <div
         className={`md:hidden bg-[var(--background)] border-b border-[var(--border)] overflow-hidden transition-all duration-300 ${
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 border-b-0"
         }`}
@@ -302,7 +307,7 @@ export function Navigation({ showContactForm = true, showCvDownload = true, show
             </div>
           )}
         </div>
-      </div>
+      </div>}
     </header>
   );
 }
