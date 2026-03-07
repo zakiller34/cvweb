@@ -15,10 +15,25 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeRaw from "rehype-raw";
 import rehypeKatex from "rehype-katex";
-import rehypeHighlight from "rehype-highlight";
+import rehypeShikiFromHighlighter from "@shikijs/rehype/core";
 import rehypeSlug from "rehype-slug";
+import { createHighlighterCoreSync } from "shiki/core";
+import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
+import lean4 from "@shikijs/langs/lean4";
+import python from "@shikijs/langs/python";
+import typescript from "@shikijs/langs/typescript";
+import javascript from "@shikijs/langs/javascript";
+import bash from "@shikijs/langs/bash";
+import json from "@shikijs/langs/json";
+import css from "@shikijs/langs/css";
+import cpp from "@shikijs/langs/cpp";
+import rust from "@shikijs/langs/rust";
+import yaml from "@shikijs/langs/yaml";
+import toml from "@shikijs/langs/toml";
+import sql from "@shikijs/langs/sql";
+import dockerfile from "@shikijs/langs/dockerfile";
+import githubDark from "@shikijs/themes/github-dark";
 import "katex/dist/katex.min.css";
-import "highlight.js/styles/github-dark.css";
 import { MermaidDiagram } from "@/components/ui/markdown-mermaid";
 import { TableOfContents } from "@/components/ui/table-of-contents";
 
@@ -218,7 +233,14 @@ function ProjectDetail({
 }) {
   const contentRef = useRef<HTMLDivElement>(null);
   const rehypePlugins = useMemo(
-    () => [rehypeSlug, rehypeKatex, rehypeRaw, [rehypeHighlight, { plainText: ['mermaid'] }]] as Parameters<typeof ReactMarkdown>[0]["rehypePlugins"],
+    () => {
+      const highlighter = createHighlighterCoreSync({
+        themes: [githubDark],
+        langs: [lean4, python, typescript, javascript, bash, json, css, cpp, rust, yaml, toml, sql, dockerfile],
+        engine: createJavaScriptRegexEngine(),
+      });
+      return [rehypeSlug, rehypeKatex, rehypeRaw, [rehypeShikiFromHighlighter, highlighter, { theme: 'github-dark' }]] as Parameters<typeof ReactMarkdown>[0]["rehypePlugins"];
+    },
     []
   );
 
