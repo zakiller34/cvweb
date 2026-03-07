@@ -6,6 +6,7 @@ import { simGuitar } from "./projects/sim-guitar";
 import { lineFollow } from "./projects/line-follow";
 import { gmt } from "./projects/gmt";
 import { cardGame } from "./projects/card-game";
+import { spinozaEthics } from "./projects/spinoza-ethics";
 import { ctuSolver } from "./projects/ctu-solver";
 
 export interface Project {
@@ -19,4 +20,4 @@ export interface Project {
   defaultUnfolded?: boolean;
 }
 
-export const PROJECTS: Project[] = [seaIceDrift, satExplo, simGuitar, cardGame, ctuSolver, cutDefiRoadef2018, lineFollow, gmt, cvweb];
+export const PROJECTS: Project[] = [seaIceDrift, satExplo, simGuitar, cardGame, spinozaEthics, ctuSolver, cutDefiRoadef2018, lineFollow, gmt, cvweb];
