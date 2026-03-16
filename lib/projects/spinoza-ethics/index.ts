@@ -7,7 +7,7 @@ export const spinozaEthics: Project = {
   slug: "spinoza-ethics",
   title: {
     en: "God, Substance, and Necessity: Formalizing Spinoza's Ethics in Lean 4",
-    fr: "Dieu, substance et necessite : formalisation de l'Ethique de Spinoza en Lean 4",
+    fr: "Dieu, substance et necessité : formalisation de l'Ethique de Spinoza en Lean 4",
   },
   description: {
     en: "Machine-checked formalization of Spinoza's Ethics Part I using Lean 4 and Mathlib.",

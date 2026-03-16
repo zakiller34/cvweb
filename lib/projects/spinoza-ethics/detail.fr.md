@@ -177,7 +177,7 @@ def IsGod (g : Entity) : Prop :=
 
 `Set.Infinite` est un predicat Mathlib signifiant que l'ensemble n'a pas de borne finie. Dieu n'a pas deux ou trois attributs mais une infinite. Dans la philosophie de Spinoza, nous les humains ne pouvons en percevoir que deux : la Pensee et l'Etendue (esprit et corps). Mais Dieu en exprime infiniment plus, tous inconnus de nous.
 
-**D7 — Liberte** : Une chose est libre si elle existe par la seule necessite de sa propre nature et est determinee a agir par elle-meme seule.
+**D7 — Liberte** : Une chose est libre si elle existe par la seule necessité de sa propre nature et est determinee a agir par elle-meme seule.
 
 ```lean
 def IsFree (x : Entity) : Prop :=
@@ -188,7 +188,7 @@ Libre ne signifie pas sans cause. Cela signifie cause de soi : chaque cause de x
 
 ---
 
-## Etape 4 : Une note sur la necessite
+## Etape 4 : Une note sur la necessité
 
 Avant les preuves, une decision de conception merite une attention particuliere.
 
@@ -205,7 +205,7 @@ def Possibly   (p : Prop) : Prop := p
 
 `Necessarily p` et `Possibly p` signifient tous deux simplement `p`. C'est l'axiome de la logique modale S5 pousse a sa limite — l'effondrement de toutes les distinctions modales dans la verite actuelle.
 
-Est-ce philosophiquement correct ? Les specialistes de Spinoza en debattent. Certains le lisent comme affirmant seulement une necessite *causale*, non une necessite *logique*. Mais pour les besoins de la formalisation, c'est le bon choix : cela encode fidelement son necessitarisme, et ses consequences sont spectaculaires, comme nous le verrons.
+Est-ce philosophiquement correct ? Les specialistes de Spinoza en debattent. Certains le lisent comme affirmant seulement une necessité *causale*, non une necessité *logique*. Mais pour les besoins de la formalisation, c'est le bon choix : cela encode fidelement son necessitarisme, et ses consequences sont spectaculaires, comme nous le verrons.
 
 ---
 
@@ -343,7 +343,7 @@ Il n'y a qu'une seule substance. Tout le reste — chaque esprit, chaque corps, 
 
 ### Theoreme 6 : Rien n'est contingent (1P29)
 
-> *« Rien dans la nature n'est contingent, mais toutes choses sont determinees a exister et a agir d'une maniere particuliere par la necessite de la nature divine. »* — 1P29
+> *« Rien dans la nature n'est contingent, mais toutes choses sont determinees a exister et a agir d'une maniere particuliere par la necessité de la nature divine. »* — 1P29
 
 Pour chaque entite, il existe une cause de son existence :
 
