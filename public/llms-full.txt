@@ -79,19 +79,19 @@ Department of Mathematics Engineering
 
 ## Portfolio Projects
 
-### CTU-Solver — Constraint & Integer Programming in Rust
-A Rust library combining Constraint Programming (CP) and Integer Programming (IP) with 33+ constraint types, AC-3 propagation, and a simplex solver.
-**Tags**: Rust, Constraint Programming, Integer Programming, Optimization
-**Category**: Operations Research
-**GitHub**: https://github.com/zakiller34/ctu-solver
-**Details**: https://www.zakaria-teffah.com/portfolio?project=ctu-solver
+### God, Substance, and Necessity: Formalizing Spinoza's Ethics in Lean 4
+Machine-checked formalization of Spinoza's Ethics Part I using Lean 4 and Mathlib.
+**Tags**: Lean4, Mathlib, Formal Verification, Philosophy
+**Category**: Formal Methods
+**GitHub**: https://github.com/zakiller34/lean-proofs
+**Details**: https://www.zakaria-teffah.com/portfolio?project=spinoza-ethics
 
-### Glass Cutting Optimization — ROADEF 2018
-6th place out of 64 teams in the ROADEF/EURO 2018 industrial optimization challenge by Saint-Gobain.
-**Tags**: C++, OpenMP, Genetic/Evolutionary, Simulated Annealing, Heuristics
-**Category**: Operations Research
-**GitHub**: https://github.com/zakiller34/cut-defi-roadef-2018
-**Details**: https://www.zakaria-teffah.com/portfolio?project=cut-defi-roadef-2018
+### Acoustic Guitar Physical Simulation
+Full acoustic chain: 1D string FEM, 2D Kirchhoff-Love soundboard, 3D Yee grid air radiation with PML.
+**Tags**: Python, NumPy, SciPy, GetFEM, Gmsh, FEM
+**Category**: Scientific Computing
+**GitHub**: https://github.com/zakiller34/sim-guitar
+**Details**: https://www.zakaria-teffah.com/portfolio?project=sim-guitar
 
 ### Optimal Texas Hold'em Strategy Laboratory
 Texas Hold'em engine with Monte Carlo simulation, formal Lean4 proofs, and RL agents.
@@ -103,30 +103,23 @@ Texas Hold'em engine with Monte Carlo simulation, formal Lean4 proofs, and RL ag
 ### Sea Ice Drift Estimation: MCC vs CMCC
 Cross-correlation methods for Arctic sea ice drift from satellite imagery, validated against IABP buoy tracks.
 **Tags**: Rust, Python, AMSR2 data, ASCAT data
-**Category**: Remote sensing
+**Category**: Scientific Computing
 **GitHub**: https://github.com/zakiller34/sea-ice-drift
 **Details**: https://www.zakaria-teffah.com/portfolio?project=sea-ice-drift
 
-### Space Altimetry and Continental Hydrology
-Multi-level satellite altimetry pipeline: Kalman filtering, kriging, waveform retracking, and multi-mission fusion with Dask.
-**Tags**: Python, Kriging, Kalman Filter, SAR, Satellite Altimetry
-**Category**: Remote sensing
-**GitHub**: https://github.com/zakiller34/sat-explo
-**Details**: https://www.zakaria-teffah.com/portfolio?project=sat-explo
+### Glass Cutting Optimization — ROADEF 2018
+6th place out of 64 teams in the ROADEF/EURO 2018 industrial optimization challenge by Saint-Gobain.
+**Tags**: C++, OpenMP, Genetic/Evolutionary, Simulated Annealing, Heuristics
+**Category**: Operations Research
+**GitHub**: https://github.com/zakiller34/cut-defi-roadef-2018
+**Details**: https://www.zakaria-teffah.com/portfolio?project=cut-defi-roadef-2018
 
-### Acoustic Guitar Physical Simulation
-Full acoustic chain: 1D string FEM, 2D Kirchhoff-Love soundboard, 3D Yee grid air radiation with PML.
-**Tags**: Python, NumPy, SciPy, GetFEM, Gmsh, FEM
-**Category**: Scientific Computing
-**GitHub**: https://github.com/zakiller34/sim-guitar
-**Details**: https://www.zakaria-teffah.com/portfolio?project=sim-guitar
-
-### GMT — Generic Maths Tool
-Scientific computing library: Gaussian process regression, tension splines, ridge regression, Monte Carlo simulation, and neural networks.
-**Tags**: Python, NumPy, SciPy, Machine Learning, GP Regression
-**Category**: Scientific Computing
-**GitHub**: https://github.com/zakiller34/gmt
-**Details**: https://www.zakaria-teffah.com/portfolio?project=gmt
+### CTU-Solver — Constraint & Integer Programming in Rust
+A Rust library combining Constraint Programming (CP) and Integer Programming (IP) with 33+ constraint types, AC-3 propagation, and a simplex solver.
+**Tags**: Rust, Constraint Programming, Integer Programming, Optimization
+**Category**: Operations Research
+**GitHub**: https://github.com/zakiller34/ctu-solver
+**Details**: https://www.zakaria-teffah.com/portfolio?project=ctu-solver
 
 ### Line-Following Robot with micro:bit
 A line-following robot using BBC micro:bit, SparkFun MotoBit, and IR sensors with calibration and state-machine control.
@@ -135,9 +128,24 @@ A line-following robot using BBC micro:bit, SparkFun MotoBit, and IR sensors wit
 **GitHub**: https://github.com/zakiller34/line-follow
 **Details**: https://www.zakaria-teffah.com/portfolio?project=line-follow
 
+### GMT — Generic Maths Tool
+Scientific computing library: Gaussian process regression, tension splines, ridge regression, Monte Carlo simulation, and neural networks.
+**Tags**: Python, NumPy, SciPy, Machine Learning, GP Regression
+**Category**: Scientific Computing
+**GitHub**: https://github.com/zakiller34/gmt
+**Details**: https://www.zakaria-teffah.com/portfolio?project=gmt
+
+### Space Altimetry and Continental Hydrology
+Multi-level satellite altimetry pipeline: Kalman filtering, kriging, waveform retracking, and multi-mission fusion with Dask.
+**Tags**: Python, Kriging, Kalman Filter, SAR, Satellite Altimetry
+**Category**: Others
+**GitHub**: https://github.com/zakiller34/sat-explo
+**Details**: https://www.zakaria-teffah.com/portfolio?project=sat-explo
+
 ### CVWeb
 This portfolio website — a bilingual, animated CV built with Next.js and Tailwind CSS.
 **Tags**: Next.js, TypeScript
+**Category**: Others
 **GitHub**: https://github.com/zakiller34/cvweb
 **Details**: https://www.zakaria-teffah.com/portfolio?project=cvweb
 

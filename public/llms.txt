@@ -41,12 +41,13 @@ Department of Mathematics Engineering
 
 ## Portfolio Projects
 
-- Sea Ice Drift Estimation: https://www.zakaria-teffah.com/portfolio?project=sea-ice-drift
-- Space Altimetry and Continental Hydrology: https://www.zakaria-teffah.com/portfolio?project=sat-explo
+- God, Substance, and Necessity: Formalizing Spinoza's Ethics in Lean 4: https://www.zakaria-teffah.com/portfolio?project=spinoza-ethics
 - Acoustic Guitar Physical Simulation: https://www.zakaria-teffah.com/portfolio?project=sim-guitar
 - Optimal Texas Hold'em Strategy Laboratory: https://www.zakaria-teffah.com/portfolio?project=card-game
-- CTU-Solver — Constraint & Integer Programming in Rust: https://www.zakaria-teffah.com/portfolio?project=ctu-solver
+- Sea Ice Drift Estimation: https://www.zakaria-teffah.com/portfolio?project=sea-ice-drift
 - Glass Cutting Optimization — ROADEF 2018: https://www.zakaria-teffah.com/portfolio?project=cut-defi-roadef-2018
+- CTU-Solver — Constraint & Integer Programming in Rust: https://www.zakaria-teffah.com/portfolio?project=ctu-solver
 - Line-Following Robot with micro:bit: https://www.zakaria-teffah.com/portfolio?project=line-follow
 - GMT — Generic Maths Tool: https://www.zakaria-teffah.com/portfolio?project=gmt
+- Space Altimetry and Continental Hydrology: https://www.zakaria-teffah.com/portfolio?project=sat-explo
 - CVWeb: https://www.zakaria-teffah.com/portfolio?project=cvweb

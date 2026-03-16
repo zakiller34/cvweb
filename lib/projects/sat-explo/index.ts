@@ -18,5 +18,5 @@ export const satExplo: Project = {
   },
   tags: ["Python", "Kriging", "Kalman Filter", "SAR", "Satellite Altimetry"],
   github: "https://github.com/zakiller34/sat-explo",
-  category: { en: "Remote sensing", fr: "Télédétection" },
+  category: { en: "Others", fr: "Autres" },
 };

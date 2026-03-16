@@ -20,4 +20,5 @@ export interface Project {
   defaultUnfolded?: boolean;
 }
 
-export const PROJECTS: Project[] = [seaIceDrift, satExplo, simGuitar, cardGame, spinozaEthics, ctuSolver, cutDefiRoadef2018, lineFollow, gmt, cvweb];
+export const PROJECTS: Project[] = [spinozaEthics, simGuitar, cardGame, seaIceDrift,
+    cutDefiRoadef2018, ctuSolver, lineFollow, gmt, satExplo, cvweb];
