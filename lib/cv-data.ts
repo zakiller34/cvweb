@@ -20,16 +20,16 @@ export const NAV_LINKS = {
 export const STATS = {
   en: [
     { value: "14+", label: "Years Experience" },
-    { value: "C++/Rust & Python", label: "Core Languages" },
-    { value: "Compiler", label: "Lex/Yacc/LLVM" },
-    { value: "Lean/TLA+ and Z3", label: "Formal Verification tools" },
+    { value: "C++ & Python", label: "Core Languages" },
+    { value: "Compiler", label: "FLex/Bison/LLVM/MLIR" },
+    { value: "Lean/TLA+ & Z3", label: "Formal Verification tools" },
     { value: "INSA", label: "MSc Engineering" },
   ],
   fr: [
     { value: "14+", label: "Années d'expérience" },
-    { value: "C++/Rust & Python", label: "Langages principaux" },
-    { value: "Compilateur", label: "Lex/Yacc/LLVM" },
-    { value: "Lean/TLA+ et Z3", label: "Outils de vérification formelle" },
+    { value: "C++ & Python", label: "Langages principaux" },
+    { value: "Compilateur", label: "FLex/Bison/LLVM/MLIR" },
+    { value: "Lean/TLA+ & Z3", label: "Outils de vérification formelle" },
     { value: "INSA", label: "Diplôme d'ingénieur" },
   ],
 };

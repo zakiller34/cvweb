@@ -12,7 +12,7 @@ interface Quote {
 
 const QUOTES: Quote[] = [
   {
-    en: "I know that I know nothing",
+    en: "I know one thing:  I know nothing",
     fr: "Je ne sais qu'une chose, c'est que je ne sais rien",
     author: "Socrates",
   },
