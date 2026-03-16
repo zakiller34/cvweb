@@ -5,6 +5,7 @@ import { seaIceDrift } from "./projects/sea-ice-drift";
 import { satExplo } from "./projects/sat-explo";
 import { simGuitar } from "./projects/sim-guitar";
 import { lineFollow } from "./projects/line-follow";
+import { drone } from "./projects/drone";
 import { gmt } from "./projects/gmt";
 import { cardGame } from "./projects/card-game";
 import { spinozaEthics } from "./projects/spinoza-ethics";
@@ -23,4 +24,4 @@ export interface Project {
 }
 
 export const PROJECTS: Project[] = [spinozaEthics, simGuitar, cardGame, seaIceDrift,
-    cutDefiRoadef2018, ctuSolver, lineFollow, gmt, satExplo, cvweb];
+    cutDefiRoadef2018, ctuSolver, lineFollow, drone, gmt, satExplo, cvweb];

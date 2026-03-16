@@ -252,7 +252,7 @@ function ProjectDetail({
         langs: [lean4, python, typescript, javascript, bash, json, css, cpp, rust, yaml, toml, sql, dockerfile],
         engine: createJavaScriptRegexEngine(),
       });
-      return [rehypeSlug, rehypeKatex, rehypeRaw, [rehypeShikiFromHighlighter, highlighter, { theme: 'github-dark' }]] as Parameters<typeof ReactMarkdown>[0]["rehypePlugins"];
+      return [rehypeSlug, rehypeKatex, rehypeRaw, [rehypeShikiFromHighlighter, highlighter, { theme: 'github-dark', onError: () => {} }]] as Parameters<typeof ReactMarkdown>[0]["rehypePlugins"];
     },
     []
   );
