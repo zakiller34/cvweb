@@ -7,6 +7,7 @@ lib/projects/{slug}/
   index.ts
   detail.en.md
   detail.fr.md
+  summary.png        # thumbnail shown in project card
 ```
 
 `slug` must be URL-safe (lowercase, hyphens).
@@ -23,12 +24,17 @@ lib/projects/{slug}/
 - Inline code and code blocks
 - Images: `![caption](/projects/slug/image.png)`
 
-## 3. Create `index.ts`
+## 3. Add `summary.png`
+
+Place a `summary.png` (roughly square, ~400px) in the project folder. This is displayed as a thumbnail on the project card.
+
+## 4. Create `index.ts`
 
 ```ts
 import type { Project } from "@/lib/portfolio-data";
 import detailEn from "./detail.en.md";
 import detailFr from "./detail.fr.md";
+import summaryImg from "./summary.png";
 
 export const myProject: Project = {
   slug: "my-project",
@@ -44,6 +50,7 @@ export const myProject: Project = {
     en: detailEn,
     fr: detailFr,
   },
+  thumbnail: summaryImg,
   tags: ["TypeScript", "React"],
   github: "https://github.com/you/my-project",
   category: {
@@ -54,7 +61,7 @@ export const myProject: Project = {
 };
 ```
 
-## 4. Register in `lib/portfolio-data.ts`
+## 5. Register in `lib/portfolio-data.ts`
 
 ```ts
 import { myProject } from "./projects/my-project";
@@ -66,7 +73,7 @@ Projects display in array order. Put the most important ones first.
 Projects with the same `category` (matching both `en` and `fr`) are grouped under a collapsible section. The category name is displayed in the user's selected language.
 Categories start unfolded by default. A category starts folded only if **all** its projects have `defaultUnfolded: false`.
 
-## 5. Images
+## 6. Images
 
 Store project images in `public/projects/{slug}/`. Use markdown image syntax:
 
@@ -86,6 +93,7 @@ export interface Project {
   tags: string[];
   github: string;
   category: { en: string; fr: string };
+  thumbnail?: StaticImageData;
   defaultUnfolded?: boolean; // defaults to false
 }
 ```

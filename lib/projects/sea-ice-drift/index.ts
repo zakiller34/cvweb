@@ -1,6 +1,7 @@
 import type { Project } from "@/lib/portfolio-data";
 import detailEn from "./detail.en.md";
 import detailFr from "./detail.fr.md";
+import summaryImg from "./summary.png";
 
 export const seaIceDrift: Project = {
   slug: "sea-ice-drift",
@@ -18,5 +19,6 @@ export const seaIceDrift: Project = {
   },
   tags: ["Rust", "Python", "AMSR2 data", "ASCAT data"],
   github: "https://github.com/zakiller34/sea-ice-drift",
+  thumbnail: summaryImg,
   category: { en: "Scientific Computing", fr: "Calcul scientifique" },
 };

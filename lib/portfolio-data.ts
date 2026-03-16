@@ -1,3 +1,4 @@
+import type { StaticImageData } from "next/image";
 import { cvweb } from "./projects/cvweb";
 import { cutDefiRoadef2018 } from "./projects/cut-defi-roadef-2018";
 import { seaIceDrift } from "./projects/sea-ice-drift";
@@ -17,6 +18,7 @@ export interface Project {
   tags: string[];
   github: string;
   category: { en: string; fr: string };
+  thumbnail?: StaticImageData;
   defaultUnfolded?: boolean;
 }
 

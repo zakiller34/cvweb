@@ -1,6 +1,7 @@
 import type { Project } from "@/lib/portfolio-data";
 import detailEn from "./detail.en.md";
 import detailFr from "./detail.fr.md";
+import summaryImg from "./summary.png";
 
 export const lineFollow: Project = {
   slug: "line-follow",
@@ -15,6 +16,7 @@ export const lineFollow: Project = {
   detail: { en: detailEn, fr: detailFr },
   tags: ["MicroPython", "micro:bit", "Robotics", "I2C"],
   github: "https://github.com/zakiller34/line-follow",
+  thumbnail: summaryImg,
   category: { en: "Robotics", fr: "Robotique" },
   defaultUnfolded: true,
 };

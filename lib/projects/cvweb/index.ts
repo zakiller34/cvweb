@@ -1,6 +1,7 @@
 import type { Project } from "@/lib/portfolio-data";
 import detailEn from "./detail.en.md";
 import detailFr from "./detail.fr.md";
+import summaryImg from "./summary.png";
 
 export const cvweb: Project = {
   slug: "cvweb",
@@ -18,6 +19,7 @@ export const cvweb: Project = {
   },
   tags: ["Next.js", "TypeScript"],
   github: "https://github.com/zakiller34/cvweb",
+  thumbnail: summaryImg,
   category: { en: "Others", fr: "Autres" },
   defaultUnfolded: false,
 };

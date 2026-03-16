@@ -1,6 +1,7 @@
 import type { Project } from "@/lib/portfolio-data";
 import detailEn from "./detail.en.md";
 import detailFr from "./detail.fr.md";
+import summaryImg from "./summary.png";
 
 export const ctuSolver: Project = {
   slug: "ctu-solver",
@@ -18,6 +19,7 @@ export const ctuSolver: Project = {
   },
   tags: ["Rust", "Constraint Programming", "Integer Programming", "Optimization"],
   github: "https://github.com/zakiller34/ctu-solver",
+  thumbnail: summaryImg,
   category: {
     en: "Operations Research",
     fr: "Recherche opérationnelle",

@@ -1,6 +1,7 @@
 import type { Project } from "@/lib/portfolio-data";
 import detailEn from "./detail.en.md";
 import detailFr from "./detail.fr.md";
+import summaryImg from "./summary.png";
 
 export const spinozaEthics: Project = {
   slug: "spinoza-ethics",
@@ -15,6 +16,7 @@ export const spinozaEthics: Project = {
   detail: { en: detailEn, fr: detailFr },
   tags: ["Lean4", "Mathlib", "Formal Verification", "Philosophy"],
   github: "https://github.com/zakiller34/lean-proofs",
+  thumbnail: summaryImg,
   category: { en: "Formal Methods", fr: "Methodes formelles" },
   defaultUnfolded: true,
 };

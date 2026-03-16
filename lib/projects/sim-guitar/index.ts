@@ -1,6 +1,7 @@
 import type { Project } from "@/lib/portfolio-data";
 import detailEn from "./detail.en.md";
 import detailFr from "./detail.fr.md";
+import summaryImg from "./summary.png";
 
 export const simGuitar: Project = {
   slug: "sim-guitar",
@@ -18,6 +19,7 @@ export const simGuitar: Project = {
   },
   tags: ["Python", "NumPy", "SciPy", "GetFEM", "Gmsh", "FEM"],
   github: "https://github.com/zakiller34/sim-guitar",
+  thumbnail: summaryImg,
   category: { en: "Scientific Computing", fr: "Calcul scientifique" },
   defaultUnfolded: true,
 };

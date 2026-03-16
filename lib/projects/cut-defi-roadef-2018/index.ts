@@ -1,6 +1,7 @@
 import type { Project } from "@/lib/portfolio-data";
 import detailEn from "./detail.en.md";
 import detailFr from "./detail.fr.md";
+import summaryImg from "./summary.png";
 
 export const cutDefiRoadef2018: Project = {
   slug: "cut-defi-roadef-2018",
@@ -24,6 +25,7 @@ export const cutDefiRoadef2018: Project = {
     "Heuristics",
   ],
   github: "https://github.com/zakiller34/cut-defi-roadef-2018",
+  thumbnail: summaryImg,
   category: {
     en: "Operations Research",
     fr: "Recherche opérationnelle",

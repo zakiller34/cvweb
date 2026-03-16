@@ -1,6 +1,7 @@
 import type { Project } from "@/lib/portfolio-data";
 import detailEn from "./detail.en.md";
 import detailFr from "./detail.fr.md";
+import summaryImg from "./summary.png";
 
 export const cardGame: Project = {
   slug: "card-game",
@@ -18,6 +19,7 @@ export const cardGame: Project = {
   },
   tags: ["Python", "Lean4", "Monte Carlo", "Reinforcement Learning", "Machine Learning"],
   github: "https://github.com/zakiller34/card-game",
+  thumbnail: summaryImg,
   category: {
     en: "Game Theory & AI",
     fr: "Théorie des jeux & IA",

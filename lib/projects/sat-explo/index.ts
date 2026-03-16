@@ -1,6 +1,7 @@
 import type { Project } from "@/lib/portfolio-data";
 import detailEn from "./detail.en.md";
 import detailFr from "./detail.fr.md";
+import summaryImg from "./summary.png";
 
 export const satExplo: Project = {
   slug: "sat-explo",
@@ -18,5 +19,6 @@ export const satExplo: Project = {
   },
   tags: ["Python", "Kriging", "Kalman Filter", "SAR", "Satellite Altimetry"],
   github: "https://github.com/zakiller34/sat-explo",
+  thumbnail: summaryImg,
   category: { en: "Others", fr: "Autres" },
 };
