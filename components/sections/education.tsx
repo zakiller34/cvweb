@@ -55,7 +55,18 @@ export function Education() {
                     <h4 className="font-semibold">{edu.school}</h4>
                     <p className="text-[var(--accent)] text-sm">{edu.degree}</p>
                     <p className="text-[var(--muted)] text-sm">{edu.field}</p>
-                    <p className="text-[var(--muted)] text-xs mt-1">{edu.period}</p>
+                    <p className="text-[var(--muted)] text-xs mt-1 flex items-center gap-2 flex-wrap">
+                      <span>{edu.period}</span>
+                      {edu.location && (
+                        <>
+                          <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          <span>{edu.location}</span>
+                        </>
+                      )}
+                    </p>
                     <p className="text-[var(--muted)] text-xs">{edu.description}</p>
                   </div>
                 </div>
@@ -93,12 +104,23 @@ export function Education() {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex justify-between items-start mb-1">
+                      <div className="flex justify-between items-start mb-1 gap-2">
                         <div>
                           <h4 className="font-medium text-sm">{intern.company}</h4>
                           <p className="text-[var(--accent)] text-xs">{intern.role}</p>
                         </div>
-                        <span className="text-[var(--muted)] text-xs flex-shrink-0">{intern.period}</span>
+                        <span className="text-[var(--muted)] text-xs flex items-center gap-1 flex-wrap justify-end text-right">
+                          <span className="whitespace-nowrap">{intern.period}</span>
+                          {intern.location && (
+                            <span className="flex items-center gap-1 whitespace-nowrap">
+                              <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                              {intern.location}
+                            </span>
+                          )}
+                        </span>
                       </div>
                       <p className="text-[var(--muted)] text-sm">{intern.description}</p>
                     </div>

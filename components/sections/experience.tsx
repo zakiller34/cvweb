@@ -55,7 +55,18 @@ export function Experience() {
                       <div className="flex-1">
                         <h3 className="font-semibold">{exp.role}</h3>
                         <p className="text-[var(--accent)] text-sm">{exp.company}</p>
-                        <p className="text-[var(--muted)] text-sm">{exp.period}</p>
+                        <p className="text-[var(--muted)] text-sm flex items-center gap-2 flex-wrap">
+                          <span>{exp.period}</span>
+                          {exp.location && (
+                            <>
+                              <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                              <span>{exp.location}</span>
+                            </>
+                          )}
+                        </p>
                       </div>
                     </div>
 
