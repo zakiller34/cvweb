@@ -253,9 +253,9 @@ export const COMPETENCIES = {
       description: "Systems programming, performance-critical applications, compiler development and low-level optimization.",
     },
     {
-      id: "rust",
-      label: "Rust",
-      description: "Memory-safe systems programming, concurrent applications, and high-reliability software development.",
+      id: "eda",
+      label: "EDA",
+      description: "Electronic Design Automation — chip design tooling, simulation, synthesis, and verification flows.",
     },
     {
       id: "python",
@@ -285,9 +285,9 @@ export const COMPETENCIES = {
       description: "Programmation système, applications critiques en performance, développement de compilateurs et optimisation bas niveau.",
     },
     {
-      id: "rust",
-      label: "Rust",
-      description: "Programmation système sûre en mémoire, applications concurrentes et développement logiciel haute fiabilité.",
+      id: "eda",
+      label: "EDA",
+      description: "Electronic Design Automation — outils de conception de puces, simulation, synthèse et flux de vérification.",
     },
     {
       id: "python",

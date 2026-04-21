@@ -7,7 +7,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { HexagonGrid } from "@/components/ui/hexagon-grid";
 import {
   CppIcon,
-  RustIcon,
+  EdaIcon,
   PythonIcon,
   FormalVerificationIcon,
   HpcIcon,
@@ -21,7 +21,7 @@ const SECTION_TITLE = {
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   cpp: <CppIcon />,
-  rust: <RustIcon />,
+  eda: <EdaIcon />,
   python: <PythonIcon />,
   "formal-verification": <FormalVerificationIcon />,
   hpc: <HpcIcon />,
