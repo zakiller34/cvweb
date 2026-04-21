@@ -71,6 +71,11 @@ body {
   50% { box-shadow: 0 0 12px 2px var(--accent); }
 }
 
+@keyframes attention-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 var(--accent); }
+  50% { transform: scale(1.06); box-shadow: 0 0 18px 4px var(--accent); }
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
@@ -105,6 +110,10 @@ body {
 
 .animate-blink {
   animation: blink 1s step-end infinite;
+}
+
+.animate-attention {
+  animation: attention-pulse 1.2s var(--anim-timing);
 }
 
 /* Reduced motion override */

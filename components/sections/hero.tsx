@@ -1,14 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { SITE_CONFIG } from "@/lib/site-config";
 import { STATS } from "@/lib/cv-data";
 import { UI_TEXT } from "@/lib/translations";
 import { useLanguage } from "@/components/language-provider";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 import { Typewriter } from "@/components/ui/typewriter";
 import { GitHubIcon, LinkedInIcon, EmailIcon, PortfolioIcon, BotIcon } from "@/components/sidebars/sidebar-icons";
+
+const PORTFOLIO_PULSE_MAX = 7;
+const PORTFOLIO_PULSE_INITIAL_DELAY_MS = 4000;
+const PORTFOLIO_PULSE_INTERVAL_MS = 8000;
 
 interface HeroProps {
   showCvDownload?: boolean;
@@ -24,6 +30,47 @@ export function Hero({ showCvDownload = true, showContactForm = true, showSchedu
   const { lang } = useLanguage();
   const stats = STATS[lang];
   const ui = UI_TEXT[lang];
+  const reducedMotion = useReducedMotion();
+  const [portfolioPulseKey, setPortfolioPulseKey] = useState(0);
+
+  useEffect(() => {
+    if (!showPortfolio || reducedMotion) return;
+
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    let count = 0;
+
+    const schedule = (delay: number) => {
+      timeoutId = setTimeout(() => {
+        timeoutId = null;
+        count += 1;
+        setPortfolioPulseKey((k) => k + 1);
+        if (count < PORTFOLIO_PULSE_MAX) schedule(PORTFOLIO_PULSE_INTERVAL_MS);
+      }, delay);
+    };
+
+    const clear = () => {
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+      }
+    };
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        clear();
+      } else if (count < PORTFOLIO_PULSE_MAX && timeoutId === null) {
+        schedule(PORTFOLIO_PULSE_INTERVAL_MS);
+      }
+    };
+
+    schedule(PORTFOLIO_PULSE_INITIAL_DELAY_MS);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
+    return () => {
+      clear();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [showPortfolio, reducedMotion]);
 
   return (
     <section id="hero" className="min-h-screen flex items-center pt-16">
@@ -53,9 +100,10 @@ export function Hero({ showCvDownload = true, showContactForm = true, showSchedu
               )}
               {showPortfolio && (
                 <a
+                  key={portfolioPulseKey}
                   href="/portfolio"
                   aria-label="Portfolio"
-                  className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 border-2 border-[var(--accent)]/30 bg-[var(--accent)]/15 text-[var(--foreground)] hover:bg-[var(--accent)]/25 hover:border-[var(--accent)] hover:text-[var(--accent)] px-4 py-3 text-base gap-2"
+                  className={`inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 border-2 border-[var(--accent)]/30 bg-[var(--accent)]/15 text-[var(--foreground)] hover:bg-[var(--accent)]/25 hover:border-[var(--accent)] hover:text-[var(--accent)] px-4 py-3 text-base gap-2${portfolioPulseKey > 0 ? " animate-attention" : ""}`}
                 >
                   <PortfolioIcon className="w-6 h-6" />
                   <span>Portfolio</span>
