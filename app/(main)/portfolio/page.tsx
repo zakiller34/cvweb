@@ -168,24 +168,26 @@ function ProjectList({
     <section className="min-h-screen px-6 md:px-16 lg:px-24 py-24 max-w-5xl mx-auto">
       <SocraticQuote />
       <SectionHeader title={UI_TEXT[lang].portfolioTitle} />
-      <div className="flex justify-end gap-2 mb-1">
+      <div className="flex justify-end gap-3 mb-1">
         <button
           onClick={foldAll}
           title={UI_TEXT[lang].foldAll}
-          className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors cursor-pointer"
+          className="flex items-center gap-1.5 text-[var(--muted)] hover:text-[var(--accent)] transition-colors cursor-pointer"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M8 8l4-4 4 4M8 16l4 4 4-4" />
           </svg>
+          <span className="text-sm">{UI_TEXT[lang].foldAll}</span>
         </button>
         <button
           onClick={unfoldAll}
           title={UI_TEXT[lang].unfoldAll}
-          className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors cursor-pointer"
+          className="flex items-center gap-1.5 text-[var(--muted)] hover:text-[var(--accent)] transition-colors cursor-pointer"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M8 4l4 4 4-4M8 20l4-4 4 4" />
           </svg>
+          <span className="text-sm">{UI_TEXT[lang].unfoldAll}</span>
         </button>
       </div>
       <div className="flex flex-col gap-6">
