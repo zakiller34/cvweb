@@ -79,19 +79,19 @@ Department of Mathematics Engineering
 
 ## Portfolio Projects
 
+### mini-compiler: From an ML-flavoured Language to x86-64
+A C++17 compiler to x86-64 — graph-colouring register allocation, Cheney GC, closures — and what formal verification actually buys in building one.
+**Tags**: C++17, Lean 4, Z3, Compilers, Formal Verification
+**Category**: Compilers
+**GitHub**: https://github.com/zakiller34/mini-compiler
+**Details**: https://www.zakaria-teffah.com/portfolio?project=mini-compiler
+
 ### God, Substance, and Necessity: Formalizing Spinoza's Ethics in Lean 4
 Machine-checked formalization of Spinoza's Ethics Part I using Lean 4 and Mathlib.
 **Tags**: Lean4, Mathlib, Formal Verification, Philosophy
 **Category**: Formal Methods
 **GitHub**: https://github.com/zakiller34/lean-proofs
 **Details**: https://www.zakaria-teffah.com/portfolio?project=spinoza-ethics
-
-### Acoustic Guitar Physical Simulation
-Full acoustic chain: 1D string FEM, 2D Kirchhoff-Love soundboard, 3D Yee grid air radiation with PML.
-**Tags**: Python, NumPy, SciPy, GetFEM, Gmsh, FEM
-**Category**: Scientific Computing
-**GitHub**: https://github.com/zakiller34/sim-guitar
-**Details**: https://www.zakaria-teffah.com/portfolio?project=sim-guitar
 
 ### Optimal Texas Hold'em Strategy Laboratory
 Texas Hold'em engine with Monte Carlo simulation, formal Lean4 proofs, and RL agents.
@@ -100,12 +100,19 @@ Texas Hold'em engine with Monte Carlo simulation, formal Lean4 proofs, and RL ag
 **GitHub**: https://github.com/zakiller34/card-game
 **Details**: https://www.zakaria-teffah.com/portfolio?project=card-game
 
-### Sea Ice Drift Estimation: MCC vs CMCC
-Cross-correlation methods for Arctic sea ice drift from satellite imagery, validated against IABP buoy tracks.
-**Tags**: Rust, Python, AMSR2 data, ASCAT data
-**Category**: Scientific Computing
-**GitHub**: https://github.com/zakiller34/sea-ice-drift
-**Details**: https://www.zakaria-teffah.com/portfolio?project=sea-ice-drift
+### Line-Following Robot with micro:bit
+A line-following robot using BBC micro:bit, SparkFun MotoBit, and IR sensors with calibration and state-machine control.
+**Tags**: MicroPython, micro:bit, Robotics, I2C
+**Category**: Robotics
+**GitHub**: https://github.com/zakiller34/line-follow
+**Details**: https://www.zakaria-teffah.com/portfolio?project=line-follow
+
+### 3D Drone Digital Twin in Modelica
+Full 3D digital twin of a quadrotor drone using OpenModelica and MSL.
+**Tags**: Modelica, OpenModelica, Control Systems, Simulation
+**Category**: Robotics
+**GitHub**: https://github.com/zakiller34/drone
+**Details**: https://www.zakaria-teffah.com/portfolio?project=drone
 
 ### Glass Cutting Optimization — ROADEF 2018
 6th place out of 64 teams in the ROADEF/EURO 2018 industrial optimization challenge by Saint-Gobain.
@@ -121,12 +128,19 @@ A Rust library combining Constraint Programming (CP) and Integer Programming (IP
 **GitHub**: https://github.com/zakiller34/ctu-solver
 **Details**: https://www.zakaria-teffah.com/portfolio?project=ctu-solver
 
-### Line-Following Robot with micro:bit
-A line-following robot using BBC micro:bit, SparkFun MotoBit, and IR sensors with calibration and state-machine control.
-**Tags**: MicroPython, micro:bit, Robotics, I2C
-**Category**: Robotics
-**GitHub**: https://github.com/zakiller34/line-follow
-**Details**: https://www.zakaria-teffah.com/portfolio?project=line-follow
+### Acoustic Guitar Physical Simulation
+Full acoustic chain: 1D string FEM, 2D Kirchhoff-Love soundboard, 3D Yee grid air radiation with PML.
+**Tags**: Python, NumPy, SciPy, GetFEM, Gmsh, FEM
+**Category**: Scientific Computing
+**GitHub**: https://github.com/zakiller34/sim-guitar
+**Details**: https://www.zakaria-teffah.com/portfolio?project=sim-guitar
+
+### Sea Ice Drift Estimation: MCC vs CMCC
+Cross-correlation methods for Arctic sea ice drift from satellite imagery, validated against IABP buoy tracks.
+**Tags**: Rust, Python, AMSR2 data, ASCAT data
+**Category**: Scientific Computing
+**GitHub**: https://github.com/zakiller34/sea-ice-drift
+**Details**: https://www.zakaria-teffah.com/portfolio?project=sea-ice-drift
 
 ### GMT — Generic Maths Tool
 Scientific computing library: Gaussian process regression, tension splines, ridge regression, Monte Carlo simulation, and neural networks.

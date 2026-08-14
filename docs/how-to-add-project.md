@@ -82,6 +82,35 @@ Store project images in `public/projects/{slug}/`. Use markdown image syntax:
 *Fig. 1 — Caption.*
 ```
 
+## 7. Update the `llms` files
+
+`public/llms.txt` and `public/llms-full.txt` are hand-maintained and do **not**
+derive from `PROJECTS`. Add the project to both, in the same position it has in
+the `PROJECTS` array. Skipping this is silent — nothing fails, the files just
+go stale.
+
+`public/llms.txt` — one line under `## Portfolio Projects`:
+
+```
+- {title.en}: https://www.zakaria-teffah.com/portfolio?project={slug}
+```
+
+`public/llms-full.txt` — one block under `## Portfolio Projects`, values copied
+verbatim from `index.ts`:
+
+```
+### {title.en}
+{description.en}
+**Tags**: {tags, comma-separated}
+**Category**: {category.en}
+**GitHub**: {github}
+**Details**: https://www.zakaria-teffah.com/portfolio?project={slug}
+```
+
+No action needed for `/api/cv.json` — `app/api/cv/route.ts` maps over `PROJECTS`,
+so it picks the project up automatically. Same for `out/llms*.txt`, which
+`scripts/github-export.sh` regenerates from `public/`.
+
 ## Type Reference
 
 ```ts
