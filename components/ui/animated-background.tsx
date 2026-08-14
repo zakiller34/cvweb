@@ -3,6 +3,7 @@
 import { useEffect, useRef, useCallback } from "react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useTheme } from "@/components/theme-provider";
+import { useReadingMode } from "@/components/reading-mode-provider";
 
 interface Node {
   x: number;
@@ -44,6 +45,7 @@ function getConfig(mobile: boolean) {
 
 export function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const animationRef = useRef<number>(0);
   const nodesRef = useRef<Node[]>([]);
   const pulsesRef = useRef<Pulse[]>([]);
@@ -59,7 +61,11 @@ export function AnimatedBackground() {
   });
 
   const reducedMotion = useReducedMotion();
+  const { readingMode } = useReadingMode();
   const { resolvedTheme } = useTheme();
+
+  // Freeze the canvas while reading a project detail page
+  const staticOnly = reducedMotion || readingMode;
 
   const getColors = useCallback(() => {
     const style = getComputedStyle(document.documentElement);
@@ -239,6 +245,7 @@ export function AnimatedBackground() {
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+    ctxRef.current = ctx;
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
@@ -276,12 +283,20 @@ export function AnimatedBackground() {
     let resizeTimeout: NodeJS.Timeout;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(resize, 100);
+      resizeTimeout = setTimeout(() => {
+        resize();
+        // Resizing clears the canvas; with no loop running, repaint it here
+        if (staticOnly) {
+          const dims = dimsRef.current;
+          draw(ctx, dims.width, dims.height);
+        }
+      }, 100);
     };
 
     window.addEventListener("resize", handleResize);
 
-    if (reducedMotion) {
+    if (staticOnly) {
+      pulsesRef.current = [];
       draw(ctx, width, height);
     } else {
       let frame = 0;
@@ -306,7 +321,7 @@ export function AnimatedBackground() {
       cancelAnimationFrame(animationRef.current);
       clearTimeout(resizeTimeout);
     };
-  }, [reducedMotion, initNodes, initParticles, draw, update, getColors, buildStaticLayer]);
+  }, [staticOnly, initNodes, initParticles, draw, update, getColors, buildStaticLayer]);
 
   // Update colors + static layer on theme change
   useEffect(() => {
@@ -319,8 +334,12 @@ export function AnimatedBackground() {
       for (const p of particlesRef.current) {
         p.color = colorsRef.current.particle.replace(")", `, ${p.opacity})`);
       }
+      // No animation loop is running to pick the new colors up — repaint once
+      if (staticOnly && ctxRef.current) {
+        draw(ctxRef.current, width, height);
+      }
     }
-  }, [resolvedTheme, getColors, buildStaticLayer]);
+  }, [resolvedTheme, getColors, buildStaticLayer, staticOnly, draw]);
 
   return (
     <canvas

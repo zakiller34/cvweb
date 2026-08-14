@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/navigation";
 import { AnimatedBackground } from "@/components/ui/animated-background";
+import { ReadingModeProvider } from "@/components/reading-mode-provider";
 
 import { RightSidebar } from "@/components/sidebars/right-sidebar";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
@@ -58,12 +59,14 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <AnimatedBackground />
-      <Navigation showContactForm={showContactForm} showCvDownload={showCvDownload} showMailTo={showMailToSidebar} showPortfolio={showPortfolio} showGitHub={showGitHub} showLinkedIn={showLinkedIn} />
-      <RightSidebar showContactForm={showContactForm} />
-      <ScrollToTop />
-      <main className="relative z-10">{children}</main>
-      <MobileBottomBar />
+      <ReadingModeProvider>
+        <AnimatedBackground />
+        <Navigation showContactForm={showContactForm} showCvDownload={showCvDownload} showMailTo={showMailToSidebar} showPortfolio={showPortfolio} showGitHub={showGitHub} showLinkedIn={showLinkedIn} />
+        <RightSidebar showContactForm={showContactForm} />
+        <ScrollToTop />
+        <main className="relative z-10">{children}</main>
+        <MobileBottomBar />
+      </ReadingModeProvider>
     </>
   );
 }

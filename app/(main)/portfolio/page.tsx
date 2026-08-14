@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { useLanguage } from "@/components/language-provider";
+import { useReadingMode } from "@/components/reading-mode-provider";
 import { UI_TEXT, getTranslated } from "@/lib/translations";
 import { PROJECTS, Project } from "@/lib/portfolio-data";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -341,8 +342,16 @@ function ProjectDetail({
 
 export default function PortfolioPage() {
   const { lang } = useLanguage();
+  const { setReadingMode } = useReadingMode();
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const savedScrollY = useRef(0);
+
+  // Freeze the animated background while a project detail is open
+  useEffect(() => {
+    if (!selectedSlug) return;
+    setReadingMode(true);
+    return () => setReadingMode(false);
+  }, [selectedSlug, setReadingMode]);
 
   const selectProject = useCallback((slug: string) => {
     savedScrollY.current = window.scrollY;
