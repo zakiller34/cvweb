@@ -10,6 +10,7 @@ import { gmt } from "./projects/gmt";
 import { cardGame } from "./projects/card-game";
 import { spinozaEthics } from "./projects/spinoza-ethics";
 import { ctuSolver } from "./projects/ctu-solver";
+import { miniCompiler } from "./projects/mini-compiler";
 
 export interface Project {
   slug: string;
@@ -23,5 +24,6 @@ export interface Project {
   defaultUnfolded?: boolean;
 }
 
-export const PROJECTS: Project[] = [cutDefiRoadef2018, ctuSolver, simGuitar, cardGame, seaIceDrift,
-    spinozaEthics, lineFollow, drone, gmt, satExplo, cvweb];
+export const PROJECTS: Project[] = [miniCompiler, spinozaEthics, cardGame, lineFollow, drone,
+    cutDefiRoadef2018, ctuSolver, simGuitar, seaIceDrift,
+    gmt, satExplo, cvweb];
