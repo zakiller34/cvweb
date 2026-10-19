@@ -12,19 +12,17 @@ export function CppIcon({ className = "w-8 h-8" }: IconProps) {
   );
 }
 
-export function EdaIcon({ className = "w-8 h-8" }: IconProps) {
+export function AlgorithmsIcon({ className = "w-8 h-8" }: IconProps) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="6" y="6" width="12" height="12" rx="1"/>
-      <rect x="9" y="9" width="6" height="6"/>
-      <path d="M9 2v4"/>
-      <path d="M15 2v4"/>
-      <path d="M9 18v4"/>
-      <path d="M15 18v4"/>
-      <path d="M2 9h4"/>
-      <path d="M2 15h4"/>
-      <path d="M18 9h4"/>
-      <path d="M18 15h4"/>
+      <circle cx="5" cy="6" r="2"/>
+      <circle cx="19" cy="6" r="2"/>
+      <circle cx="12" cy="18" r="2"/>
+      <circle cx="12" cy="9" r="2"/>
+      <path d="M7 6h10"/>
+      <path d="M6.2 7.6l4.8 8.8"/>
+      <path d="M17.8 7.6l-4.8 8.8"/>
+      <path d="M12 11v5"/>
     </svg>
   );
 }
@@ -38,13 +36,12 @@ export function PythonIcon({ className = "w-8 h-8" }: IconProps) {
   );
 }
 
-export function FormalVerificationIcon({ className = "w-8 h-8" }: IconProps) {
+export function ArchitectureIcon({ className = "w-8 h-8" }: IconProps) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9 12l2 2 4-4"/>
-      <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/>
-      <path d="M12 6v2"/>
-      <path d="M12 16v2"/>
+      <path d="M12 2l9 5-9 5-9-5 9-5z"/>
+      <path d="M3 12l9 5 9-5"/>
+      <path d="M3 17l9 5 9-5"/>
     </svg>
   );
 }
@@ -67,13 +64,17 @@ export function HpcIcon({ className = "w-8 h-8" }: IconProps) {
   );
 }
 
-export function TechScoutingIcon({ className = "w-8 h-8" }: IconProps) {
+export function AgenticAiIcon({ className = "w-8 h-8" }: IconProps) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="11" cy="11" r="8"/>
-      <path d="M21 21l-4.35-4.35"/>
-      <path d="M11 8v6"/>
-      <path d="M8 11h6"/>
+      <rect x="4" y="8" width="16" height="12" rx="2"/>
+      <path d="M12 8V4"/>
+      <circle cx="12" cy="3" r="1"/>
+      <path d="M9 13h.01"/>
+      <path d="M15 13h.01"/>
+      <path d="M9 17h6"/>
+      <path d="M2 13v3"/>
+      <path d="M22 13v3"/>
     </svg>
   );
 }

@@ -1,21 +1,21 @@
-# Zakaria Teffah - R&D Engineer (Full Content)
+# Zakaria Teffah - Software Engineer (Full Content)
 
-> Experienced R&D engineer with 14+ years in compilers, formal verification, optimization, and scientific computing. Based in Montpellier, France.
+> Experienced software engineer with 14+ years building robust, high-performance software: architecture, algorithms, optimization, scientific computing and agentic AI. Based in Montpellier, France.
 
 ## Professional Summary
 
-I am an experienced professional with 14+ years in computer science, specializing in compilers and formal verification. I'm excited to tackle cutting-edge software & hardware problems.
+Software engineer with 14+ years building critical tools for industry leaders such as Airbus and Liebherr. I enjoy owning problems end-to-end: understanding the need, designing the architecture, and shipping tested, performant code.
 
-My expertise spans C/C++ development, combinatorial and numerical optimization, mathematical modelling, and software architecture design. I am specialized in formal verification using Lean, TLA+ and SMT solvers like Z3.
+Rigorous and adaptable, I ramp up quickly on new domains and technologies, and I leverage AI coding agents to speed up delivery. I care about code quality, testing and clear communication within a team.
 
 ## Core Competencies
 
-- **C++**: Systems programming, performance-critical applications, compiler development and low-level optimization.
-- **Rust**: Memory-safe systems programming, concurrent applications, and high-reliability software development.
+- **C++**: Systems programming, performance-critical applications and low-level optimization.
+- **Algorithms & Optimization**: Graph algorithms, combinatorial and numerical optimization, efficient data structures for large-scale problems.
 - **Python**: Scripting, data analysis, ML prototyping, and rapid tool development for scientific computing.
-- **Formal Verification**: Mathematical proofs for software correctness using Lean, TLA+, and SMT solvers like Z3.
+- **Software Architecture**: Modular, maintainable designs built on the right abstractions, with testing and code quality in mind.
 - **HPC**: Parallel computing, performance optimization, and scientific simulations on high-performance systems.
-- **Tech Scouting**: Emerging technology evaluation, innovation tracking, and strategic technical recommendations.
+- **Agentic AI**: Leveraging AI coding agents, MCP tools and LLM workflows to accelerate design, development and testing.
 
 ## Technical Skills
 
@@ -23,36 +23,46 @@ My expertise spans C/C++ development, combinatorial and numerical optimization, 
 - C/C++ (advanced)
 - Python (advanced)
 - Bash (advanced)
+- MiniZinc (advanced)
 - Lean4 (good)
 - TLA+ (good)
-- MiniZinc (advanced)
 - VHDL/Verilog (good)
 
 ### Expertise Areas
-- Compilers (advanced)
-- Numerical Optimization (advanced)
-- Mathematical Modelling (advanced)
-- Formal Verification (advanced)
 - Software Architecture (advanced)
+- Algorithms & Data Structures (advanced)
+- Numerical Optimization (advanced)
+- HPC (advanced)
+- Mathematical Modelling (advanced)
+- Testing & CI (good)
+- Agentic AI — agents, MCP (good)
+
+### Soft Skills
+- Abstraction (core strength)
+- Rigor
+- Adaptability
+- Autonomy
+- Curiosity
+- Team Communication
 
 ## Professional Experience
 
 ### NanoXplore — C++/Python R&D Engineer
-**Period**: Feb 2021 – Dec 2025 | **Location**: Montpellier, France
+**Location**: Montpellier, France
 
-FPGA compiler development, DSP pattern matching, formal verification with SMT solvers, Reduced Ordered Binary Decision Diagram development for equivalence checking, graph/hypergraph algorithms for circuit abstractions.
+C++ toolchain development for FPGA design software: graph/hypergraph algorithms, pattern matching, logic equivalence checking (BDD, SMT), performance optimization.
 
-**Technologies**: C++, Python, SMT Solvers, TLA+, VHDL/Verilog, ROBDD, ModelSim
+**Technologies**: C++, Python, Graph Algorithms, SMT Solvers, VHDL/Verilog, Testing
 
 ### Liebherr Aerospace — Scientific Tools Engineer
-**Period**: Jan 2015 – Apr 2019 | **Location**: Toulouse, France
+**Location**: Toulouse, France
 
 Heat transfer algorithms for aircraft icing prediction, scientific computation library for roller bearing modeling, uncertainties propagation computation for sensor-dependent physical quantities.
 
 **Technologies**: C++, Python, Scientific Computing, Numerical Optimization
 
 ### Airbus (via Altran) — Methods & Tools Consultant
-**Period**: Aug 2011 – Dec 2014 | **Location**: Toulouse, France
+**Location**: Toulouse, France
 
 Airbus flight simulator stability optimization, aircraft trajectory simulation and optimization tools, multi-physics simulation for A30X wing optimization using kriging ML.
 

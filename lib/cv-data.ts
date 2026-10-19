@@ -21,15 +21,11 @@ export const STATS = {
   en: [
     { value: "14+", label: "Years Experience" },
     { value: "C++ & Python", label: "Core Languages" },
-    { value: "Compiler", label: "FLex/Bison/LLVM/MLIR" },
-    { value: "Lean/TLA+ & Z3", label: "Formal Verification tools" },
     { value: "INSA", label: "MSc Engineering" },
   ],
   fr: [
     { value: "14+", label: "Années d'expérience" },
     { value: "C++ & Python", label: "Langages principaux" },
-    { value: "Compilateur", label: "FLex/Bison/LLVM/MLIR" },
-    { value: "Lean/TLA+ & Z3", label: "Outils de vérification formelle" },
     { value: "INSA", label: "Diplôme d'ingénieur" },
   ],
 };
@@ -40,16 +36,14 @@ export const EXPERIENCES = {
       company: "NanoXplore",
       logo: "/logos/nanoxplore.png",
       role: "C++/Python R&D Engineer",
-      period: "Feb 2021 - Dec 2025",
       location: "Montpellier, France",
-      description: "FPGA compiler development, DSP pattern matching, formal verification with SMT solvers, Reduced Ordered Binary Decision Diagram development for equivalence checking, graph/hypergraph algorithms for circuit abstractions.",
-      technologies: ["C++", "Python", "SMT Solvers", "TLA+", "VHDL/Verilog", "ROBDD", "ModelSim"],
+      description: "C++ toolchain development for FPGA design software: graph/hypergraph algorithms, pattern matching, logic equivalence checking (BDD, SMT), performance optimization.",
+      technologies: ["C++", "Python", "Graph Algorithms", "SMT Solvers", "VHDL/Verilog", "Testing"],
     },
     {
       company: "Liebherr Aerospace",
       logo: "/logos/liebherr.svg",
       role: "Scientific Tools Engineer",
-      period: "Jan 2015 - Apr 2019",
       location: "Toulouse, France",
       description: "Heat transfer algorithms for aircraft icing prediction, scientific computation library for roller bearing modeling, uncertainties propagation computation for sensor-dependent physical quantities.",
       technologies: ["C++", "Python", "Scientific Computing", "Numerical Optimization"],
@@ -58,7 +52,6 @@ export const EXPERIENCES = {
       company: "Airbus",
       logo: "/logos/altran.svg",
       role: "Methods & Tools Consultant at Altran for Airbus",
-      period: "Aug 2011 - Dec 2014",
       location: "Toulouse, France",
       description: "Airbus flight simulator stability optimization, aircraft trajectory simulation and optimization tools, multi-physics simulation for A30X wing optimization using kriging ML.",
       technologies: ["C++", "Optimization", "Machine Learning", "Design Patterns", "Aerodynamics"],
@@ -69,16 +62,14 @@ export const EXPERIENCES = {
       company: "NanoXplore",
       logo: "/logos/nanoxplore.png",
       role: "Ingénieur R&D C++/Python",
-      period: "Fév 2021 - Déc 2025",
       location: "Montpellier, France",
-      description: "Développement de compilateur FPGA, pattern matching DSP, vérification formelle avec solveurs SMT, développement de ROBDD pour la vérification d'équivalence, algorithmes de graphes/hypergraphes pour les abstractions de circuits.",
-      technologies: ["C++", "Python", "SMT Solvers", "TLA+", "VHDL/Verilog", "ROBDD", "ModelSim"],
+      description: "Développement d'une chaîne d'outils C++ pour logiciel de conception FPGA : algorithmes de graphes/hypergraphes, pattern matching, vérification d'équivalence logique (BDD, SMT), optimisation de performance.",
+      technologies: ["C++", "Python", "Graph Algorithms", "SMT Solvers", "VHDL/Verilog", "Testing"],
     },
     {
       company: "Liebherr Aerospace",
       logo: "/logos/liebherr.svg",
       role: "Ingénieur Outils Scientifiques",
-      period: "Jan 2015 - Avr 2019",
       location: "Toulouse, France",
       description: "Algorithmes de transfert thermique pour la prédiction du givrage aéronautique, bibliothèque de calcul scientifique pour la modélisation des roulements, calcul de propagation d'incertitudes pour les grandeurs physiques dépendantes de capteurs.",
       technologies: ["C++", "Python", "Scientific Computing", "Numerical Optimization"],
@@ -87,7 +78,6 @@ export const EXPERIENCES = {
       company: "Airbus",
       logo: "/logos/altran.svg",
       role: "Consultant Méthodes & Outils chez Altran pour Airbus",
-      period: "Août 2011 - Déc 2014",
       location: "Toulouse, France",
       description: "Optimisation de la stabilité du simulateur de vol Airbus, outils de simulation et d'optimisation de trajectoire d'avion, simulation multi-physique pour l'optimisation des ailes A30X utilisant le krigeage ML.",
       technologies: ["C++", "Optimization", "Machine Learning", "Design Patterns", "Aerodynamics"],
@@ -159,13 +149,33 @@ export const SKILLS = [
   { name: "TLA+", category: "language", level: "good" },
   { name: "MiniZinc", category: "language", level: "advanced" },
   { name: "VHDL/Verilog languages", category: "hardware", level: "good" },
-  { name: "Compilers", category: "expertise", level: "advanced" },
+  { name: "Software Architecture", category: "expertise", level: "advanced" },
+  { name: "Algorithms & Data Structures", category: "expertise", level: "advanced" },
   { name: "Numerical Optimization", category: "expertise", level: "advanced" },
   { name: "HPC", category: "expertise", level: "advanced" },
   { name: "Mathematical Modelling", category: "expertise", level: "advanced" },
-  { name: "Formal Verification", category: "expertise", level: "advanced" },
-  { name: "Software Architecture", category: "expertise", level: "advanced" },
+  { name: "Testing & CI", category: "expertise", level: "good" },
+  { name: "Agentic AI (agents, MCP)", category: "expertise", level: "good" },
 ];
+
+export const SOFT_SKILLS = {
+  en: [
+    { name: "Abstraction", level: "advanced" },
+    { name: "Rigor", level: "good" },
+    { name: "Adaptability", level: "good" },
+    { name: "Autonomy", level: "good" },
+    { name: "Curiosity", level: "good" },
+    { name: "Team Communication", level: "good" },
+  ],
+  fr: [
+    { name: "Abstraction", level: "advanced" },
+    { name: "Rigueur", level: "good" },
+    { name: "Adaptabilité", level: "good" },
+    { name: "Autonomie", level: "good" },
+    { name: "Curiosité", level: "good" },
+    { name: "Communication en équipe", level: "good" },
+  ],
+};
 
 export const SKILL_CATEGORIES = {
   en: {
@@ -236,18 +246,20 @@ export const INTERESTS = {
 };
 
 export const ABOUT_TEXT = {
-  en: `I am an experienced professional with 14+ years in computer science, specializing in
-compilers and formal verification. I'm excited to tackle cutting-edge software & hardware problems.
+  en: `Software engineer with 14+ years building critical tools for industry leaders such as
+Airbus and Liebherr. I enjoy owning problems end-to-end: understanding the need, designing the
+architecture, and shipping tested, performant code.
 
-My expertise spans C/C++ development, combinatorial and numerical optimization,
-mathematical modelling, and software architecture design. I am specialized in formal verification
-using Lean, TLA+ and SMT solvers like Z3.`,
-  fr: `Je suis un professionnel expérimenté avec plus de 14 ans en informatique, spécialisé dans
-les compilateurs et la vérification formelle. Je suis passionné par les défis logiciels et matériels de pointe.
+Rigorous and adaptable, I ramp up quickly on new domains and technologies, and I leverage
+AI coding agents to speed up delivery. I care about code quality, testing and clear
+communication within a team.`,
+  fr: `Ingénieur logiciel avec plus de 14 ans d'expérience dans la création d'outils critiques pour
+des leaders industriels comme Airbus et Liebherr. J'aime prendre en charge les problèmes de bout en bout :
+comprendre le besoin, concevoir l'architecture et livrer un code testé et performant.
 
-Mon expertise couvre le développement C/C++, l'optimisation combinatoire et numérique,
-la modélisation mathématique et la conception d'architecture logicielle. Je suis spécialisé en vérification formelle
-utilisant Lean, TLA+ et les solveurs SMT comme Z3.`,
+Rigoureux et adaptable, je monte rapidement en compétence sur de nouveaux domaines et technologies,
+et je m'appuie sur des agents IA de développement pour accélérer la livraison. J'attache une grande
+importance à la qualité du code, aux tests et à une communication claire au sein de l'équipe.`,
 };
 
 export const COMPETENCIES = {
@@ -255,12 +267,12 @@ export const COMPETENCIES = {
     {
       id: "cpp",
       label: "C++",
-      description: "Systems programming, performance-critical applications, compiler development and low-level optimization.",
+      description: "Systems programming, performance-critical applications and low-level optimization.",
     },
     {
-      id: "eda",
-      label: "EDA",
-      description: "Electronic Design Automation — chip design tooling, simulation, synthesis, and verification flows.",
+      id: "algorithms",
+      label: "Algorithms & Optimization",
+      description: "Graph algorithms, combinatorial and numerical optimization, efficient data structures for large-scale problems.",
     },
     {
       id: "python",
@@ -268,9 +280,9 @@ export const COMPETENCIES = {
       description: "Scripting, data analysis, ML prototyping, and rapid tool development for scientific computing.",
     },
     {
-      id: "formal-verification",
-      label: "Formal Verification",
-      description: "Mathematical proofs for software correctness using Lean, TLA+, and SMT solvers like Z3.",
+      id: "architecture",
+      label: "Software Architecture",
+      description: "Modular, maintainable designs built on the right abstractions, with testing and code quality in mind.",
     },
     {
       id: "hpc",
@@ -278,21 +290,21 @@ export const COMPETENCIES = {
       description: "Parallel computing, performance optimization, and scientific simulations on high-performance systems.",
     },
     {
-      id: "tech-scouting",
-      label: "Tech Scouting",
-      description: "Emerging technology evaluation, innovation tracking, and strategic technical recommendations.",
+      id: "agentic-ai",
+      label: "Agentic AI",
+      description: "Leveraging AI coding agents, MCP tools and LLM workflows to accelerate design, development and testing.",
     },
   ],
   fr: [
     {
       id: "cpp",
       label: "C++",
-      description: "Programmation système, applications critiques en performance, développement de compilateurs et optimisation bas niveau.",
+      description: "Programmation système, applications critiques en performance et optimisation bas niveau.",
     },
     {
-      id: "eda",
-      label: "EDA",
-      description: "Electronic Design Automation — outils de conception de puces, simulation, synthèse et flux de vérification.",
+      id: "algorithms",
+      label: "Algorithmes & Optimisation",
+      description: "Algorithmes de graphes, optimisation combinatoire et numérique, structures de données efficaces pour des problèmes à grande échelle.",
     },
     {
       id: "python",
@@ -300,9 +312,9 @@ export const COMPETENCIES = {
       description: "Scripting, analyse de données, prototypage ML et développement rapide d'outils pour le calcul scientifique.",
     },
     {
-      id: "formal-verification",
-      label: "Vérification Formelle",
-      description: "Preuves mathématiques de correction logicielle avec Lean, TLA+ et solveurs SMT comme Z3.",
+      id: "architecture",
+      label: "Architecture Logicielle",
+      description: "Conceptions modulaires et maintenables fondées sur les bonnes abstractions, en visant tests et qualité du code.",
     },
     {
       id: "hpc",
@@ -310,9 +322,9 @@ export const COMPETENCIES = {
       description: "Calcul parallèle, optimisation de performance et simulations scientifiques sur systèmes haute performance.",
     },
     {
-      id: "tech-scouting",
-      label: "Veille Techno",
-      description: "Évaluation des technologies émergentes, suivi de l'innovation et recommandations techniques stratégiques.",
+      id: "agentic-ai",
+      label: "IA Agentique",
+      description: "Utilisation d'agents IA de développement, d'outils MCP et de workflows LLM pour accélérer la conception, le développement et les tests.",
     },
   ],
 };

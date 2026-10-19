@@ -7,11 +7,11 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { HexagonGrid } from "@/components/ui/hexagon-grid";
 import {
   CppIcon,
-  EdaIcon,
+  AlgorithmsIcon,
   PythonIcon,
-  FormalVerificationIcon,
+  ArchitectureIcon,
   HpcIcon,
-  TechScoutingIcon,
+  AgenticAiIcon,
 } from "@/components/ui/competency-icons";
 
 const SECTION_TITLE = {
@@ -21,11 +21,11 @@ const SECTION_TITLE = {
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   cpp: <CppIcon />,
-  eda: <EdaIcon />,
+  algorithms: <AlgorithmsIcon />,
   python: <PythonIcon />,
-  "formal-verification": <FormalVerificationIcon />,
+  architecture: <ArchitectureIcon />,
   hpc: <HpcIcon />,
-  "tech-scouting": <TechScoutingIcon />,
+  "agentic-ai": <AgenticAiIcon />,
 };
 
 export function About() {

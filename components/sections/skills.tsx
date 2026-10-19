@@ -1,6 +1,6 @@
 "use client";
 
-import { SKILLS, LANGUAGES_SPOKEN } from "@/lib/cv-data";
+import { SKILLS, SOFT_SKILLS, LANGUAGES_SPOKEN } from "@/lib/cv-data";
 import { useLanguage } from "@/components/language-provider";
 import { AnimateOnScroll, StaggerContainer } from "@/components/ui/animate-on-scroll";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -9,28 +9,27 @@ const CATEGORY_LABELS = {
   en: {
     language: "Programming Languages",
     hardware: "Hardware Description",
-    verification: "Verification",
     expertise: "Core Expertise",
   },
   fr: {
     language: "Langages de Programmation",
     hardware: "Description Matérielle",
-    verification: "Vérification",
     expertise: "Expertise Principale",
   },
 };
 
 const SECTION_TITLES = {
-  en: { skills: "Skills", languages: "Languages" },
-  fr: { skills: "Compétences", languages: "Langues" },
+  en: { skills: "Skills", softSkills: "Soft Skills", languages: "Languages" },
+  fr: { skills: "Compétences", softSkills: "Savoir-être", languages: "Langues" },
 };
 
-const CATEGORY_ORDER = ["expertise", "verification"];
+const CATEGORY_ORDER = ["expertise"];
 
 export function Skills() {
   const { lang } = useLanguage();
   const categoryLabels = CATEGORY_LABELS[lang];
   const sectionTitles = SECTION_TITLES[lang];
+  const softSkills = SOFT_SKILLS[lang];
   const languagesSpoken = LANGUAGES_SPOKEN[lang];
 
   const categories = CATEGORY_ORDER.filter((cat) =>
@@ -56,8 +55,20 @@ export function Skills() {
             </AnimateOnScroll>
           ))}
 
-          {/* Languages */}
+          {/* Soft skills */}
           <AnimateOnScroll delay={categories.length * 100}>
+            <h3 className="text-sm font-medium text-[var(--muted)] uppercase tracking-wider mb-4">
+              {sectionTitles.softSkills}
+            </h3>
+            <StaggerContainer className="flex flex-wrap gap-3" staggerDelay={50}>
+              {softSkills.map((skill) => (
+                <SkillBadge key={skill.name} name={skill.name} level={skill.level} />
+              ))}
+            </StaggerContainer>
+          </AnimateOnScroll>
+
+          {/* Languages */}
+          <AnimateOnScroll delay={(categories.length + 1) * 100}>
             <h3 className="text-sm font-medium text-[var(--muted)] uppercase tracking-wider mb-4">
               {sectionTitles.languages}
             </h3>

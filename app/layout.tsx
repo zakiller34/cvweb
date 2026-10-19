@@ -7,29 +7,28 @@ import { ScrollStateProvider } from "@/hooks/use-scroll-state";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.zakaria-teffah.com"),
-  title: "Zakaria Teffah - Research and Development Engineer",
+  title: "Zakaria Teffah - Software Engineer",
   description:
-    "CV of Zakaria Teffah, R&D Engineer specializing in compilers, formal verification, and cutting-edge software & hardware development.",
+    "CV of Zakaria Teffah, software engineer with 14+ years building robust, high-performance software: architecture, algorithms, optimization and agentic AI.",
   keywords: [
     "Zakaria Teffah",
+    "Software Engineer",
     "R&D Engineer",
     "C++",
     "Rust",
     "Python",
-    "compilers",
-    "formal verification",
-    "FPGA",
+    "software architecture",
+    "algorithms",
     "optimization",
     "scientific computing",
-    "Lean4",
-    "TLA+",
-    "SMT solvers",
+    "agentic AI",
+    "AI agents",
   ],
   alternates: { canonical: "https://www.zakaria-teffah.com" },
   openGraph: {
-    title: "Zakaria Teffah - R&D Engineer",
+    title: "Zakaria Teffah - Software Engineer",
     description:
-      "14+ years in compilers, formal verification, optimization & scientific computing. C++, Rust, Python, Lean4, TLA+.",
+      "14+ years in software engineering: architecture, algorithms, optimization, scientific computing & agentic AI. C++, Python, Rust.",
     url: "https://www.zakaria-teffah.com",
     siteName: "Zakaria Teffah",
     images: [{ url: "/profile.jpg", width: 400, height: 400, alt: "Zakaria Teffah" }],
@@ -38,9 +37,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Zakaria Teffah - R&D Engineer",
+    title: "Zakaria Teffah - Software Engineer",
     description:
-      "14+ years in compilers, formal verification, optimization & scientific computing.",
+      "14+ years in software engineering: architecture, algorithms, optimization & agentic AI.",
     images: ["/profile.jpg"],
   },
 };

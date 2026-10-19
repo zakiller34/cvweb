@@ -56,7 +56,6 @@ export function Experience() {
                         <h3 className="font-semibold">{exp.role}</h3>
                         <p className="text-[var(--accent)] text-sm">{exp.company}</p>
                         <p className="text-[var(--muted)] text-sm flex items-center gap-2 flex-wrap">
-                          <span>{exp.period}</span>
                           {exp.location && (
                             <>
                               <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

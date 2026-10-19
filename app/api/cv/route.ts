@@ -27,7 +27,6 @@ export function GET() {
     experience: EXPERIENCES.en.map((e) => ({
       company: e.company,
       role: e.role,
-      period: e.period,
       location: e.location,
       description: e.description,
       technologies: e.technologies,

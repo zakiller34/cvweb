@@ -4,12 +4,12 @@ export const SITE_CONFIG = {
   email: process.env.NEXT_PUBLIC_OWNER_EMAIL ?? "",
   phone: process.env.NEXT_PUBLIC_OWNER_PHONE ?? "",
   title: {
-    en: "Research & Development Engineer",
-    fr: "Ingénieur en Recherche & Développement",
+    en: "Software Engineer · R&D",
+    fr: "Ingénieur Logiciel · R&D",
   },
   description: {
-    en: "Experienced professional in software & hardware development. My areas of interest are: compilers, formal methods, optimization and scientific computing",
-    fr: "Professionnel expérimenté en développement logiciel et matériel. Mes domaines d'intérêt sont : les compilateurs, les méthodes formelles, l'optimisation et le calcul scientifique",
+    en: "Experienced software engineer building robust, high-performance software. Focus areas: software architecture, algorithms & optimization, scientific computing and AI-agent-assisted development",
+    fr: "Ingénieur logiciel expérimenté, je conçois des logiciels robustes et performants. Domaines de prédilection : architecture logicielle, algorithmes & optimisation, calcul scientifique et développement assisté par agents IA",
   },
   social: {
     github: "https://github.com/zakiller34",
